@@ -9,11 +9,11 @@ namespace ShipShop.Service
     {
         IEnumerable<Menu> GetAll();
 
-        Menu AddMenu(Menu menu);
+        Menu Add(Menu menu);
 
-        void EditMenu(Menu menu);
+        void Update(Menu menu);
 
-        Menu DeleteMenu(int menuID);
+        Menu Delete(int menuID);
 
         void Save();
     }
@@ -34,17 +34,17 @@ namespace ShipShop.Service
             return _menuRepository.GetAll();
         }
 
-        public Menu AddMenu(Menu menu)
+        public Menu Add(Menu menu)
         {
             return _menuRepository.Add(menu);
         }
 
-        public void EditMenu(Menu menu)
+        public void Update(Menu menu)
         {
             _menuRepository.Update(menu);
         }
 
-        public Menu DeleteMenu(int menuID)
+        public Menu Delete(int menuID)
         {
             return _menuRepository.Delete(menuID);
         }
