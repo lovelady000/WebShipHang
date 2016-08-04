@@ -216,6 +216,24 @@
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ShipShop.Common\ShipShop.Common.csproj">
+      <Project>{bf12f6c8-d105-47dc-a72b-f2a033aab003}</Project>
+      <Name>ShipShop.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShipShop.Data\ShipShop.Data.csproj">
+      <Project>{dd9bdebd-783e-401c-bd69-0b4630be60c6}</Project>
+      <Name>ShipShop.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShipShop.Model\ShipShop.Model.csproj">
+      <Project>{f809ba52-1e87-46bc-b22a-a664afab7d1c}</Project>
+      <Name>ShipShop.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShipShop.Service\ShipShop.Service.csproj">
+      <Project>{96a752e2-87be-4f80-aea3-d008a0b66c7b}</Project>
+      <Name>ShipShop.Service</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -7,10 +7,14 @@ namespace ShipShop.Model.Models
     public class OrderDetail
     {
         [Key]
-        //[Column(Order = 1)]
         public int OrderID { set; get; }
 
-        public int Quantitty { set; get; }
+        [MaxLength(256)]
+        public string NameProduct { set; get; }
+
+        public string UrlProductDetail { set; get; }
+
+        public string Note { set; get; }
 
         [ForeignKey("OrderID")]
         public virtual Order Order { set; get; }

@@ -42,6 +42,20 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ShipShop.Common\ShipShop.Common.csproj">
+      <Project>{bf12f6c8-d105-47dc-a72b-f2a033aab003}</Project>
+      <Name>ShipShop.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShipShop.Data\ShipShop.Data.csproj">
+      <Project>{dd9bdebd-783e-401c-bd69-0b4630be60c6}</Project>
+      <Name>ShipShop.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShipShop.Model\ShipShop.Model.csproj">
+      <Project>{f809ba52-1e87-46bc-b22a-a664afab7d1c}</Project>
+      <Name>ShipShop.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

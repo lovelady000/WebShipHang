@@ -17,31 +17,37 @@ namespace ShipShop.Model.Models
         public string SenderName { set; get; }
 
         [Required]
-        [MaxLength(256)]
         public string SenderAddress { set; get; }
 
         [Required]
         [MaxLength(50)]
         public string SenderMobile { set; get; }
 
+        public string SenderRegion { set; get; }
+
+
         [Required]
         [MaxLength(256)]
         public string ReceiverName { set; get; }
 
         [Required]
-        [MaxLength(256)]
         public string ReceiverAddress { set; get; }
 
         [Required]
         [MaxLength(50)]
         public string ReceiverMobile { set; get; }
 
+        public string ReceiverRegion { set; get; }
+
         [MaxLength(256)]
         public string PaymentMethod { set; get; }
 
+
+
+        public float PayCOD { set; get; }
+
         public DateTime? CreatedDate { set; get; }
         public string CreatedBy { set; get; }
-        public string PaymentStatus { set; get; }
         public bool Status { set; get; }
 
         public virtual IEnumerable<OrderDetail> OrderDetails { set; get; }
