@@ -14,7 +14,7 @@
             templateUrl: "/app/components/menu/menuAddView.html",
             controller:"menuAddController"
         }).state("edit_menu", {
-            url: "/edit_menu",
+            url: "/edit_menu/:id",
             templateUrl: "/app/components/menu/menuEditView.html",
             controller: "menuEditController"
         });

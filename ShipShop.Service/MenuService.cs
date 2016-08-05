@@ -2,6 +2,7 @@
 using ShipShop.Data.Repositories;
 using ShipShop.Model.Models;
 using System.Collections.Generic;
+using System;
 
 namespace ShipShop.Service
 {
@@ -14,6 +15,8 @@ namespace ShipShop.Service
         void Update(Menu menu);
 
         Menu Delete(int menuID);
+
+        Menu GetByID(int id);
 
         void Save();
     }
@@ -52,6 +55,11 @@ namespace ShipShop.Service
         public void Save()
         {
             _unitOfWork.Commit();
+        }
+
+        public Menu GetByID(int id)
+        {
+            return _menuRepository.GetSingleById(id);
         }
     }
 }

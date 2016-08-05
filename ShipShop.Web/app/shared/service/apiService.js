@@ -6,6 +6,7 @@
         return {
             get: get,
             post:post,
+            put:put,
         };
         function get(url, params, success, failed) {
             $http.get(url, params).then(function (result) {
@@ -18,6 +19,16 @@
         }
         function post(url, data, success, failed) {
             $http.post(url, data).then(function (result) {
+                success(result);
+            }, function (error) {
+                if (error.status === 404) {
+                    notificationService.displayError('Quyền truy cập bị từ chối!');
+                }
+                failed();
+            })
+        }
+        function put(url, data, success, failed) {
+            $http.put(url, data).then(function (result) {
                 success(result);
             }, function (error) {
                 if (error.status === 404) {

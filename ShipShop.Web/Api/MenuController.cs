@@ -16,6 +16,8 @@ namespace ShipShop.Web.Api
     [RoutePrefix("api/menu")]
     public class MenuController : ApiControllerBase
     {
+        #region Init Controller
+
         private IMenuService _menuService;
         private IMenuGroupService _menuGroupService;
 
@@ -25,6 +27,7 @@ namespace ShipShop.Web.Api
             this._menuService = menuService;
             this._menuGroupService = menuGroupService;
         }
+        #endregion
 
         [Route("getall")]
         [HttpGet]
@@ -35,7 +38,7 @@ namespace ShipShop.Web.Api
                 int total = 0;
                 var model = _menuService.GetAll();
                 total = model.Count();
-                var query = model.OrderBy(x => x.MenuGroup.ID).ThenBy(x=>x.DisplayOrder).Skip(page * pageSize).Take(pageSize);
+                var query = model.OrderBy(x => x.MenuGroup.ID).ThenBy(x => x.DisplayOrder).Skip(page * pageSize).Take(pageSize);
                 var responseData = Mapper.Map<List<MenuViewModel>>(query);
 
                 var paginationSet = new PaginationSet<MenuViewModel>()
@@ -54,7 +57,8 @@ namespace ShipShop.Web.Api
         [HttpPost]
         public HttpResponseMessage Create(HttpRequestMessage request, MenuViewModel menuVM)
         {
-            return CreateHttpResponse(request, () => {
+            return CreateHttpResponse(request, () =>
+            {
                 HttpResponseMessage response = null;
                 if (!ModelState.IsValid)
                 {
@@ -69,7 +73,7 @@ namespace ShipShop.Web.Api
                     var responseData = Mapper.Map<Menu, MenuViewModel>(newMenu);
                     response = request.CreateResponse(HttpStatusCode.Created, responseData);
                 }
-                
+
                 return response;
             });
         }
@@ -84,6 +88,47 @@ namespace ShipShop.Web.Api
 
                 var responseData = Mapper.Map<List<MenuGroupViewModel>>(query);
                 HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, responseData);
+                return response;
+            });
+        }
+
+        [Route("getbyid/{id:int}")]
+        [HttpGet]
+        public HttpResponseMessage GetByID(HttpRequestMessage request, int id)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+
+                var newMenu = _menuService.GetByID(id);
+                var responseData = Mapper.Map<Menu, MenuViewModel>(newMenu);
+                response = request.CreateResponse(HttpStatusCode.Created, responseData);
+
+                return response;
+            });
+        }
+
+        [Route("Update")]
+        [HttpPut]
+        public HttpResponseMessage Update(HttpRequestMessage request, MenuViewModel menuVM)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.OK, ModelState);
+                }
+                else
+                {
+                    var newMenu = _menuService.GetByID(menuVM.ID);
+                    newMenu.UpdateMenu(menuVM);
+                    _menuService.Update(newMenu);
+                    _menuService.Save();
+                    var responseData = Mapper.Map<Menu, MenuViewModel>(newMenu);
+                    response = request.CreateResponse(HttpStatusCode.Created, responseData);
+                }
+
                 return response;
             });
         }
