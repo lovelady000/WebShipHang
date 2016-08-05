@@ -31,7 +31,7 @@ namespace ShipShop.Service
 
         public IEnumerable<Menu> GetAll()
         {
-            return _menuRepository.GetAll();
+            return _menuRepository.GetAll(new string[] {"MenuGroup"});
         }
 
         public Menu Add(Menu menu)

@@ -21,7 +21,7 @@ namespace ShipShop.Service
         void Save();
 
     }
-    public class MenuGroupService
+    public class MenuGroupService : IMenuGroupService
     {
         private IMenuGroupRepository _menuGroupRepository;
         private IUnitOfWork _unitOfWork;

@@ -11,7 +11,8 @@ namespace ShipShop.Web.Api
     {
         private IPostCategoryService _postCategoryService;
 
-        public PostCategoryController(IErrorService errorService, IPostCategoryService postCategoryService) : base(errorService)
+        public PostCategoryController(IErrorService errorService, IPostCategoryService postCategoryService)
+            : base(errorService)
         {
             this._postCategoryService = postCategoryService;
         }
