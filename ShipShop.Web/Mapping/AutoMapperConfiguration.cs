@@ -13,6 +13,7 @@ namespace ShipShop.Web.Mapping
         public static void Configure(){
             Mapper.CreateMap<Menu, MenuViewModel>();
             Mapper.CreateMap<MenuGroup, MenuGroupViewModel>();
+            Mapper.CreateMap<DonViTieuBieu, DonViTieuBieuViewModel>();
         }
     }
 }

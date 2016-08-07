@@ -1,0 +1,82 @@
+﻿@{ 
+    var listMenuViewModel = (IEnumerable<ShipShop.Web.Models.MenuViewModel>)ViewBag.listMenuVM;
+}
+<div class="header">
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header navbar-left">
+                <h1>
+                    <a href="index.html"><img width="100" height="100" src="~/Assets/client/images/ship-logo.png" alt=""></a>
+                </h1>
+            </div>
+            <!--navigation-->
+            <div class="header-text navbar-left">
+                <p>Đến với chúng tối là sự lựa chọn xuất sắc của bạn !
+                <p>
+            </div>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="header-right">
+                <div class="top-nav-text">
+                    <ul>
+                        <li>Hot-line: <span>0912345678</span></li>
+                        <li>Email : <a class="email-link" href="javascript:">mail@example.com</a></li>
+                        <li>
+                            <ul class="social-icons">
+                                <li>
+                                    <a href="#"></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="pin"></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="in"></a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-left">
+                        @foreach (var item in listMenuViewModel)
+                        {
+                            <li class="active"><a href="@item.URL" class="link link--yaku"><span>@item.Name</span></a></li>
+                        }
+                        
+
+                    </ul>
+                    <div class="clearfix"> </div>
+                </div>
+                <!--//navigation-->
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </nav>
+</div>
+<!--//header-->
+<!--banner-->
+<div class="banner">
+    <div class="container">
+        <div class="col-md-12 ">
+            <img width="100%" height="150px;" src="~/Assets/client/images/banner.jpg" alt="quảng cáo google">
+        </div>
+    </div>
+    <!-- FlexSlider -->
+    <script src="~/Assets/client/js/jquery.flexslider.js"></script>
+    <script type="text/javascript">
+				$(window).load(function(){
+				  $('.flexslider').flexslider({
+					animation: "slide",
+					start: function(slider){
+					  $('body').removeClass('loading');
+					}
+				  });
+				});
+    </script>
+    <!-- //FlexSlider -->
+</div>

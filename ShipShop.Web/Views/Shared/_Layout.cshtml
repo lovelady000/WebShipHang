@@ -1,0 +1,75 @@
+﻿<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>@ViewBag.Title</title>
+    <!-- Custom Theme files -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="We Care Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+	Smartphone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- //Custom Theme files -->
+    <link href="~/Assets/client/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Assets/client/css/style.css" rel="stylesheet" />
+    <link href="~/Assets/client/css/flexslider.css" rel="stylesheet" />
+    <!-- js -->
+    <script src="~/Assets/client/js/jquery-1.11.1.min.js"></script>
+    <!-- //js -->
+    <!-- start-smooth-scrolling-->
+    <script src="~/Assets/client/js/move-top.js"></script>
+    <script src="~/Assets/client/js/easing.js"></script>
+    <script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){
+				event.preventDefault();
+
+		$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+			});
+		});
+    </script>
+    <!--//end-smooth-scrolling-->
+</head>
+
+<body>
+    <!--header-->
+    @{ Html.RenderAction("Header", "Home");}
+    <!--banner-->
+    <!--banner-bottom-->
+    <!--//banner-bottom-->
+    <!--features-->
+    <div class="features">
+        @RenderBody()
+    </div>
+    @{ Html.RenderAction("Footer", "Home"); }
+    <!--smooth-scrolling-of-move-up-->
+    <script type="text/javascript ">
+        $(document).ready(function() {
+            /*
+            var defaults = {
+                containerID: 'toTop', // fading element id
+                containerHoverID: 'toTopHover', // fading element hover id
+                scrollSpeed: 1200,
+                easingType: 'linear'
+            };
+            */
+
+            $().UItoTop({ easingType: 'easeOutQuart' });
+
+        });
+    </script>
+    <a href="# " id="toTop " style="display: block; "> <span id="toTopHover " style="opacity: 1; "> </span></a>
+    <!--//smooth-scrolling-of-move-up-->
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="~/Assets/client/js/bootstrap.js"></script>
+</body>
+
+</html>
