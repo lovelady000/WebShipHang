@@ -14,6 +14,13 @@ namespace ShipShop.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "About",
+                url: "{alias}.html",
+                defaults: new { controller = "Home", action = "Index", alias = UrlParameter.Optional },
+                namespaces: new string[] { "ShipShop.Web.Controllers"}
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
