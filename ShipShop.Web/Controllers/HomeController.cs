@@ -14,11 +14,13 @@ namespace ShipShop.Web.Controllers
     {
         private IMenuService _menuService;
         private IDonViTieuBieuService _donViTieuBieuService;
+        private INewsService _newsService;
 
-        public HomeController(IMenuService menuService, IDonViTieuBieuService donViTieuBieuService)
+        public HomeController(IMenuService menuService, IDonViTieuBieuService donViTieuBieuService, INewsService newsService)
         {
             this._menuService = menuService;
             this._donViTieuBieuService = donViTieuBieuService;
+            this._newsService = newsService;
         }
         public ActionResult Index()
         {
@@ -52,6 +54,10 @@ namespace ShipShop.Web.Controllers
         [ChildActionOnly]
         public ActionResult Header()
         {
+            var listNews = _newsService.GetAll().OrderBy(x=>x.Order);
+            var listNewsVM = Mapper.Map<IEnumerable<News>, IEnumerable<NewsViewModel>>(listNews);
+            ViewBag.listNewsVM = listNewsVM;
+
             var model = _menuService.GetAll();
             var listMenuViewModel = Mapper.Map<IEnumerable<Menu>, IEnumerable<MenuViewModel>>(model);
             ViewBag.listMenuVM = listMenuViewModel;

@@ -14,6 +14,7 @@ namespace ShipShop.Web.Mapping
             Mapper.CreateMap<Menu, MenuViewModel>();
             Mapper.CreateMap<MenuGroup, MenuGroupViewModel>();
             Mapper.CreateMap<DonViTieuBieu, DonViTieuBieuViewModel>();
+            Mapper.CreateMap<News, NewsViewModel>();
         }
     }
 }

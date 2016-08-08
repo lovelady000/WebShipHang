@@ -1,7 +1,25 @@
-﻿@{ 
-    var listMenuViewModel = (IEnumerable<ShipShop.Web.Models.MenuViewModel>)ViewBag.listMenuVM;
+﻿@using ShipShop.Web.Models
+@{
+    var listMenuViewModel = (IEnumerable<MenuViewModel>)ViewBag.listMenuVM;
+    var listNewsVM = (IEnumerable<NewsViewModel>)ViewBag.listNewsVM;
+    var TinTuc = "";
+    string html = "";
+    foreach (var item in listNewsVM)
+    {
+        html = "<a style='padding-right:30px;' href='" + item.Url + "'>" + item.Name + "</a>";
+        TinTuc += html;
+    }
+    string htmlTinTuc = "<marquee behavior=\"scroll\" onmouseover=\"this.stop();\" onmouseout=\"this.start();\" direction=\"left\">"+TinTuc+" </marquee>";
 }
+<div class="row" style="margin:0px;">
+    <div class="col-md-12">
+        <div class="container">
+            @Html.Raw(htmlTinTuc)
+        </div>
+    </div>
+</div>
 <div class="header">
+
     <nav class="navbar navbar-default">
         <div class="container">
             <div class="navbar-header navbar-left">
@@ -45,9 +63,16 @@
                     <ul class="nav navbar-nav navbar-left">
                         @foreach (var item in listMenuViewModel)
                         {
-                            <li class="active"><a href="@item.URL" class="link link--yaku"><span>@item.Name</span></a></li>
+                            if (item.Name == "Trang chủ")
+                            {
+                                <li class="active"><a href="@item.URL" class=""><span>@item.Name</span></a></li>
+                            }
+                            else
+                            {
+                                <li class=""><a href="@item.URL" class="link link--yaku"><span>@item.Name</span></a></li>
+                            }
                         }
-                        
+                        @*<li class="active"><a href="@item.URL" class="link link--yaku"><span>@item.Name</span></a></li>*@
 
                     </ul>
                     <div class="clearfix"> </div>

@@ -204,6 +204,7 @@
     <Compile Include="Models\DonViTieuBieuViewModel.cs" />
     <Compile Include="Models\MenuGroupViewModel.cs" />
     <Compile Include="Models\MenuViewModel.cs" />
+    <Compile Include="Models\NewsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -626,6 +627,7 @@
     <Content Include="Assets\client\js\jquery.flexisel.js" />
     <Content Include="Assets\client\js\jquery.flexslider.js" />
     <Content Include="Assets\client\js\lightbox-plus-jquery.min.js" />
+    <Content Include="Assets\client\js\marquee.js" />
     <Content Include="Assets\client\js\move-top.js" />
     <Content Include="Assets\client\js\responsiveslides.min.js" />
     <Content Include="Content\bootstrap.css" />

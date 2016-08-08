@@ -30,6 +30,7 @@ namespace ShipShop.Data
         public DbSet<VisitorStatistic> VisitorStatistics { set; get; }
         public DbSet<Error> Errors { set; get; }
 
+        public DbSet<News> News { set; get; }
         public DbSet<DonViTieuBieu> DonViTieuBieu { set; get; }
 
         public static OnlineShopDbContext Create()

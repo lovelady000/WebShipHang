@@ -77,6 +77,14 @@
     <Compile Include="Migrations\201608031458092_First-database.Designer.cs">
       <DependentUpon>201608031458092_First-database.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608080437334_Add_TB_News.cs" />
+    <Compile Include="Migrations\201608080437334_Add_TB_News.Designer.cs">
+      <DependentUpon>201608080437334_Add_TB_News.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608080439394_Add_TB_News2.cs" />
+    <Compile Include="Migrations\201608080439394_Add_TB_News2.Designer.cs">
+      <DependentUpon>201608080439394_Add_TB_News2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="OnlineShopDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -85,6 +93,7 @@
     <Compile Include="Repositories\FooterRepository.cs" />
     <Compile Include="Repositories\MenuGroupRepository.cs" />
     <Compile Include="Repositories\MenuRepository.cs" />
+    <Compile Include="Repositories\NewsRepository.cs" />
     <Compile Include="Repositories\OrderDetailRepository.cs" />
     <Compile Include="Repositories\OrderRepository.cs" />
     <Compile Include="Repositories\PageRepository.cs" />
@@ -104,6 +113,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201608031458092_First-database.resx">
       <DependentUpon>201608031458092_First-database.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608080437334_Add_TB_News.resx">
+      <DependentUpon>201608080437334_Add_TB_News.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608080439394_Add_TB_News2.resx">
+      <DependentUpon>201608080439394_Add_TB_News2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -41,7 +41,7 @@ body a:hover{
 /*----*/
 /*--top-nav--*/
 .header {
-    margin: 2em 0 0;
+    margin:0;
     border-bottom: 5px solid #C7C2C2;
     box-shadow: 1px 3px 1px #D0CFCF;
 }
@@ -321,7 +321,7 @@ ul.dropdown-menu li {
 }
 /*--features--*/
 .features {
-    padding: 5em 0;
+    padding: 20px 0;
 }
 h3.title {
     font-size: 2em;
