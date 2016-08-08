@@ -6,15 +6,18 @@
 
     function config($stateProvider, $urlRouterProvider) {
         $stateProvider.state("menu", {
-            url:"/menu",
+            url: "/menu",
+            parent: 'base',
             templateUrl: "/app/components/menu/menuListView.html",
             controller:"menuListController"
         }).state("add_menu", {
             url: "/add_menu",
+            parent: 'base',
             templateUrl: "/app/components/menu/menuAddView.html",
             controller:"menuAddController"
         }).state("edit_menu", {
             url: "/edit_menu/:id",
+            parent: 'base',
             templateUrl: "/app/components/menu/menuEditView.html",
             controller: "menuEditController"
         });

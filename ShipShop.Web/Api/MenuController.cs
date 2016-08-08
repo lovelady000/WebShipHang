@@ -14,6 +14,7 @@ using ShipShop.Web.Infrastructure.Extensions;
 namespace ShipShop.Web.Api
 {
     [RoutePrefix("api/menu")]
+    [Authorize]
     public class MenuController : ApiControllerBase
     {
         #region Init Controller

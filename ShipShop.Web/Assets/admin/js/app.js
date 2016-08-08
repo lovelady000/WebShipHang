@@ -246,6 +246,7 @@ function _init() {
         _this.fix();
         _this.fixSidebar();
       });
+
     },
     fix: function () {
       //Get window height and the wrapper height
