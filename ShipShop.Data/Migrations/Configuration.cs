@@ -4,7 +4,7 @@
     using Microsoft.AspNet.Identity.EntityFramework;
     using Model.Models;
     using System;
-    using System.Data.Entity;
+    using System.Collections.Generic;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
@@ -18,9 +18,10 @@
         protected override void Seed(ShipShop.Data.OnlineShopDbContext context)
         {
             CreateAccount(context);
+            CreateRegionAndAreas(context);
             //  This method will be called after migrating to the latest version.
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
+            //  You can use the DbSet<T>.AddOrUpdate() helper extension method
             //  to avoid creating duplicate seed data. E.g.
             //
             //    context.People.AddOrUpdate(
@@ -31,6 +32,7 @@
             //    );
             //
         }
+
         private void CreateAccount(ShipShop.Data.OnlineShopDbContext context)
         {
             var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new OnlineShopDbContext()));
@@ -59,6 +61,50 @@
             var adminUser = manager.FindByEmail("nguyendunghn0109@gmail.com");
 
             manager.AddToRoles(adminUser.Id, new string[] { "Admin", "User" });
+        }
+
+        private void CreateRegionAndAreas(OnlineShopDbContext context)
+        {
+            if (context.Areas.Count() == 0)
+            {
+                var area1 = new Areas()
+                {
+                    Name = "Vùng 1",
+                };
+                context.Areas.Add(area1);
+                context.SaveChanges();
+                List<Region> listRegion = new List<Region>()
+                {
+                    new Region() {Name="Hoàn Kiếm",AreaID=area1.AreaID },
+                    new Region() {Name="Tây Hồ",AreaID=area1.AreaID },
+                    new Region() {Name="Ba Đình",AreaID=area1.AreaID },
+                    new Region() {Name="Cầu giấy",AreaID=area1.AreaID },
+                    new Region() {Name="Hai Bà Trưng",AreaID=area1.AreaID },
+                    new Region() {Name="Thanh Xuân",AreaID=area1.AreaID },
+                    new Region() {Name="Hoàng Mai",AreaID=area1.AreaID },
+                };
+                context.Regions.AddRange(listRegion);
+                context.SaveChanges();
+                var area2 = new Areas()
+                {
+                    Name = "Vùng 2",
+                };
+                context.Areas.Add(area2);
+                context.SaveChanges();
+                List<Region> listRegion2 = new List<Region>()
+                {
+                    new Region() {Name="Long Biên",AreaID=area2.AreaID },
+                    new Region() {Name="Bắc Từ Liêm",AreaID=area2.AreaID },
+                    new Region() {Name="Nam Từ Liêm",AreaID=area2.AreaID },
+                    new Region() {Name="Hà Đông",AreaID=area2.AreaID },
+                    new Region() {Name="Thanh Trì",AreaID=area2.AreaID },
+                    new Region() {Name="Gia Lâm",AreaID=area2.AreaID },
+                    new Region() {Name="Đông Anh",AreaID=area2.AreaID },
+                };
+
+                context.Regions.AddRange(listRegion2);
+                context.SaveChanges();
+            }
         }
     }
 }

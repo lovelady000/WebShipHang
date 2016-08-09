@@ -7,6 +7,7 @@ namespace ShipShop.Model.Models
     public class WebInformation
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { set; get; }
 
         public string Slogan { set; get; }

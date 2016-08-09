@@ -17,6 +17,7 @@ namespace ShipShop.Web.Models
 
         public string Adress { set; get; }
 
-        public string Region { set; get; }
+        public int RegionID { set; get; }
+
     }
 }

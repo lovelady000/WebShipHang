@@ -143,7 +143,8 @@
             </div>
             <div class="form-group">
                 <div class="col-md-5">
-                    <a data-toggle="modal" data-target="#myModal" href="javascript:void(0);">Đăng kí</a>
+                    <a  href="javascipt:" data-toggle="modal" data-target="#myModal">Open Modal</a>
+                    <button type="button" data-toggle="modal" data-target="#myModal">Đăng kí</button>
                 </div>
                 <div class="col-md-5">
                     <button type="submit" class="btn btn-default">Đăng nhập</button>
@@ -167,7 +168,7 @@
                 <h4 class="modal-title">Đăng kí tài khoản</h4>
             </div>
             <div class="modal-body">
-                @{Html.RenderAction("Index", "Account"); }
+                @{Html.RenderAction("Register", "Account"); }
             </div>
             <div class="modal-footer">
                 Đồng ý với các điều khoản đăng ký.

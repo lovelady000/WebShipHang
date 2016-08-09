@@ -7,6 +7,9 @@ namespace ShipShop.Model.Models
     public class OrderDetail
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int OrderDetailID { set; get; }
+
         public int OrderID { set; get; }
 
         [MaxLength(256)]
@@ -16,7 +19,7 @@ namespace ShipShop.Model.Models
 
         public string Note { set; get; }
 
-        [ForeignKey("OrderID")]
+        [ForeignKey("OrderDetailID")]
         public virtual Order Order { set; get; }
     }
 }

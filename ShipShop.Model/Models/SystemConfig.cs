@@ -7,6 +7,7 @@ namespace ShipShop.Model.Models
     public class SystemConfig
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { set; get; }
 
         [Required]

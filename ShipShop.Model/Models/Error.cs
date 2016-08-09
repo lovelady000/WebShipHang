@@ -8,6 +8,7 @@ namespace ShipShop.Model.Models
     public class Error
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { set; get; }
 
         public string Message { set; get; }
