@@ -8,20 +8,20 @@
         <div class="col-md-5">
             <form class="form-horizontal" role="form">
                 <div class="form-group">
-                    <label class="control-label col-sm-5">SĐT người gửi</label>
-                    <div class="col-sm-7">
-                        <input class="form-control" >
+                    <label class="control-label col-md-5">SĐT người gửi</label>
+                    <div class="col-md-7">
+                        <input class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-5">Vùng</label>
-                    <div class="col-sm-7">
-                        <input type="text" class="form-control" >
+                    <label class="control-label col-md-5">Vùng</label>
+                    <div class="col-md-7">
+                        <input type="text" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-5">Địa chỉ liên hệ</label>
-                    <div class="col-sm-7">
+                    <label class="control-label col-md-5">Địa chỉ liên hệ</label>
+                    <div class="col-md-7">
                         <input type="text" class="form-control" id="pwd">
                     </div>
                 </div>
@@ -30,7 +30,7 @@
         <div class="col-md-2">
             <form class="form-horizontal" role="form">
                 <div class="form-group">
-                    <label class="control-label col-sm-12" for="email">Gửi đến</label>
+                    <label class="control-label col-md-12" for="email">Gửi đến</label>
                 </div>
 
             </form>
@@ -38,21 +38,21 @@
         <div class="col-md-5">
             <form class="form-horizontal" role="form">
                 <div class="form-group">
-                    <label class="control-label col-sm-5" for="email">SĐT người nhận</label>
-                    <div class="col-sm-7">
-                        <input type="email" class="form-control" id="email" >
+                    <label class="control-label col-md-5" for="email">SĐT người nhận</label>
+                    <div class="col-md-7">
+                        <input type="email" class="form-control" id="email">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-5" for="pwd">Vùng</label>
-                    <div class="col-sm-7">
-                        <input type="password" class="form-control" id="pwd" >
+                    <label class="control-label col-md-5" for="pwd">Vùng</label>
+                    <div class="col-md-7">
+                        <input type="password" class="form-control" id="pwd">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-5" for="pwd">Địa chỉ liên hệ</label>
-                    <div class="col-sm-7">
-                        <input type="password" class="form-control" id="pwd" >
+                    <label class="control-label col-md-5" for="pwd">Địa chỉ liên hệ</label>
+                    <div class="col-md-7">
+                        <input type="password" class="form-control" id="pwd">
                     </div>
                 </div>
             </form>
@@ -60,8 +60,8 @@
         <div class="form-horizontal">
             <div class="col-md-6 col-md-offset-3">
                 <div class="form-group">
-                    <label class="control-label col-sm-5" for="pwd">Phí thu hộ</label>
-                    <div class="col-sm-7">
+                    <label class="control-label col-md-5" for="pwd">Phí thu hộ</label>
+                    <div class="col-md-7">
                         <input type="password" class="form-control" id="pwd">
                     </div>
                 </div>
@@ -117,32 +117,35 @@
             <div class="col-md-offset-5">
                 <button class="btn btn-success">Tạo đơn</button>
             </div>
-           
+
         </div>
     </div>
     <div class="col-md-4 feature-grids">
         <form class="form-horizontal" role="form">
             <div class="form-group">
-                <label class="control-label col-sm-4" for="email">Số điện thoại:</label>
-                <div class="col-sm-8">
+                <label class="control-label col-md-4" for="email">Số điện thoại:</label>
+                <div class="col-md-8">
                     <input type="email" class="form-control" id="email" placeholder="Số điện thoại">
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-sm-4" for="pwd">Mật khẩu:</label>
-                <div class="col-sm-8">
+                <label class="control-label col-md-4" for="pwd">Mật khẩu:</label>
+                <div class="col-md-8">
                     <input type="password" class="form-control" id="pwd" placeholder="Mật khẩu">
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-sm-offset-4 col-sm-8">
+                <div class="col-md-offset-4 col-md-8">
                     <div class="checkbox">
                         <label><input type="checkbox"> Ghi nhớ</label>
                     </div>
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-sm-offset-4 col-sm-8">
+                <div class="col-md-5">
+                    <a data-toggle="modal" data-target="#myModal" href="javascript:void(0);">Đăng kí</a>
+                </div>
+                <div class="col-md-5">
                     <button type="submit" class="btn btn-default">Đăng nhập</button>
                 </div>
             </div>
@@ -150,6 +153,28 @@
         <div>Khu vực dành cho quảng cáo</div>
     </div>
     <div class="clearfix"> </div>
+</div>
+
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Đăng kí tài khoản</h4>
+            </div>
+            <div class="modal-body">
+                @{Html.RenderAction("Index", "Account"); }
+            </div>
+            <div class="modal-footer">
+                Đồng ý với các điều khoản đăng ký.
+            </div>
+        </div>
+
+    </div>
 </div>
 
 
