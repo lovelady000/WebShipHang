@@ -1,7 +1,7 @@
 ﻿@model ShipShop.Web.Models.LoginViewModel
 
-
-@using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form-horizontal" }))
+<script src="~/Assets/client/js/login.ajax.js"></script>
+@using (Html.BeginForm("Login", "Account", FormMethod.Post, new {@id="frmLogin", @class = "form-horizontal" }))
 {
     <div class="form-group">
         <label class="control-label col-md-4" for="email">Số điện thoại:</label>
@@ -15,7 +15,7 @@
                 @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" style="margin-bottom:0px;">
             <div class="col-md-offset-4 col-md-8">
                 <div class="checkbox">
                     <label>@Html.CheckBoxFor(m => m.RememberMe) Ghi nhớ</label>
@@ -23,11 +23,15 @@
             </div>
         </div>
         <div class="form-group">
-            <div class="col-md-5">
-                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#myModal">Đăng kí</button>
+            <div class="col-md-12" style="padding-bottom:15px;">
+                <span style="color:red;" id="lblMsg"></span>
             </div>
-            <div class="col-md-5">
-                <button type="submit" class="btn btn-default">Đăng nhập</button>
+
+            <div class="col-md-offset-4 col-md-5">
+                <button type="button" id="btnSubmit" class="btn btn-default">Đăng nhập</button>
+            </div>
+            <div class="col-md-offset-2 col-md-10" style="padding-top:10px">
+                <label> Chưa có tài khoản ? <a href="#" data-toggle="modal" data-target="#myModal">Đăng kí</a></label>
             </div>
         </div>
 }

@@ -1,7 +1,7 @@
 ﻿@using ShipShop.Web.Models;
 @model RegisterViewModel
-@*<form class="form-horizontal" novalidate name="frmAddMenu" role="form">*@
-@using (Html.BeginForm("Register","Account",FormMethod.Post,new {@class= "form-horizontal" } ))
+<script src="~/Assets/client/js/registerAccount.js"></script>
+@using (Html.BeginForm("Register","Account",FormMethod.Post,new {@class= "form-horizontal",@id="frmRegister" } ))
 {
     @Html.AntiForgeryToken()
     <div class="box-body">
@@ -20,7 +20,7 @@
         <div class="form-group">
             <label class="col-md-offset-2 col-md-3 control-label">Nhập lại mật khẩu</label>
             <div class="col-md-4">
-                <input type="text" class="form-control" />
+                <input type="password" id="rePassword" class="form-control" />
             </div>
         </div>
 
@@ -60,25 +60,15 @@
                 @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
             </div>
         </div>
-        <div class="form-group">
-            <div class="col-md-offset-3 col-md-3">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="Status"> Kích hoạt
-                    </label>
-                </div>
-            </div>
-        </div>
     </div>
-    <!-- /.box-body -->
     <div class="box-footer">
+        <div class="col-md-12">
+            <span id="lblMsg"></span>
+        </div>
         <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-        <button type="submit" class="btn btn-success pull-right">Đăng kí</button>
+        <button type="button" id="btnRegister" class="btn btn-success pull-right">Đăng kí</button>
     </div>
-
-    <!-- /.box-footer -->
     }
-@*</form>*@
 <script>
     $(document).ready(function () {
         $('#rdbVendee').prop("checked", true);
@@ -88,7 +78,6 @@
             $('#txtShopName').show();
 
         });
-        //rdbNoVendee
         $('#rdbNoVendee').change(function () {
             $('#Vendee').prop("checked", false);
             $('#txtShopName').hide();

@@ -61,16 +61,15 @@ namespace ShipShop.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Register(RegisterViewModel register)
+        public async Task<JsonResult> Register(RegisterViewModel register)
         {
-            ViewBag.RegionID = new SelectList(_regionService.GetAll(), "RegionID", "Name");
+            //ViewBag.RegionID = new SelectList(_regionService.GetAll(), "RegionID", "Name");
             var userByUsserName = await _userManager.FindByNameAsync(register.UserName);
             if (userByUsserName != null)
             {
-                ModelState.AddModelError("Username", "Tài khoản đã tồn tại!");
-                return View(register);
+                var response = new { Code = 0, Msg = "Số điện thoại đã được đăng kí!" };
+                return Json(response);
             }
-
             var user = new ApplicationUser()
             {
                 UserName = register.UserName,
@@ -80,11 +79,8 @@ namespace ShipShop.Web.Controllers
                 WebOrShopName = register.Vendee ? register.WebOrShopName : "",
             };
             await _userManager.CreateAsync(user, register.Password);
-
             var userFindByName = await _userManager.FindByNameAsync(register.UserName);
-
             _userManager.AddToRoles(userFindByName.Id, new string[] { "User" });
-
             IAuthenticationManager authenticationManager = HttpContext.GetOwinContext().Authentication;
             authenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
             ClaimsIdentity identity = _userManager.CreateIdentity(userFindByName, DefaultAuthenticationTypes.ApplicationCookie);
@@ -92,7 +88,9 @@ namespace ShipShop.Web.Controllers
             props.IsPersistent = true;
             authenticationManager.SignIn(props, identity);
 
-            return Redirect("/");
+
+            var responseSuccess = new { Code = 1, Msg = "" };
+            return Json(responseSuccess);
         }
 
         [HttpGet]
@@ -102,8 +100,9 @@ namespace ShipShop.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Login(LoginViewModel model)
+        public async Task<JsonResult> Login(LoginViewModel model)
         {
+            
             ApplicationUser user = await _userManager.FindAsync(model.UserName, model.Password);
             if (user != null)
             {
@@ -113,10 +112,14 @@ namespace ShipShop.Web.Controllers
                 AuthenticationProperties props = new AuthenticationProperties();
                 props.IsPersistent = model.RememberMe;
                 authenticationManager.SignIn(props, identity);
+                var responseSuccess = new { Code = 1, Msg = "" };
+                return Json(responseSuccess);
             }
 
             //return RedirectToAction("Index","Home");
-            return Redirect("/");
+            //return Redirect("/");
+            var response = new { Code = 0, Msg = "Số điện thoại hoặc mật khẩu không chính xác!" };
+            return Json(response);
         }
 
         [HttpPost]
