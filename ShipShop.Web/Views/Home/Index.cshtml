@@ -124,10 +124,14 @@
         @if (Request.IsAuthenticated)
         {
             <p>Xin chào @User.Identity.Name</p>
-            using (Html.BeginForm("Logout", "Account", FormMethod.Post))
+            <p>Thời gian hệ thống</p>
+
+            using (Html.BeginForm("Logout", "Account", FormMethod.Post,new { @id="frmLogout"}))
             {
+
                 @Html.AntiForgeryToken();
-                <button class="btn btn-default" type="submit">Thoát</button>
+                <a href="/quan-tri-tai-khoan.html">Quản trị</a>
+                <a id="btnLogout" href="#">Thoát</a>
             }
         }
         else
@@ -160,5 +164,12 @@
 
     </div>
 </div>
+<script>
+    $('#btnLogout').off("click").on("click", function (e) {
+        e.preventDefault();
+        $('#frmLogout').submit();
+    });
+</script>
+
 
 

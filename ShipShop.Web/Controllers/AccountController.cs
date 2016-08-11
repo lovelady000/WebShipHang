@@ -81,10 +81,18 @@ namespace ShipShop.Web.Controllers
             };
             await _userManager.CreateAsync(user, register.Password);
 
-            var adminUser = await _userManager.FindByNameAsync(register.UserName);
+            var userFindByName = await _userManager.FindByNameAsync(register.UserName);
 
-            _userManager.AddToRoles(adminUser.Id, new string[] { "User" });
-            return RedirectToAction("Index", "Home");
+            _userManager.AddToRoles(userFindByName.Id, new string[] { "User" });
+
+            IAuthenticationManager authenticationManager = HttpContext.GetOwinContext().Authentication;
+            authenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+            ClaimsIdentity identity = _userManager.CreateIdentity(userFindByName, DefaultAuthenticationTypes.ApplicationCookie);
+            AuthenticationProperties props = new AuthenticationProperties();
+            props.IsPersistent = true;
+            authenticationManager.SignIn(props, identity);
+
+            return Redirect("/");
         }
 
         [HttpGet]

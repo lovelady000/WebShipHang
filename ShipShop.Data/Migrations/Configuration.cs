@@ -17,8 +17,9 @@
 
         protected override void Seed(ShipShop.Data.OnlineShopDbContext context)
         {
-            CreateAccount(context);
+
             CreateRegionAndAreas(context);
+            CreateAccount(context);
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method
@@ -48,6 +49,7 @@
                 FullName = "Nguyễn Năng Dũng",
                 PhoneNumber = "0983007974",
                 PhoneNumberConfirmed = true,
+                RegionID = 2,
             };
 
             manager.Create(user, "123654$");
