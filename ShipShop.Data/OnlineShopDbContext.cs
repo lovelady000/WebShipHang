@@ -34,6 +34,7 @@ namespace ShipShop.Data
         public DbSet<DonViTieuBieu> DonViTieuBieu { set; get; }
         public DbSet<Region> Regions { set; get; }
         public DbSet<Areas> Areas { set; get; }
+        public DbSet<WebInformation> WebInformations { set; get; }
 
         public static OnlineShopDbContext Create()
         {

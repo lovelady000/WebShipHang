@@ -101,6 +101,26 @@
     <Compile Include="Migrations\201608091411461_ChangeModelsAreaRegion3.Designer.cs">
       <DependentUpon>201608091411461_ChangeModelsAreaRegion3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608101422146_ChangeApplicationUser-Add-WebInformation.cs" />
+    <Compile Include="Migrations\201608101422146_ChangeApplicationUser-Add-WebInformation.Designer.cs">
+      <DependentUpon>201608101422146_ChangeApplicationUser-Add-WebInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608101438504_ChangeApplicationUser-Add-WebInformation-2.cs" />
+    <Compile Include="Migrations\201608101438504_ChangeApplicationUser-Add-WebInformation-2.Designer.cs">
+      <DependentUpon>201608101438504_ChangeApplicationUser-Add-WebInformation-2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608101439214_ChangeApplicationUser-Add-WebInformation-3.cs" />
+    <Compile Include="Migrations\201608101439214_ChangeApplicationUser-Add-WebInformation-3.Designer.cs">
+      <DependentUpon>201608101439214_ChangeApplicationUser-Add-WebInformation-3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608101441519_ChangeApplicationUser-Add-WebInformation-4.cs" />
+    <Compile Include="Migrations\201608101441519_ChangeApplicationUser-Add-WebInformation-4.Designer.cs">
+      <DependentUpon>201608101441519_ChangeApplicationUser-Add-WebInformation-4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608101444335_ChangeApplicationUser-Add-WebInformation-5.cs" />
+    <Compile Include="Migrations\201608101444335_ChangeApplicationUser-Add-WebInformation-5.Designer.cs">
+      <DependentUpon>201608101444335_ChangeApplicationUser-Add-WebInformation-5.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="OnlineShopDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -149,6 +169,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608091411461_ChangeModelsAreaRegion3.resx">
       <DependentUpon>201608091411461_ChangeModelsAreaRegion3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608101422146_ChangeApplicationUser-Add-WebInformation.resx">
+      <DependentUpon>201608101422146_ChangeApplicationUser-Add-WebInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608101438504_ChangeApplicationUser-Add-WebInformation-2.resx">
+      <DependentUpon>201608101438504_ChangeApplicationUser-Add-WebInformation-2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608101439214_ChangeApplicationUser-Add-WebInformation-3.resx">
+      <DependentUpon>201608101439214_ChangeApplicationUser-Add-WebInformation-3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608101441519_ChangeApplicationUser-Add-WebInformation-4.resx">
+      <DependentUpon>201608101441519_ChangeApplicationUser-Add-WebInformation-4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608101444335_ChangeApplicationUser-Add-WebInformation-5.resx">
+      <DependentUpon>201608101444335_ChangeApplicationUser-Add-WebInformation-5.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

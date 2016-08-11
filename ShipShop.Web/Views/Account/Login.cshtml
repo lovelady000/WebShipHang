@@ -1,0 +1,33 @@
+﻿@model ShipShop.Web.Models.LoginViewModel
+
+
+@using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <div class="form-group">
+        <label class="control-label col-md-4" for="email">Số điện thoại:</label>
+        <div class="col-md-8">
+            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+        </div>
+    </div>
+        <div class="form-group">
+            <label class="control-label col-md-4" for="pwd">Mật khẩu:</label>
+            <div class="col-md-8">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-4 col-md-8">
+                <div class="checkbox">
+                    <label>@Html.CheckBoxFor(m => m.RememberMe) Ghi nhớ</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-5">
+                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#myModal">Đăng kí</button>
+            </div>
+            <div class="col-md-5">
+                <button type="submit" class="btn btn-default">Đăng nhập</button>
+            </div>
+        </div>
+}

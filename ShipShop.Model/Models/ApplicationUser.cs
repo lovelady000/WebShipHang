@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -12,10 +13,18 @@ namespace ShipShop.Model.Models
         [MaxLength(256)]
         public string FullName { set; get; }
 
-        [MaxLength(256)]
         public string Address { set; get; }
 
         public DateTime? BirthDay { set; get; }
+
+        public bool Vendee { set; get; }
+
+        public string WebOrShopName { set; get; }
+
+        public int RegionID { set; get; }
+
+        [ForeignKey("RegionID")]
+        public virtual Region Region { set; get; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

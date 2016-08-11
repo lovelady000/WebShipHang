@@ -19,7 +19,7 @@ namespace ShipShop.Model.Models
 
         public string Note { set; get; }
 
-        [ForeignKey("OrderDetailID")]
+        [ForeignKey("OrderID")]
         public virtual Order Order { set; get; }
     }
 }

@@ -15,7 +15,7 @@ namespace ShipShop.Web.Models
 
         public string WebOrShopName { set; get; }
 
-        public string Adress { set; get; }
+        public string Address { set; get; }
 
         public int RegionID { set; get; }
 

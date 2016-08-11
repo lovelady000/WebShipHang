@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ShipShop.Model.Models
@@ -8,7 +9,7 @@ namespace ShipShop.Model.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { set; get; }
+        public int RegionID { set; get; }
 
         public int AreaID { set; get; }
 
@@ -16,5 +17,7 @@ namespace ShipShop.Model.Models
 
         [ForeignKey("AreaID")]
         public virtual Areas Areas { set; get; }
+
+        public virtual IEnumerable<ApplicationUser> ApplicationUser { set; get; }
     }
 }

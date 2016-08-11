@@ -50,14 +50,14 @@
         <div class="form-group">
             <label for="inputPassword3" class="col-md-3 control-label">Vùng</label>
             <div class="col-md-9">
-                @Html.DropDownList("RegionID",null, new { @class = "form-control"})
-                <input type="hidden" name="groupID">
+                @Html.DropDownList("RegionID", null, new { @class = "form-control"})
+                <input type="hidden" name="RegionID">
             </div>
         </div>
         <div class="form-group">
             <label for="inputPassword3" class="col-md-3 control-label">Địa chỉ</label>
             <div class="col-md-9">
-                @Html.TextBoxFor(m => m.Adress, new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
             </div>
         </div>
         <div class="form-group">
