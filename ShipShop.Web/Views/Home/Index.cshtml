@@ -17,7 +17,9 @@
                 <div class="form-group">
                     <label class="control-label col-md-5">Vùng</label>
                     <div class="col-md-7">
-                        <input type="text" class="form-control">
+                        <select id="VungNguoiGui" class="form-control">
+
+                        </select>
                     </div>
                 </div>
                 <div class="form-group">
@@ -47,7 +49,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-5">Vùng</label>
                     <div class="col-md-7">
-                        <input type="text" class="form-control">
+                        <select id="VungNguoiNhan" class="form-control"></select>
                     </div>
                 </div>
                 <div class="form-group">
@@ -84,33 +86,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td align="center">
-                            <a href="javascript:">Xóa</a>
-                        </td>
-                        <td>
-                            Sản phẩm 1
-                        </td>
-                        <td>
-                            Các thông tin liên quan
-                        </td>
-                    </tr>
-                    <tr>
-                        <td align="center">
-                            <a href="javascript:">Xóa</a>
-                        </td>
-                        <td>
-                            Sản phẩm 2
-                        </td>
-                        <td>
-                            Các thông tin liên quan
-                        </td>
-                    </tr>
+
                 </tbody>
                 <tfoot>
                     <tr>
                         <td colspan="100">
-                            <a href="">+ Thêm hàng</a>
+                            <a href="#" data-toggle="modal" data-target="#modalAddDetail">+ Thêm hàng</a>
                         </td>
                     </tr>
                 </tfoot>
@@ -176,6 +157,45 @@
     </div>
 }
 
+<div id="modalAddDetail" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Thêm hàng hóa</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Tên hàng</label>
+                        <div class="col-md-9">
+                            <input id="txtTenHang" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Link chi tiết</label>
+                        <div class="col-md-9">
+                            <input id="txtUrl" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Ghi chú</label>
+                        <div class="col-md-9">
+                            <input id="txtGhiChu" class="form-control" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success pull-right" id="btnThemHang">Ghi</button>
+            </div>
+        </div>
+
+    </div>
+</div>
 
 <script>
     $('#btnLogout').off("click").on("click", function (e) {

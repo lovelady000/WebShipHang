@@ -121,6 +121,10 @@
     <Compile Include="Migrations\201608101444335_ChangeApplicationUser-Add-WebInformation-5.Designer.cs">
       <DependentUpon>201608101444335_ChangeApplicationUser-Add-WebInformation-5.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608120926106_ChangOrder.cs" />
+    <Compile Include="Migrations\201608120926106_ChangOrder.Designer.cs">
+      <DependentUpon>201608120926106_ChangOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="OnlineShopDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -184,6 +188,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608101444335_ChangeApplicationUser-Add-WebInformation-5.resx">
       <DependentUpon>201608101444335_ChangeApplicationUser-Add-WebInformation-5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608120926106_ChangOrder.resx">
+      <DependentUpon>201608120926106_ChangOrder.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

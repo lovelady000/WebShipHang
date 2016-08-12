@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Claims;
@@ -22,6 +23,8 @@ namespace ShipShop.Model.Models
         public string WebOrShopName { set; get; }
 
         public int RegionID { set; get; }
+
+        //public virtual IEnumerable<Order> Order { set; get; }
 
         [ForeignKey("RegionID")]
         public virtual Region Region { set; get; }

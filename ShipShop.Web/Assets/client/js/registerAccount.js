@@ -53,6 +53,42 @@
                 dataType: "json",
                 success: function (result) {
                     if (result.Code === 1) {
+                        //Lưu thông tin trước khi load lại trang
+                        var orderDetail = [];
+                        $tb = $('#OrderDetail');
+                        $tb.find('tbody').find('tr').each(function () {
+                            var obj = {};
+                            $tr = $(this)
+                            if ($tr.find('td').eq(1).find('a').length == 0) {
+                                obj.NameProduct = $tr.find('td').eq(1).text();
+                                obj.UrlProductDetail = '';
+                                obj.Note = $tr.find('td').eq(2).text();
+                            } else {
+
+                                obj.NameProduct = $tr.find('td').eq(1).text();
+                                obj.UrlProductDetail = $tr.find('td').eq(1).find('a').attr('href');
+                                obj.Note = $tr.find('td').eq(2).text();
+                            }
+                            orderDetail.push(obj);
+                        });
+
+
+                        var obj = {
+                            order: {
+                                SenderMobile: $('#SDTNguoiGui').val(),
+                                SenderRegion: $('#VungNguoiGui').val(),
+                                SenderAddress: $('#DiaChiNguoiGui').val(),
+                                ReceiverMobile: $('#SDTNguoiNhan').val(),
+                                ReceiverRegion: $('#VungNguoiNhan').val(),
+                                ReceiverAddress: $('#DiaChiNguoiNhan').val(),
+                                PayCOD: $('#PhiThuHo').val(),
+                            },
+                            orderDetail: orderDetail,
+                        };
+                        console.log(obj);
+                        sessionStorage.setItem('order', JSON.stringify(obj));
+
+                        //
                         window.location.reload();
                     } else {
                         $password.val('');

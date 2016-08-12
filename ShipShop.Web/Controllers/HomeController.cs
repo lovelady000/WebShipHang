@@ -2,10 +2,8 @@
 using ShipShop.Model.Models;
 using ShipShop.Service;
 using ShipShop.Web.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ShipShop.Web.Controllers
@@ -22,9 +20,9 @@ namespace ShipShop.Web.Controllers
             this._donViTieuBieuService = donViTieuBieuService;
             this._newsService = newsService;
         }
+
         public ActionResult Index()
         {
-            
             return View();
         }
 
@@ -54,7 +52,7 @@ namespace ShipShop.Web.Controllers
         [ChildActionOnly]
         public ActionResult Header()
         {
-            var listNews = _newsService.GetAll().OrderBy(x=>x.Order);
+            var listNews = _newsService.GetAll().OrderBy(x => x.Order);
             var listNewsVM = Mapper.Map<IEnumerable<News>, IEnumerable<NewsViewModel>>(listNews);
             ViewBag.listNewsVM = listNewsVM;
 
@@ -62,6 +60,13 @@ namespace ShipShop.Web.Controllers
             var listMenuViewModel = Mapper.Map<IEnumerable<Menu>, IEnumerable<MenuViewModel>>(model);
             ViewBag.listMenuVM = listMenuViewModel;
             return PartialView();
+        }
+        [HttpPost]
+        public JsonResult CreateOrder(OrderHomePageViewModel orderHomePage)
+        {
+            var x = orderHomePage;
+            var response = new { Code = 1, Msg = "" };
+            return Json(response);
         }
     }
 }
