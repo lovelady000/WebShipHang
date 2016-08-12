@@ -77,10 +77,10 @@
             var objOrderHomePage = {
                 order: {
                     SenderMobile: $('#SDTNguoiGui').val(),
-                    SenderRegion: JSON.parse($('#VungNguoiGui').val()).RegionID,
+                    SenderRegionID: JSON.parse($('#VungNguoiGui').val()).RegionID,
                     SenderAddress: $('#DiaChiNguoiGui').val(),
                     ReceiverMobile: $('#SDTNguoiNhan').val(),
-                    ReceiverRegion: JSON.parse($('#VungNguoiNhan').val()).RegionID,
+                    ReceiverRegionID: JSON.parse($('#VungNguoiNhan').val()).RegionID,
                     ReceiverAddress: $('#DiaChiNguoiNhan').val(),
                     PayCOD: $('#PhiThuHo').val(),
                 },
@@ -89,7 +89,7 @@
             //sessionStorage.setItem('order', JSON.stringify(obj));
             $.ajax({
                 type: "POST",
-                url: "/Home/CreateOrder",
+                url: "/Order/CreateOrder",
                 data: JSON.stringify(objOrderHomePage),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",

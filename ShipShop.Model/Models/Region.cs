@@ -19,5 +19,7 @@ namespace ShipShop.Model.Models
         public virtual Areas Areas { set; get; }
 
         public virtual IEnumerable<ApplicationUser> ApplicationUser { set; get; }
+
+        //public virtual IEnumerable<Order> Order { set; get; }
     }
 }

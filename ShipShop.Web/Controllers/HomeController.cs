@@ -61,12 +61,6 @@ namespace ShipShop.Web.Controllers
             ViewBag.listMenuVM = listMenuViewModel;
             return PartialView();
         }
-        [HttpPost]
-        public JsonResult CreateOrder(OrderHomePageViewModel orderHomePage)
-        {
-            var x = orderHomePage;
-            var response = new { Code = 1, Msg = "" };
-            return Json(response);
-        }
+ 
     }
 }

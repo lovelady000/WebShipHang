@@ -12,18 +12,41 @@ namespace ShipShop.Web
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            //routes.IgnoreRoute("{*botdetect}", new { botdetect = @"(.*)BotDetectCaptcha\.ashx" });
+
+            //routes.MapRoute(
+            //    name: "About",
+            //    url: "trang/{alias}.html",
+            //    defaults: new { controller = "Home", action = "Index", alias = UrlParameter.Optional },
+            //    namespaces: new string[] { "ShipShop.Web.Controllers"}
+            //);
 
             routes.MapRoute(
-                name: "About",
-                url: "{alias}.html",
-                defaults: new { controller = "Home", action = "Index", alias = UrlParameter.Optional },
-                namespaces: new string[] { "ShipShop.Web.Controllers"}
+                name: "QuanTriTaiKhoan",
+                url: "quan-tri-tai-khoan.html",
+                defaults: new { controller = "Order", action = "Index",  id = UrlParameter.Optional },
+                namespaces: new string[] { "ShipShop.Web.Controllers" }
+            );
+
+            //routes.MapRoute(
+            //    name: "Admin",
+            //    url: "administrator.html",
+            //    defaults: new { controller = "Admin", action = "Index" },
+            //    namespaces: new string[] { "ShipShop.Web.Controllers" }
+            //);
+
+            routes.MapRoute(
+                name: "Home page",
+                url: "",
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                namespaces: new string[] { "ShipShop.Web.Controllers" }
             );
 
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Order", action = "Index", id = UrlParameter.Optional },
+                namespaces: new string[] { "ShipShop.Web.Controllers" }
             );
         }
     }

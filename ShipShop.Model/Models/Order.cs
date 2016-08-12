@@ -12,7 +12,6 @@ namespace ShipShop.Model.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { set; get; }
 
-        [Required]
         [MaxLength(256)]
         public string SenderName { set; get; }
 
@@ -23,10 +22,12 @@ namespace ShipShop.Model.Models
         [MaxLength(50)]
         public string SenderMobile { set; get; }
 
-        public string SenderRegion { set; get; }
+        public int SenderRegionID { set; get; }
+
+        [ForeignKey("SenderRegionID")]
+        public virtual Region SenderRegion { set; get; }
 
 
-        [Required]
         [MaxLength(256)]
         public string ReceiverName { set; get; }
 
@@ -37,12 +38,15 @@ namespace ShipShop.Model.Models
         [MaxLength(50)]
         public string ReceiverMobile { set; get; }
 
-        public string ReceiverRegion { set; get; }
+        public int ReceiverRegionID { set; get; }
+
+        [ForeignKey("ReceiverRegionID")]
+        public virtual Region ReceiverRegion { set; get; }
 
         [MaxLength(256)]
         public string PaymentMethod { set; get; }
 
-        public float PayCOD { set; get; }
+        public float? PayCOD { set; get; }
 
         public string Username { set; get; }
 

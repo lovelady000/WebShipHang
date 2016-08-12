@@ -15,7 +15,7 @@ namespace ShipShop.Web.Models
 
         public string SenderMobile { set; get; }
 
-        public string SenderRegion { set; get; }
+        public int SenderRegionID { set; get; }
 
         public string ReceiverName { set; get; }
 
@@ -23,7 +23,7 @@ namespace ShipShop.Web.Models
 
         public string ReceiverMobile { set; get; }
 
-        public string ReceiverRegion { set; get; }
+        public int ReceiverRegionID { set; get; }
 
         public string PaymentMethod { set; get; }
 

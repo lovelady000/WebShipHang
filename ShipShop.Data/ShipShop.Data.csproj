@@ -125,6 +125,22 @@
     <Compile Include="Migrations\201608120926106_ChangOrder.Designer.cs">
       <DependentUpon>201608120926106_ChangOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608121442101_changeOrderRegion.cs" />
+    <Compile Include="Migrations\201608121442101_changeOrderRegion.Designer.cs">
+      <DependentUpon>201608121442101_changeOrderRegion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608121443031_changeOrderRegionAddForeignKeySender.cs" />
+    <Compile Include="Migrations\201608121443031_changeOrderRegionAddForeignKeySender.Designer.cs">
+      <DependentUpon>201608121443031_changeOrderRegionAddForeignKeySender.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608121443596_changeOrderRegionAddForeignKeyReceiver.cs" />
+    <Compile Include="Migrations\201608121443596_changeOrderRegionAddForeignKeyReceiver.Designer.cs">
+      <DependentUpon>201608121443596_changeOrderRegionAddForeignKeyReceiver.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608121459560_changeOrderChangeNotnull.cs" />
+    <Compile Include="Migrations\201608121459560_changeOrderChangeNotnull.Designer.cs">
+      <DependentUpon>201608121459560_changeOrderChangeNotnull.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="OnlineShopDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -191,6 +207,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608120926106_ChangOrder.resx">
       <DependentUpon>201608120926106_ChangOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608121442101_changeOrderRegion.resx">
+      <DependentUpon>201608121442101_changeOrderRegion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608121443031_changeOrderRegionAddForeignKeySender.resx">
+      <DependentUpon>201608121443031_changeOrderRegionAddForeignKeySender.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608121443596_changeOrderRegionAddForeignKeyReceiver.resx">
+      <DependentUpon>201608121443596_changeOrderRegionAddForeignKeyReceiver.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608121459560_changeOrderChangeNotnull.resx">
+      <DependentUpon>201608121459560_changeOrderChangeNotnull.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

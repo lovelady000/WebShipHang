@@ -63,7 +63,6 @@ namespace ShipShop.Web.Controllers
         [HttpPost]
         public async Task<JsonResult> Register(RegisterViewModel register)
         {
-            //ViewBag.RegionID = new SelectList(_regionService.GetAll(), "RegionID", "Name");
             var userByUsserName = await _userManager.FindByNameAsync(register.UserName);
             if (userByUsserName != null)
             {

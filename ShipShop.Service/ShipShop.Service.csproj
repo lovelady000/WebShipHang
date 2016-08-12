@@ -46,6 +46,8 @@
     <Compile Include="MenuGroupService.cs" />
     <Compile Include="MenuService.cs" />
     <Compile Include="NewsService.cs" />
+    <Compile Include="OrderDetailService.cs" />
+    <Compile Include="OrderService.cs" />
     <Compile Include="PostCategoryService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegionService.cs" />
