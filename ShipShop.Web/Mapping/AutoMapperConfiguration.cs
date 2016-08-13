@@ -14,6 +14,9 @@ namespace ShipShop.Web.Mapping
             Mapper.CreateMap<News, NewsViewModel>();
             Mapper.CreateMap<Region, RegionViewModel>();
             Mapper.CreateMap<Areas, AreasViewModel>();
+
+            Mapper.CreateMap<Order, OrderViewModel>();
+            Mapper.CreateMap<OrderDetail, OrderDetailViewModel>();
         }
     }
 }

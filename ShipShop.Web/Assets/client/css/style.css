@@ -335,7 +335,7 @@ h3.title span {
     font-size: 1em;
     color: #999;
     line-height: 1.8em;
-    margin-top: 2em;
+    /*margin-top: 2em;*/
 }
 .feature-grids img {
     width: 100%;

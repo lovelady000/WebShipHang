@@ -24,7 +24,13 @@ namespace ShipShop.Web
             routes.MapRoute(
                 name: "QuanTriTaiKhoan",
                 url: "quan-tri-tai-khoan.html",
-                defaults: new { controller = "Order", action = "Index",  id = UrlParameter.Optional },
+                defaults: new { controller = "Order", action = "Index", id = UrlParameter.Optional },
+                namespaces: new string[] { "ShipShop.Web.Controllers" }
+            );
+            routes.MapRoute(
+                name: "Quan tri don hang",
+                url: "chi-tiet-don-hang-{id}-o.html",
+                defaults: new { controller = "Order", action = "OrderDetail", id = UrlParameter.Optional },
                 namespaces: new string[] { "ShipShop.Web.Controllers" }
             );
 

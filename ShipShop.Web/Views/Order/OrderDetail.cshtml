@@ -1,0 +1,40 @@
+﻿@using ShipShop.Web.Models
+@model IEnumerable<OrderDetailViewModel>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int stt = 0;
+    var order = (OrderViewModel)ViewBag.Order;
+}
+
+<div class="container">
+    
+    <label>Người gửi:@order.SenderMobile</label>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Tên hàng</th>
+                <th>Ghi chú</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                stt++;
+                <tr>
+                    <td>
+                        @stt
+                    </td>
+                    <td>
+                        @item.NameProduct
+                    </td>
+                    <td>
+                        @item.Note
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+

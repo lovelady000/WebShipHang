@@ -1,31 +1,73 @@
-﻿
+﻿@model IEnumerable<ShipShop.Web.Models.OrderViewModel>
 @{
-    ViewBag.Title = "Index";
+
     Layout = "~/Views/Shared/_Layout.cshtml";
+    int stt = 0;
 }
 
 <div class="container">
-    Xin chào! @User.Identity.Name
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>STT</th>
-                <th>Thời gian</th>
-                <th>SĐT người nhận</th>
-                <th>Địa chỉ</th>
-                <th>Vùng</th>
-                <th>COD(VNĐ)</th>
-                <th>Ghi chú</th>
-                <th>Chi tiết đơn hàng</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
 
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="panel panel-default">
+        <div class="panel-heading">Thông tin tài khoản</div>
+        <div class="panel-body">
+            <p><i>Xin chào! @User.Identity.Name</i></p>
+            <p>Bạn là:@( (bool)ViewBag.Vendee ? "Người bán" : "Người mua") </p>
+            <p>@((bool)ViewBag.Vendee ? "Website hoặc tên shop:" + ViewBag.WebsiteOrShop : "" )</p>
+            <p>Địa chỉ:@ViewBag.Address</p>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Danh sách đơn hàng</div>
+        <div class="panel-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Thời gian</th>
+                        <th>SĐT người nhận</th>
+                        <th>Địa chỉ</th>
+                        <th>Vùng</th>
+                        <th>COD(VNĐ)</th>
+                        <th>Ghi chú</th>
+                        <th>Chi tiết đơn hàng</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        stt++;
+                        <tr>
+                            <td>
+                                @stt
+                            </td>
+                            <td>
+                                @item.CreatedDate.GetValueOrDefault(DateTime.Now).ToString("hh:mm dd/MM/yyyy")
+                            </td>
+                            <td>
+                                @item.ReceiverMobile
+                            </td>
+                            <td>
+                                @item.ReceiverAddress
+                            </td>
+                            <td>
+                                @item.ReceiverRegion.Name
+                            </td>
+                            <td>
+                                @item.PayCOD
+                            </td>
+                            <td>
+                                Ghi chú
+                            </td>
+                            <td>
+                                <a href="chi-tiet-don-hang-@item.ID-o.html">Xem</a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 </div>
 

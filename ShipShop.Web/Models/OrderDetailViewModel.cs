@@ -11,5 +11,7 @@
         public string UrlProductDetail { set; get; }
 
         public string Note { set; get; }
+
+        public virtual OrderViewModel Order { set; get; }
     }
 }

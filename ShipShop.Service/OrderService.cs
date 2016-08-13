@@ -1,31 +1,39 @@
 ﻿using ShipShop.Data.Infrastructure;
 using ShipShop.Data.Repositories;
 using ShipShop.Model.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System;
 
 namespace ShipShop.Service
 {
     public interface IOrderService
     {
-        IEnumerable<Order> GetAll(string [] include = null);
+        IEnumerable<Order> GetAll(string[] include = null);
+
+        IEnumerable<Order> GetAllByUserName(string userName, string[] include = null);
+
         Order Add(Order order);
+
         void Update(Order order);
+
         Order Delete(int id);
+
         void Save();
+
+        Order GetByID(int id);
     }
+
     public class OrderService : IOrderService
     {
         private IUnitOfWork _unitOfWork;
         private IOrderRepository _orderRepository;
+
         public OrderService(IUnitOfWork unitOfWork, IOrderRepository orderRepository)
         {
             this._unitOfWork = unitOfWork;
             this._orderRepository = orderRepository;
         }
+
         public Order Add(Order order)
         {
             return _orderRepository.Add(order);
@@ -49,6 +57,16 @@ namespace ShipShop.Service
         public void Update(Order order)
         {
             _orderRepository.Update(order);
+        }
+
+        public IEnumerable<Order> GetAllByUserName(string userName, string[] include = null)
+        {
+            return _orderRepository.GetMulti(x => x.Username == userName, include);
+        }
+
+        public Order GetByID(int id)
+        {
+            return _orderRepository.GetSingleById(id);
         }
     }
 }

@@ -13,6 +13,7 @@ namespace ShipShop.Service
     public interface IOrderDetailService
     {
         IEnumerable<OrderDetail> GetAll(string[] include = null);
+        IEnumerable<OrderDetail> GetAllByOrder(int idOrder,string[] include = null);
         OrderDetail Add(OrderDetail orderDetail);
         void Update(OrderDetail orderDetail);
         OrderDetail Delete(int id);
@@ -50,6 +51,11 @@ namespace ShipShop.Service
         public void Update(OrderDetail orderDetail)
         {
             _orderDetailRepository.Update(orderDetail);
+        }
+
+        public IEnumerable<OrderDetail> GetAllByOrder(int idOrder, string[] include = null)
+        {
+            return _orderDetailRepository.GetMulti(x => x.OrderID == idOrder, include);
         }
     }
 }
