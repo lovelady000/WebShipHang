@@ -7,34 +7,53 @@
 }
 
 <div class="container">
-    
-    <label>Người gửi:@order.SenderMobile</label>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>STT</th>
-                <th>Tên hàng</th>
-                <th>Ghi chú</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                stt++;
-                <tr>
-                    <td>
-                        @stt
-                    </td>
-                    <td>
-                        @item.NameProduct
-                    </td>
-                    <td>
-                        @item.Note
-                    </td>
-                </tr>
-            }
+    <a href="/quan-tri-tai-khoan.html" style="margin-left:15px;">Quản trị tài khoản</a>
+    <div class="panel panel-default" style="margin-top:10px;">
+        <div class="panel-heading" >Chi tiết đơn hàng</div>
+        <div class="panel-body">
+            <div class="col-md-5">
+                <div class="form-group">
+                    <p>Người gửi:@order.SenderMobile</p>
+                    <p>Vùng:@order.SenderRegion.Name</p>
+                    <p>Địa chỉ người gửi:@order.SenderAddress</p>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="form-group">
+                    <p>Người nhận:@order.ReceiverMobile</p>
+                    <p>Vùng:@order.ReceiverRegion.Name</p>
+                    <p>Địa chỉ người nhận:@order.ReceiverAddress</p>
+                </div>
+            </div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th style="width:50px;">STT</th>
+                        <th>Tên hàng</th>
+                        <th>Ghi chú</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        stt++;
+                        <tr>
+                            <td style="text-align:center;">
+                                @stt
+                            </td>
+                            <td>
+                                @item.NameProduct
+                            </td>
+                            <td>
+                                @item.Note
+                            </td>
+                        </tr>
+                    }
 
-        </tbody>
-    </table>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 </div>
 

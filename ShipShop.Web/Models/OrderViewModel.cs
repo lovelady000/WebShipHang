@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace ShipShop.Web.Models
 {
@@ -31,11 +28,20 @@ namespace ShipShop.Web.Models
 
         public string PaymentMethod { set; get; }
 
-
         public float PayCOD { set; get; }
 
+        public string Note { set; get; }
+
+        public string Username { set; get; }
+
+        public string UserID { set; get; }
+
+        public virtual ApplicationUserViewModel User { set; get; }
+
         public DateTime? CreatedDate { set; get; }
+
         public string CreatedBy { set; get; }
+
         public bool Status { set; get; }
     }
 }

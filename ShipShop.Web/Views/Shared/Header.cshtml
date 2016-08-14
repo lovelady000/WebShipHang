@@ -4,6 +4,7 @@
     var listNewsVM = (IEnumerable<NewsViewModel>)ViewBag.listNewsVM;
     var TinTuc = "";
     string html = "";
+    var webInformation = (WebInformationViewModel)ViewBag.webInformationVM;
     foreach (var item in listNewsVM)
     {
         html = "<a style='padding-right:30px;' href='" + item.Url + "'>" + item.Name + "</a>";
@@ -29,7 +30,7 @@
             </div>
             <!--navigation-->
             <div class="header-text navbar-left">
-                <p>Đến với chúng tối là sự lựa chọn xuất sắc của bạn !
+                <p>@webInformation.Slogan
                 <p>
             </div>
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -41,12 +42,11 @@
             <div class="header-right">
                 <div class="top-nav-text">
                     <ul>
-                        <li>Hot-line: <span>0912345678</span></li>
-                        <li>Email : <a class="email-link" href="javascript:">mail@example.com</a></li>
+                        <li>Hot-line: <span>@webInformation.HotLine</span></li>
                         <li>
                             <ul class="social-icons">
                                 <li>
-                                    <a href="#"></a>
+                                    <a href="@webInformation.Facebook"></a>
                                 </li>
                                 <li>
                                     <a href="#" class="pin"></a>

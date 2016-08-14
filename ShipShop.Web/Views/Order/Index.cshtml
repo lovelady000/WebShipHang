@@ -19,55 +19,120 @@
     <div class="panel panel-default">
         <div class="panel-heading">Danh sách đơn hàng</div>
         <div class="panel-body">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>STT</th>
-                        <th>Thời gian</th>
-                        <th>SĐT người nhận</th>
-                        <th>Địa chỉ</th>
-                        <th>Vùng</th>
-                        <th>COD(VNĐ)</th>
-                        <th>Ghi chú</th>
-                        <th>Chi tiết đơn hàng</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
+            <div class="">
+                <div class="form-group">
+                    @using (Html.BeginForm("Index", "Order", FormMethod.Get, new { @class = "form-horizontal" }))
                     {
-                        stt++;
-                        <tr>
-                            <td>
-                                @stt
-                            </td>
-                            <td>
-                                @item.CreatedDate.GetValueOrDefault(DateTime.Now).ToString("hh:mm dd/MM/yyyy")
-                            </td>
-                            <td>
-                                @item.ReceiverMobile
-                            </td>
-                            <td>
-                                @item.ReceiverAddress
-                            </td>
-                            <td>
-                                @item.ReceiverRegion.Name
-                            </td>
-                            <td>
-                                @item.PayCOD
-                            </td>
-                            <td>
-                                Ghi chú
-                            </td>
-                            <td>
-                                <a href="chi-tiet-don-hang-@item.ID-o.html">Xem</a>
-                            </td>
-                        </tr>
-                    }
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Từ ngày</label>
+                                <div id="sandbox-container" class="col-md-8">
+                                    <div class="input-group date" style="margin-bottom:0px;">
+                                        <input type="text" value="@ViewBag.dtTuNgay" class="form-control" name="dtTuNgay" id="dtTuNgay"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Đến ngày</label>
+                                <div id="sandbox-container" class="col-md-8">
+                                    <div class="input-group date" style="margin-bottom:0px;">
+                                        <input type="text" class="form-control" id="dtDenNgay" name="dtDenNgay" value="@ViewBag.dtDenNgay"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Vùng</label>
+                                <div class="col-md-9">
+                                    @Html.DropDownList("drdRegion", null, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="col-md-8">
 
-                </tbody>
-            </table>
+                                <div class="form-group">
+                                    <input class="form-control" id="txtSoDienThoai" name="txtSoDienThoai" placeholder="Số điện thoại" />
+                                </div>
+                            </div>
+                            <div class="col-md-4" style="padding-left:30px;">
+                                <div class="form-group" style="text-align:center;">
+                                    <button type="submit" class="btn btn-default" id="btnFilter">Lọc</button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Thời gian</th>
+                                <th>SĐT người nhận</th>
+                                <th>Địa chỉ</th>
+                                <th>Vùng</th>
+                                <th style="width:100px;">COD(VNĐ)</th>
+                                <th>Ghi chú</th>
+                                <th style="width:75px;">Chi tiết</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                stt++;
+                                <tr>
+                                    <td>
+                                        @stt
+                                    </td>
+                                    <td>
+                                        @item.CreatedDate.GetValueOrDefault(DateTime.Now).ToString("HH:mm dd/MM/yyyy")
+                                    </td>
+                                    <td>
+                                        @item.ReceiverMobile
+                                    </td>
+                                    <td>
+                                        @item.ReceiverAddress
+                                    </td>
+                                    <td>
+                                        @item.ReceiverRegion.Name
+                                    </td>
+                                    <td>
+                                        @item.PayCOD
+                                    </td>
+                                    <td>
+                                        @item.Note
+                                    </td>
+                                    <td style="text-align:center;">
+                                        <a href="chi-tiet-don-hang-@item.ID-o.html">Xem</a>
+                                    </td>
+                                    <td>Hủy</td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 
 </div>
+@section Script
+{
+    <script>
+        $('#sandbox-container .input-group.date').datepicker({
+            format: "dd/mm/yyyy"
+        });
+        //$('#btnFilter').click(function () {
+
+        //})
+    </script>
+}
 

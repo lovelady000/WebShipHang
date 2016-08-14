@@ -141,6 +141,14 @@
     <Compile Include="Migrations\201608121459560_changeOrderChangeNotnull.Designer.cs">
       <DependentUpon>201608121459560_changeOrderChangeNotnull.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608131403013_add-column-note-order.cs" />
+    <Compile Include="Migrations\201608131403013_add-column-note-order.Designer.cs">
+      <DependentUpon>201608131403013_add-column-note-order.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608141500020_AddForeignKeyApplicationuser-Order.cs" />
+    <Compile Include="Migrations\201608141500020_AddForeignKeyApplicationuser-Order.Designer.cs">
+      <DependentUpon>201608141500020_AddForeignKeyApplicationuser-Order.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="OnlineShopDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -163,6 +171,7 @@
     <Compile Include="Repositories\SystemConfigRepository.cs" />
     <Compile Include="Repositories\TagRepository.cs" />
     <Compile Include="Repositories\VisitorStatisticRepository.cs" />
+    <Compile Include="Repositories\WebInformationRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -219,6 +228,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608121459560_changeOrderChangeNotnull.resx">
       <DependentUpon>201608121459560_changeOrderChangeNotnull.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608131403013_add-column-note-order.resx">
+      <DependentUpon>201608131403013_add-column-note-order.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608141500020_AddForeignKeyApplicationuser-Order.resx">
+      <DependentUpon>201608141500020_AddForeignKeyApplicationuser-Order.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

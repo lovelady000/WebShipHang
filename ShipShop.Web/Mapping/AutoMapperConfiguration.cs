@@ -17,6 +17,8 @@ namespace ShipShop.Web.Mapping
 
             Mapper.CreateMap<Order, OrderViewModel>();
             Mapper.CreateMap<OrderDetail, OrderDetailViewModel>();
+            Mapper.CreateMap<WebInformation, WebInformationViewModel>();
+            Mapper.CreateMap<ApplicationUser, ApplicationUserViewModel>();
         }
     }
 }

@@ -17,9 +17,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-5">Vùng</label>
                     <div class="col-md-7">
-                        <select id="VungNguoiGui" class="form-control">
-
-                        </select>
+                        <select id="VungNguoiGui" class="form-control"></select>
                     </div>
                 </div>
                 <div class="form-group">
@@ -61,11 +59,22 @@
             </form>
         </div>
         <div class="form-horizontal">
-            <div class="col-md-6 col-md-offset-3">
+            <div class="col-md-4 col-md-offset-4">
                 <div class="form-group">
                     <label class="control-label col-md-5">Phí thu hộ</label>
                     <div class="col-md-7">
                         <input type="text" class="form-control" id="PhiThuHo">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="form-horizontal">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="control-label col-md-3">Ghi chú</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="GhiChu">
                     </div>
                 </div>
             </div>
@@ -85,9 +94,7 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody>
-
-                </tbody>
+                <tbody></tbody>
                 <tfoot>
                     <tr>
                         <td colspan="100">
@@ -118,16 +125,18 @@
     <div class="col-md-4 feature-grids">
         @if (Request.IsAuthenticated)
         {
-            <p>Xin chào @User.Identity.Name</p>
-            <p>Thời gian hệ thống</p>
+            <div class="form-group" style="text-align:center;">
+                <p>Xin chào @User.Identity.Name</p>
+                <p id="pTimeSystem"></p>
 
-            using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { @id = "frmLogout" }))
-            {
+                @using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { @id = "frmLogout" }))
+                {
 
                 @Html.AntiForgeryToken();
-                <a href="/quan-tri-tai-khoan.html">Quản trị</a>
+                <a href="/quan-tri-tai-khoan.html" style="padding-right:20px;" >Quản trị</a>
                 <a id="btnLogout" href="#">Thoát</a>
-            }
+                }
+            </div>
         }
         else
         {
@@ -155,7 +164,7 @@
             </div>
         </div>
     </div>
-}
+                        }
 
 <div id="modalAddDetail" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -202,6 +211,37 @@
         e.preventDefault();
         $('#frmLogout').submit();
     });
+    function getDate() {
+        var today = new Date();
+        var dd = today.getDate();
+        var MM = today.getMonth(); //January is 0!
+        var yyyy = today.getFullYear();
+        var HH = today.getHours();
+        var mm = today.getMinutes();
+        var weekday = new Array(7);
+        weekday[0] = "Chủ nhật";
+        weekday[1] = "Thứ 2";
+        weekday[2] = "Thứ 3";
+        weekday[3] = "Thứ 4";
+        weekday[4] = "Thứ 5";
+        weekday[5] = "Thứ 6";
+        weekday[6] = "Thứ 7";
+        var n = weekday[today.getDay()];
+        if (dd < 10) {
+            dd = '0' + dd
+        }
+
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+
+        today = HH + ' giờ ' + mm + ' phút,' + n + ' ngày ' + dd + ' tháng ' + MM;
+        $('#pTimeSystem').text(today);
+    }
+    getDate();
+    setInterval(function () {
+        getDate();
+    }, 60000);
 </script>
 
 

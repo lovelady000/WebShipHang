@@ -28,6 +28,7 @@
                 $('#VungNguoiNhan').val(obj.order.ReceiverRegion);
                 $('#DiaChiNguoiNhan').val(obj.order.ReceiverAddress);
                 $('#PhiThuHo').val(obj.order.PayCOD);
+                $('#GhiChu').val(obj.order.Note);
 
                 $tb = $('#OrderDetail');
                 var arr = obj.orderDetail;
@@ -83,6 +84,7 @@
                     ReceiverRegionID: JSON.parse($('#VungNguoiNhan').val()).RegionID,
                     ReceiverAddress: $('#DiaChiNguoiNhan').val(),
                     PayCOD: $('#PhiThuHo').val(),
+                    Note: $('#GhiChu').val(),
                 },
                 listOrderDetail: orderDetail,
             };

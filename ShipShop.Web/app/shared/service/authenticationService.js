@@ -1,12 +1,12 @@
 ﻿(function (app) {
     'use strict';
-    app.service('authenticationService', ['$http', '$q', '$window',
-        function ($http, $q, $window) {
+    app.service('authenticationService', ['$http', '$q', '$window','authData',
+        function ($http, $q, $window, authData) {
             var tokenInfo;
 
             this.setTokenInfo = function (data) {
                 tokenInfo = data;
-                $window.sessionStorage["TokenInfo"] = JSON.stringify(tokenInfo);
+                $window.localStorage["TokenInfo"] = JSON.stringify(tokenInfo);
             }
 
             this.getTokenInfo = function () {
@@ -15,12 +15,14 @@
 
             this.removeToken = function () {
                 tokenInfo = null;
-                $window.sessionStorage["TokenInfo"] = null;
+                $window.localStorage["TokenInfo"] = "";
             }
 
             this.init = function () {
-                if ($window.sessionStorage["TokenInfo"]) {
-                    tokenInfo = JSON.parse($window.sessionStorage["TokenInfo"]);
+                if ($window.localStorage["TokenInfo"]) {
+                    tokenInfo = JSON.parse($window.localStorage["TokenInfo"]);
+                    authData.authenticationData.IsAuthenticated = true;
+                    authData.authenticationData.userName = tokenInfo.userName;
                 }
             }
 
@@ -35,6 +37,7 @@
             this.validateRequest = function () {
                 var url = 'api/home/TestMethod';
                 var deferred = $q.defer();
+                this.setHeader();
                 $http.get(url).then(function () {
                     deferred.resolve(null);
                 }, function (error) {

@@ -138,7 +138,7 @@
                                     <a href="#" class="btn btn-default btn-flat">Profile</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="#" class="btn btn-default btn-flat" ng-click="logout();">Sign out</a>
+                                    <a href="javascript:" class="btn btn-default btn-flat" ng-click="logOut();">Sign out</a>
                                 </div>
                             </li>
                         </ul>
@@ -193,7 +193,7 @@
                     </ul>
                 </li>
                 <li class="treeview">
-                    <a href="#">
+                    <a href="javascript:">
                         <i class="fa fa-files-o"></i>
                         <span>Layout Options</span>
                         <span class="pull-right-container">
@@ -201,7 +201,7 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="../layout/top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
+                        <li><a ui-sref="order"><i class="fa fa-circle-o"></i> Quản lý đơn hàng</a></li>
                         <li><a href="../layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>
                         <li><a href="../layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
                         <li><a href="../layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>

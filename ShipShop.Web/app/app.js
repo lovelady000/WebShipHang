@@ -3,7 +3,9 @@
     angular.module("onlineshop",
         [
         'onlineshop.common',
-        'onlineshop.menu'
+        'onlineshop.menu',
+        'onlineshop.order',
+        'onlineshop.orderDetail',
         ]).config(config).config(configAuthentication);
     config.$inject = ["$stateProvider", "$urlRouterProvider"];
 

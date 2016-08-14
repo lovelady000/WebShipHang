@@ -10,7 +10,7 @@ namespace ShipShop.Service
     {
         IEnumerable<Order> GetAll(string[] include = null);
 
-        IEnumerable<Order> GetAllByUserName(string userName, string[] include = null);
+        IEnumerable<Order> GetAllByUserName(string userName,DateTime dtBeginDate, DateTime dtToDate, string[] include = null);
 
         Order Add(Order order);
 
@@ -20,7 +20,7 @@ namespace ShipShop.Service
 
         void Save();
 
-        Order GetByID(int id);
+        Order GetByID(int id, string[] includes = null);
     }
 
     public class OrderService : IOrderService
@@ -59,14 +59,15 @@ namespace ShipShop.Service
             _orderRepository.Update(order);
         }
 
-        public IEnumerable<Order> GetAllByUserName(string userName, string[] include = null)
+        public IEnumerable<Order> GetAllByUserName(string userName, DateTime dtBeginDate, DateTime dtToDate, string[] include = null)
         {
-            return _orderRepository.GetMulti(x => x.Username == userName, include);
+            return _orderRepository.GetMulti(x => x.Username == userName && x.CreatedDate.HasValue && x.CreatedDate.Value.CompareTo(dtBeginDate) != -1 && x.CreatedDate.Value.CompareTo(dtToDate) != 1, include);
         }
 
-        public Order GetByID(int id)
+        public Order GetByID(int id,string [] includes = null)
         {
-            return _orderRepository.GetSingleById(id);
+            //return _orderRepository.GetSingleById(id);
+            return _orderRepository.GetSingleByCondition(x => x.ID == id, includes);
         }
     }
 }

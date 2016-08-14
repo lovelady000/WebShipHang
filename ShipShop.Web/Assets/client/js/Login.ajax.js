@@ -45,6 +45,7 @@
                                 ReceiverRegion: $('#VungNguoiNhan').val(),
                                 ReceiverAddress: $('#DiaChiNguoiNhan').val(),
                                 PayCOD: $('#PhiThuHo').val(),
+                                Note:$('#GhiChu').val(),
                             },
                             orderDetail: orderDetail,
                         };

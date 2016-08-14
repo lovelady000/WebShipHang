@@ -50,8 +50,19 @@ namespace ShipShop.Model.Models
 
         public string Username { set; get; }
 
+        public string Note { set; get; }
+
+        [Column(TypeName="nvarchar")]
+        [MaxLength(128)]
+        public string UserID { set; get; }
+
+        [ForeignKey("UserID")]
+        public virtual ApplicationUser User { set; get; }
+
         public DateTime? CreatedDate { set; get; }
+
         public string CreatedBy { set; get; }
+
         public bool Status { set; get; }
 
         public virtual IEnumerable<OrderDetail> OrderDetails { set; get; }

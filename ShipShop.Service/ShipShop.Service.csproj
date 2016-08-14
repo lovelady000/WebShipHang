@@ -55,6 +55,7 @@
     <Compile Include="SupportOnlineService.cs" />
     <Compile Include="TagService.cs" />
     <Compile Include="VisitorStatisticService.cs" />
+    <Compile Include="WebInformationService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ShipShop.Common\ShipShop.Common.csproj">
