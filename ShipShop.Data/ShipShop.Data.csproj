@@ -149,9 +149,21 @@
     <Compile Include="Migrations\201608141500020_AddForeignKeyApplicationuser-Order.Designer.cs">
       <DependentUpon>201608141500020_AddForeignKeyApplicationuser-Order.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608150359586_RenameIdentityTable.cs" />
+    <Compile Include="Migrations\201608150359586_RenameIdentityTable.Designer.cs">
+      <DependentUpon>201608150359586_RenameIdentityTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608150645004_addGroupUser.cs" />
+    <Compile Include="Migrations\201608150645004_addGroupUser.Designer.cs">
+      <DependentUpon>201608150645004_addGroupUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="OnlineShopDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ApplicationGroupRepository.cs" />
+    <Compile Include="Repositories\ApplicationRoleGroupRepository.cs" />
+    <Compile Include="Repositories\ApplicationRoleRepository.cs" />
+    <Compile Include="Repositories\ApplicationUserGroupRepository.cs" />
     <Compile Include="Repositories\AreaRepository.cs" />
     <Compile Include="Repositories\DonViTieuBieuRepository.cs" />
     <Compile Include="Repositories\ErrorRepository.cs" />
@@ -174,7 +186,7 @@
     <Compile Include="Repositories\WebInformationRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="Repositories\App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -234,6 +246,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608141500020_AddForeignKeyApplicationuser-Order.resx">
       <DependentUpon>201608141500020_AddForeignKeyApplicationuser-Order.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608150359586_RenameIdentityTable.resx">
+      <DependentUpon>201608150359586_RenameIdentityTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608150645004_addGroupUser.resx">
+      <DependentUpon>201608150645004_addGroupUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

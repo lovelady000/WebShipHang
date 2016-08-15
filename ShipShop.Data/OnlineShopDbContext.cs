@@ -36,6 +36,17 @@ namespace ShipShop.Data
         public DbSet<Areas> Areas { set; get; }
         public DbSet<WebInformation> WebInformations { set; get; }
 
+
+
+        public DbSet<ApplicationGroup> ApplicationGroups { set; get; }
+
+        public DbSet<ApplicationRole> ApplicationRoles { set; get; }
+
+        public DbSet<ApplicationRoleGroup> ApplicationRoleGroups { set; get; }
+
+        public DbSet<ApplicationUserGroup> ApplicationUserGroups { set; get; }
+
+
         public static OnlineShopDbContext Create()
         {
             return new OnlineShopDbContext();
@@ -43,8 +54,11 @@ namespace ShipShop.Data
 
         protected override void OnModelCreating(DbModelBuilder builder)
         {
-            builder.Entity<IdentityUserRole>().HasKey(x => new { x.UserId, x.RoleId });
-            builder.Entity<IdentityUserLogin>().HasKey(x => x.UserId);
+            builder.Entity<IdentityUserRole>().HasKey(x => new { x.UserId, x.RoleId }).ToTable("ApplicationUserRoles");
+            builder.Entity<IdentityUserLogin>().HasKey(x => x.UserId).ToTable("ApplicationUserLogins");
+
+            builder.Entity<IdentityUserClaim>().ToTable("ApplicationUserClaims");
+            builder.Entity<IdentityRole>().ToTable("ApplicationRoles");
         }
     }
 }

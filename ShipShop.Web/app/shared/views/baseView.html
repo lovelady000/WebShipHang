@@ -10,7 +10,7 @@
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
             <!-- Sidebar toggle button-->
-            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <a href="javascript:" class="sidebar-toggle" data-toggle="offcanvas" role="button">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -195,7 +195,7 @@
                 <li class="treeview">
                     <a href="javascript:">
                         <i class="fa fa-files-o"></i>
-                        <span>Layout Options</span>
+                        <span>Quản lý đơn hàng</span>
                         <span class="pull-right-container">
                             <span class="label label-primary pull-right">4</span>
                         </span>
@@ -208,23 +208,20 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="../widgets.html">
-                        <i class="fa fa-th"></i> <span>Widgets</span>
-                        <span class="pull-right-container">
-                            <small class="label pull-right bg-green">Hot</small>
-                        </span>
+                    <a ui-sref="user">
+                        <i class="fa fa-th"></i> <span>Quản lý tài khoản</span>
                     </a>
                 </li>
                 <li class="treeview">
-                    <a href="#">
+                    <a href="javascript:">
                         <i class="fa fa-pie-chart"></i>
-                        <span>Charts</span>
+                        <span>Hệ thống</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="../charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li>
+                        <li><a ui-sref="application_groups"><i class="fa fa-circle-o"></i> Nhóm người dùng</a></li>
                         <li><a href="../charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
                         <li><a href="../charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
                         <li><a href="../charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>

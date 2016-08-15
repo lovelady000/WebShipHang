@@ -189,6 +189,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\AccountController.cs" />
+    <Compile Include="Api\ApplicationGroupController.cs" />
+    <Compile Include="Api\ApplicationRoleController.cs" />
     <Compile Include="Api\HomeController.cs" />
     <Compile Include="Api\MenuController.cs" />
     <Compile Include="Api\OrderController.cs" />
@@ -214,6 +216,8 @@
     <Compile Include="Infrastructure\Core\PaginationSet.cs" />
     <Compile Include="Infrastructure\Extensions\EnityExtensions.cs" />
     <Compile Include="Mapping\AutoMapperConfiguration.cs" />
+    <Compile Include="Models\ApplicationGroupViewModel.cs" />
+    <Compile Include="Models\ApplicationRoleViewModel.cs" />
     <Compile Include="Models\ApplicationUserViewModel.cs" />
     <Compile Include="Models\AreasViewModel.cs" />
     <Compile Include="Models\DonViTieuBieuViewModel.cs" />
@@ -231,6 +235,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
+    <Content Include="app\components\application_group\applicationGroups.module.js" />
+    <Content Include="app\components\application_group\applicationGroupAddController.js" />
+    <Content Include="app\components\application_group\applicationGroupAddView.html" />
+    <Content Include="app\components\application_group\applicationGroupEditController.js" />
+    <Content Include="app\components\application_group\applicationGroupEditView.html" />
+    <Content Include="app\components\application_group\applicationGroupListController.js" />
+    <Content Include="app\components\application_group\applicationGroupListView.html" />
     <Content Include="app\components\home\homeController.js" />
     <Content Include="app\components\home\homeView.html" />
     <Content Include="app\components\login\loginController.js" />
@@ -249,6 +260,9 @@
     <Content Include="app\components\order\order.module.js" />
     <Content Include="app\components\order\orderListController.js" />
     <Content Include="app\components\order\orderListView.html" />
+    <Content Include="app\components\user\user.module.js" />
+    <Content Include="app\components\user\userListController.js" />
+    <Content Include="app\components\user\userListView.html" />
     <Content Include="app\shared\directives\pagerDirective.html" />
     <Content Include="app\shared\directives\pagerDirective.js" />
     <Content Include="app\shared\filters\statusFilter.js" />

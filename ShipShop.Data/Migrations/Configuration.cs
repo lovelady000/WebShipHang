@@ -12,7 +12,7 @@
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(ShipShop.Data.OnlineShopDbContext context)
@@ -20,6 +20,7 @@
 
             CreateRegionAndAreas(context);
             CreateAccount(context);
+            CreateWebInformation(context);
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method
@@ -105,6 +106,20 @@
                 };
 
                 context.Regions.AddRange(listRegion2);
+                context.SaveChanges();
+            }
+        }
+        private void CreateWebInformation(OnlineShopDbContext context)
+        {
+            if (context.WebInformations.Count() == 0)
+            {
+                var webInfo  = new WebInformation()
+                {
+                    Slogan = "Nếu bạn hài lòng, hãy nói với mọi người. Nếu bạn chưa hài lòng, hãy nói với chúng tôi!",
+                    HotLine = "01235339181",
+
+                };
+                context.WebInformations.Add(webInfo);
                 context.SaveChanges();
             }
         }

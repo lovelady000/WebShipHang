@@ -6,6 +6,8 @@
         'onlineshop.menu',
         'onlineshop.order',
         'onlineshop.orderDetail',
+        'onlineshop.user',
+        'onlineshop.application_groups',
         ]).config(config).config(configAuthentication);
     config.$inject = ["$stateProvider", "$urlRouterProvider"];
 
