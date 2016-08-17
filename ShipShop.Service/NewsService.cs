@@ -2,6 +2,7 @@
 using ShipShop.Data.Repositories;
 using ShipShop.Model.Models;
 using System.Collections.Generic;
+using System;
 
 namespace ShipShop.Service
 {
@@ -14,6 +15,8 @@ namespace ShipShop.Service
         void Update(News news);
 
         News Delete(int id);
+
+        News GetById(int id);
 
         void Save();
     }
@@ -56,6 +59,11 @@ namespace ShipShop.Service
         public void Save()
         {
             _unitOfWork.Commit();
+        }
+
+        public News GetById(int id)
+        {
+            return _newsRepository.GetSingleById(id);
         }
     }
 }

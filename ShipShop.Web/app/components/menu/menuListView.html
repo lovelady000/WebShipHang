@@ -35,7 +35,7 @@
                 </div><!-- /input-group -->
             </div>
             <div class="col-md-6 input-search">
-                <button class="btn btn-success" ui-sref="add_menu">Thêm mới</button>
+                <button class="btn btn-success" ng-click="Add();">Thêm mới</button>
             </div>
             <table class=" table table-bordered">
                 <tr>
@@ -63,8 +63,8 @@
                         <span ng-class="{'badge bg-red':item.Status == false,'badge bg-green':item.Status == true}">{{item.Status | status}}</span>
                     </td>
                     <td>
-                        <button class="btn btn-sm btn-primary" ui-sref="edit_menu({id:item.ID})"><i class="fa fa-pencil"></i></button>
-                        <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                        <button class="btn btn-sm btn-primary" type="button" ng-click="Edit(item.ID);"><i class="fa fa-pencil"></i></button>
+                        <button class="btn btn-sm btn-danger" type="button" ng-click="Delete(item.ID);"><i class="fa fa-trash"></i></button>
                     </td>
                 </tr>
                 <tfoot>

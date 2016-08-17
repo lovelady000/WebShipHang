@@ -50,8 +50,16 @@
     <script src="~/Assets/admin/libs/angular/angular.js"></script>
     <script src="~/Assets/admin/libs/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="~/Assets/admin/libs/toastr/toastr.js"></script>
-    <script src="~/Assets/admin/libs/angular-loading-bar/src/loading-bar.js"></script>
+    <script src="~/Assets/admin/libs/bootbox/bootbox.js"></script>
+    @*<script src="~/Assets/admin/libs/ckeditor/ckeditor.js"></script>
+    <script src="~/Assets/admin/libs/ckfinder/ckfinder.js"></script>*@
+    <script src="~/Assets/admin/libs/ngBootbox/ngBootbox.js"></script>
+    <script src="~/Assets/admin/libs/ng-ckeditor/ng-ckeditor.js"></script>
     <script src="~/Assets/admin/libs/angular-local-storage/dist/angular-local-storage.js"></script>
+    <script src="~/Assets/admin/libs/angular-loading-bar/build/loading-bar.js"></script>
+    <script src="~/Assets/admin/libs/checklist-model/checklist-model.js"></script>
+    <script src="~/Assets/admin/libs/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
+
     <!-- Module web-->
     <script src="~/app/shared/modules/onlineshop.common.js"></script>
     <script src="~/app/components/menu/menu.module.js"></script>
@@ -59,13 +67,16 @@
     <script src="~/app/components/order/order.module.js"></script>
     <script src="~/app/components/orderDetail/orderDetail.module.js"></script>
     <script src="~/app/components/user/user.module.js"></script>
-    <script src="~/app/components/application_group/applicationGroups.module.js"></script>
+    <script src="~/app/components/application_roles/applicationRoles.module.js"></script>
+    <script src="~/app/components/application_groups/applicationGroups.module.js"></script>
+    <script src="~/app/components/news/news.module.js"></script>
 
     <script src="~/app/app.js"></script>
     
     <script src="~/app/shared/service/apiService.js"></script>
     <script src="~/app/shared/directives/pagerDirective.js"></script>
     <script src="~/app/shared/service/notificationService.js"></script>
+    <script src="~/app/shared/service/popupService.js"></script>
 
     <script src="~/app/shared/service/authData.js"></script>
     <script src="~/app/shared/service/authenticationService.js"></script>
@@ -84,8 +95,16 @@
 
     <script src="~/app/components/user/userListController.js"></script>
 
-    <script src="~/app/components/application_group/applicationGroupListController.js"></script>
-    @*<script src="~/app/components/application_group/applicationGroupEditController.js"></script>*@
-    <script src="~/app/components/application_group/applicationGroupAddController.js"></script>
+    <script src="~/app/components/application_roles/applicationRoleAddController.js"></script>
+    <script src="~/app/components/application_roles/applicationRoleEditController.js"></script>
+    <script src="~/app/components/application_roles/applicationRoleListController.js"></script>
+
+    <script src="~/app/components/application_groups/applicationGroupAddController.js"></script>
+    <script src="~/app/components/application_groups/applicationGroupEditController.js"></script>
+    <script src="~/app/components/application_groups/applicationGroupListController.js"></script>
+
+    <script src="~/app/components/news/newsAddController.js"></script>
+    <script src="~/app/components/news/newsEditController.js"></script>
+    <script src="~/app/components/news/newsListController.js"></script>
 </body>
 </html>

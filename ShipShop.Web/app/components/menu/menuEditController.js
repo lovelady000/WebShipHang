@@ -1,8 +1,8 @@
 ﻿(function (app) {
     app.controller('menuEditController', menuEditController);
-    menuEditController.$inject = ['$scope', 'apiService', '$state', '$stateParams'];
+    menuEditController.$inject = ['$scope', 'apiService', '$state', 'params', '$uibModalInstance'];
 
-    function menuEditController($scope, apiService, $state, $stateParams) {
+    function menuEditController($scope, apiService, $state, params, $uibModalInstance) {
         $scope.newMenu = {};
 
         $scope.menuGroup = [];
@@ -18,7 +18,7 @@
         loadMenuGroup();
 
         function GetDetailMenu() {
-            apiService.get('api/menu/getbyid/' + $stateParams.id,null, function (result) {
+            apiService.get('api/menu/getbyid/' + params.objectID, null, function (result) {
                 $scope.newMenu = result.data;
             }, function (error) {
                 console.log('error');
@@ -29,12 +29,15 @@
         $scope.UpdateMenu = UpdateMenu;
         function UpdateMenu() {
             apiService.put('api/menu/update', $scope.newMenu, function (result) {
-                $state.go('menu');
+                $state.reload();
+                $uibModalInstance.close();
             }, function (error) {
                 console.log(error);
             });
         };
-       
+        $scope.cancel = function () {
+            $uibModalInstance.dismiss();
+        };
 
     };
 })(angular.module('onlineshop.menu'));

@@ -1,0 +1,45 @@
+﻿<section class="content-header">
+    <h1>
+        Thêm mới bài viết mới
+    </h1>
+</section>
+<section class="content">
+    <div class="box box-info">
+        <form class="form-horizontal" novalidate name="frmAddMenu" role="form" ng-submit="AddNews()">
+            <div class="box-body">
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-md-3 control-label">Tên hiển thị *</label>
+                    <div class="col-md-9">
+                        <input type="text" required class="form-control" name="name" ng-model="newNews.Name">
+                        <span ng-show="!frmAddMenu.name.$pristine && frmAddMenu.name.$invalid">Tên hiển thị không được bỏ trống!</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-md-3 control-label">Đường link</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="newNews.Url" name="url">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-md-3 control-label">Thứ tự hiển thị</label>
+                    <div class="col-md-9">
+                        <input type="number" class="form-control" name="displayorder" ng-model="newNews.Order">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-5">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="newNews.Status" name="Status" ng-checked="newNews.Status"> Kích hoạt
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box-footer">
+                <button ng-click="cancel();" type="button" class="btn btn-default">Đóng</button>
+                <button ng-disabled="frmAddMenu.$invalid" type="submit" class="btn btn-success pull-right">Lưu</button>
+            </div>
+        </form>
+    </div>
+</section>

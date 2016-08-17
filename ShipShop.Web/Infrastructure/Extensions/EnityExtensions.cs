@@ -40,6 +40,50 @@ namespace ShipShop.Web.Infrastructure.Extensions
             orderDetail.UrlProductDetail = orderDetailVM.UrlProductDetail;
             orderDetail.Note = orderDetailVM.Note;
         }
+        public static void UpdateApplicationGroup(this ApplicationGroup appGroup, ApplicationGroupViewModel appGroupViewModel)
+        {
+            appGroup.ID = appGroupViewModel.ID;
+            appGroup.Name = appGroupViewModel.Name;
+        }
 
+        public static void UpdateApplicationRole(this ApplicationRole appRole, ApplicationRoleViewModel appRoleViewModel, string action = "add")
+        {
+            if (action == "update")
+                appRole.Id = appRoleViewModel.Id;
+            else
+                appRole.Id = Guid.NewGuid().ToString();
+            appRole.Name = appRoleViewModel.Name;
+            appRole.Description = appRoleViewModel.Description;
+        }
+
+        //public static void UpdateUser(this ApplicationUser appUser, ApplicationUserViewModel appUserViewModel, string action = "add")
+        //{
+        //    appUser.Id = appUserViewModel.Id;
+        //    appUser.FullName = appUserViewModel.FullName;
+        //    appUser.BirthDay = appUserViewModel.BirthDay;
+        //    appUser.Email = appUserViewModel.Email;
+        //    appUser.UserName = appUserViewModel.UserName;
+        //    appUser.PhoneNumber = appUserViewModel.PhoneNumber;
+        //}
+
+        public static void UpdateNews(this News news, NewsViewModel newsViewModel)
+        {
+            news.Name = newsViewModel.Name;
+            news.Order = newsViewModel.Order;
+            news.Status = newsViewModel.Status;
+            news.Url = newsViewModel.Url;
+        }
+        public static void UpdateWebInformation(this WebInformation webInformation, WebInformationViewModel webInformationVM)
+        {
+            webInformation.Slogan = webInformationVM.Slogan;
+            webInformation.HotLine = webInformationVM.HotLine;
+            webInformation.Skyper = webInformationVM.Skyper;
+            webInformation.Facebook = webInformationVM.Facebook;
+            webInformation.LinkAppIOS = webInformationVM.LinkAppIOS;
+            webInformation.LinkAppAndroid = webInformationVM.LinkAppAndroid;
+            webInformation.LinkAppWindowPhone = webInformationVM.LinkAppWindowPhone;
+            webInformation.Latitude = webInformationVM.Latitude;
+            webInformation.Longitude = webInformationVM.Longitude;
+        }
     }
 }

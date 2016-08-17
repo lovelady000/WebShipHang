@@ -133,5 +133,27 @@ namespace ShipShop.Web.Api
                 return response;
             });
         }
+
+        [Route("Delete")]
+        [HttpDelete]
+        public HttpResponseMessage Delete(HttpRequestMessage request, int id)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.OK, ModelState);
+                }
+                else
+                {
+                    _menuService.Delete(id);
+                    _menuService.Save();
+                    response = request.CreateResponse(HttpStatusCode.Created, "");
+                }
+
+                return response;
+            });
+        }
     }
 }
