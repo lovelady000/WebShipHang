@@ -281,6 +281,11 @@
     <Content Include="app\components\user\user.module.js" />
     <Content Include="app\components\user\userListController.js" />
     <Content Include="app\components\user\userListView.html" />
+    <Content Include="app\components\web_information\webInformation.module.js" />
+    <Content Include="app\components\web_information\webInformationEditController.js" />
+    <Content Include="app\components\web_information\webInformationEditView.html" />
+    <Content Include="app\components\web_information\webInformationListController.js" />
+    <Content Include="app\components\web_information\webInformationListView.html" />
     <Content Include="app\shared\directives\pagerDirective.html" />
     <Content Include="app\shared\directives\pagerDirective.js" />
     <Content Include="app\shared\filters\statusFilter.js" />
