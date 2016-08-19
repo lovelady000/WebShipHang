@@ -1,27 +1,22 @@
 ﻿(function (app) {
-    app.controller('newsEditController', newsEditController);
-    newsEditController.$inject = ['$scope', 'apiService', '$state','params','$uibModalInstance'];
+    app.controller('webInformationEditController', webInformationEditController);
+    webInformationEditController.$inject = ['$scope', 'apiService', '$state', '$uibModalInstance'];
 
-    function newsEditController($scope, apiService, $state, params, $uibModalInstance) {
-        $scope.news = {};
+    function webInformationEditController($scope, apiService, $state, $uibModalInstance) {
+        $scope.webInformation = {};
 
         function GetDetailnews() {
-            var config = {
-                params: {
-                    id: params.objectID,
-                }
-            };
-            apiService.get('api/news/getbyid', config, function (result) {
-                $scope.news = result.data;
-            }, function (error) {
+            apiService.get('/api/webInformation/getsinger', config, function (result) {
+                $scope.webInformation = result.data;
+            }, function () {
                 console.log('error');
             });
         };
         GetDetailnews();
 
-        $scope.UpdateNews = UpdateNews;
-        function UpdateNews() {
-            apiService.put('api/news/update', $scope.news, function (result) {
+        $scope.UpdateWebInfo = UpdateWebInfo;
+        function UpdateWebInfo() {
+            apiService.put('api/webInformation/update', $scope.webInformation, function (result) {
                 $uibModalInstance.close();
                 $state.reload();
             }, function (error) {
@@ -32,5 +27,9 @@
         $scope.cancel = function () {
             $uibModalInstance.dismiss();
         };
+        $scope.ckeditorOptions = {
+            languague: 'vi',
+            height:'200px',
+        };
     };
-})(angular.module('onlineshop.news'));
+})(angular.module('onlineshop.webInformation'));

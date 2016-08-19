@@ -85,5 +85,12 @@ namespace ShipShop.Web.Infrastructure.Extensions
             webInformation.Latitude = webInformationVM.Latitude;
             webInformation.Longitude = webInformationVM.Longitude;
         }
+        public static void UpdateDVTB(this DonViTieuBieu dvtb, DonViTieuBieuViewModel dvtbVM)
+        {
+            dvtb.Image = dvtbVM.Image;
+            dvtb.Name = dvtbVM.Name;
+            dvtb.Order = dvtbVM.Order;
+            dvtb.Url = dvtbVM.Url;
+        }
     }
 }

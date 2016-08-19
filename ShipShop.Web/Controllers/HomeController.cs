@@ -48,6 +48,10 @@ namespace ShipShop.Web.Controllers
             var model = _donViTieuBieuService.GetAll();
             var listDonViTieuBieuVM = Mapper.Map<IEnumerable<DonViTieuBieu>, IEnumerable<DonViTieuBieuViewModel>>(model);
             ViewBag.listDonViTieuBieu = listDonViTieuBieuVM;
+
+            var webInformation = _webInformationService.GetSingle();
+            var webInformationVM = Mapper.Map<WebInformation, WebInformationViewModel>(webInformation);
+            ViewBag.WebInfo = webInformationVM;
             return PartialView();
         }
 
