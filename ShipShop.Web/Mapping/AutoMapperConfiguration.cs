@@ -21,6 +21,7 @@ namespace ShipShop.Web.Mapping
             Mapper.CreateMap<ApplicationUser, ApplicationUserViewModel>();
             Mapper.CreateMap<ApplicationGroup, ApplicationGroupViewModel>();
             Mapper.CreateMap<ApplicationRole, ApplicationRoleViewModel>();
+            Mapper.CreateMap<Page, PageViewModel>();
         }
     }
 }

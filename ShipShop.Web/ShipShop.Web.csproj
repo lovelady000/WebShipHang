@@ -210,6 +210,7 @@
     <Compile Include="Api\MenuController.cs" />
     <Compile Include="Api\NewsController.cs" />
     <Compile Include="Api\OrderController.cs" />
+    <Compile Include="Api\PageController.cs" />
     <Compile Include="Api\PostCategoryController.cs" />
     <Compile Include="Api\RegionController.cs" />
     <Compile Include="Api\WebInformationController.cs" />
@@ -245,6 +246,7 @@
     <Compile Include="Models\OrderDetailViewModel.cs" />
     <Compile Include="Models\OrderHomePageViewModel.cs" />
     <Compile Include="Models\OrderViewModel.cs" />
+    <Compile Include="Models\PageViewModel.cs" />
     <Compile Include="Models\RegionViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
     <Compile Include="Models\WebInformationViewModel.cs" />
@@ -298,6 +300,13 @@
     <Content Include="app\components\order\order.module.js" />
     <Content Include="app\components\order\orderListController.js" />
     <Content Include="app\components\order\orderListView.html" />
+    <Content Include="app\components\page\page.module.js" />
+    <Content Include="app\components\page\pageAddController.js" />
+    <Content Include="app\components\page\pageAddView.html" />
+    <Content Include="app\components\page\pageEditController.js" />
+    <Content Include="app\components\page\pageEditView.html" />
+    <Content Include="app\components\page\pageListController.js" />
+    <Content Include="app\components\page\pageListView.html" />
     <Content Include="app\components\user\user.module.js" />
     <Content Include="app\components\user\userListController.js" />
     <Content Include="app\components\user\userListView.html" />
@@ -5822,7 +5831,9 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="UploadedFiles\images\download.jpg" />
+    <Content Include="UploadedFiles\images\ship-logo.png" />
     <Content Include="UploadedFiles\_thumbs\Images\download.jpg" />
+    <Content Include="UploadedFiles\_thumbs\Images\ship-logo.png" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

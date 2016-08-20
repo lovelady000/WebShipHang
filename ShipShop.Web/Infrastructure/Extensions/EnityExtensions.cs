@@ -93,5 +93,19 @@ namespace ShipShop.Web.Infrastructure.Extensions
             dvtb.Order = dvtbVM.Order;
             dvtb.Url = dvtbVM.Url;
         }
+
+        public static void UpdatePage(this Page page, PageViewModel pageVM)
+        {
+            page.Name = pageVM.Name;
+            page.Alias = pageVM.Alias;
+            page.Content = pageVM.Content;
+            page.CreatedDate = pageVM.CreatedDate;
+            page.CreatedBy = pageVM.CreatedBy;
+            page.UpdatedDate = pageVM.UpdatedDate;
+            page.UpdatedBy = pageVM.UpdatedBy;
+            page.MetaKeyword = pageVM.MetaKeyword;
+            page.MetaDescription = pageVM.MetaDescription;
+            page.Status = pageVM.Status;
+        }
     }
 }

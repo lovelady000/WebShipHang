@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
 
 namespace ShipShop.Web
@@ -14,12 +10,12 @@ namespace ShipShop.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             //routes.IgnoreRoute("{*botdetect}", new { botdetect = @"(.*)BotDetectCaptcha\.ashx" });
 
-            //routes.MapRoute(
-            //    name: "About",
-            //    url: "trang/{alias}.html",
-            //    defaults: new { controller = "Home", action = "Index", alias = UrlParameter.Optional },
-            //    namespaces: new string[] { "ShipShop.Web.Controllers"}
-            //);
+            routes.MapRoute(
+                name: "Singer page",
+                url: "trang/{alias}.html",
+                defaults: new { controller = "Page", action = "Index", alias = UrlParameter.Optional },
+                namespaces: new string[] { "ShipShop.Web.Controllers" }
+            );
 
             routes.MapRoute(
                 name: "QuanTriTaiKhoan",

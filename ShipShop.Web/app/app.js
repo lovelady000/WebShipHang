@@ -2,16 +2,17 @@
 (function () {
     angular.module("onlineshop",
         [
-        'onlineshop.common',
-        'onlineshop.menu',
-        'onlineshop.order',
-        'onlineshop.orderDetail',
-        'onlineshop.user',
-        'onlineshop.application_groups',
-        'onlineshop.application_roles',
+         'onlineshop.common',
+         'onlineshop.menu',
+         'onlineshop.order',
+         'onlineshop.orderDetail',
+         'onlineshop.user',
+         'onlineshop.application_groups',
+         'onlineshop.application_roles',
          'onlineshop.news',
          'onlineshop.webInformation',
          'onlineshop.dvtb',
+         'onlineshop.page'
         ]).config(config).config(configAuthentication);
     config.$inject = ["$stateProvider", "$urlRouterProvider"];
 

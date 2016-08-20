@@ -1,8 +1,10 @@
 ﻿@using ShipShop.Web.Models
+@model PageViewModel
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
-   
+
 }
-
-
+<div class="container">
+    @Html.Raw(Model.Content)
+    </div>

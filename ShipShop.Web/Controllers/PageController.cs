@@ -1,4 +1,6 @@
-﻿using ShipShop.Service;
+﻿using AutoMapper;
+using ShipShop.Service;
+using ShipShop.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,17 +11,18 @@ namespace ShipShop.Web.Controllers
 {
     public class PageController : Controller
     {
-        private INewsService _newsService;
-        public PageController(INewsService newsService)
+        private IPageService _pageService;
+        public PageController(IPageService pageService)
         {
-            this._newsService = newsService;
+            this._pageService = pageService;
         }
         //
         // GET: /Page/
         public ActionResult Index(string alias)
         {
-
-            return View();
+            var page = _pageService.GetByAlias(alias);
+            var pageVM = Mapper.Map<PageViewModel>(page);
+            return View(pageVM);
         }
 
         public ActionResult About(string alias)

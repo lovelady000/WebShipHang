@@ -1,0 +1,57 @@
+﻿<section class="content-header">
+    <h1>
+        Thêm mới page
+    </h1>
+</section>
+<section class="content">
+    <div class="box box-info">
+        <form class="form-horizontal" novalidate name="frmAddMenu" role="form" ng-submit="AddPage()">
+            <div class="box-body">
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-md-2 control-label">Tên</label>
+                    <div class="col-md-10">
+                        <input type="text" required class="form-control" name="name" ng-model="page.Name">
+                        <span ng-show="!frmAddMenu.name.$pristine && frmAddMenu.name.$invalid">Tên hiển thị không được bỏ trống!</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-md-2 control-label">Tên không dấu</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" ng-model="page.Alias" name="url">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-md-2 control-label">Nội dung</label>
+                    <div class="col-md-10">
+                        <textarea ckeditor="ckeditorOption" class="form-control" name="displayorder" ng-model="page.Content"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-md-2 control-label">MetaKetword</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" ng-model="page.MetaKeyword" name="url">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-md-2 control-label">MetaDescription</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" ng-model="page.MetaDescription" name="url">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-5">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="page.Status" name="Status" ng-checked="page.Status"> Kích hoạt
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box-footer">
+                <button ng-click="cancel();" type="button" class="btn btn-default">Đóng</button>
+                <button ng-disabled="frmAddMenu.$invalid" type="submit" class="btn btn-success pull-right">Lưu</button>
+            </div>
+        </form>
+    </div>
+</section>
