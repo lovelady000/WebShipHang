@@ -1,15 +1,13 @@
 ﻿(function (app) {
-    app.controller('newsAddController', newsAddController);
-    newsAddController.$inject = ['$scope','apiService','$state','$uibModalInstance'];
+    app.controller('dvtbAddController', dvtbAddController);
+    dvtbAddController.$inject = ['$scope','apiService','$state','$uibModalInstance'];
 
-    function newsAddController($scope, apiService, $state, $uibModalInstance) {
-        $scope.newNews = {
-            Status:true,
-        };
+    function dvtbAddController($scope, apiService, $state, $uibModalInstance) {
+        $scope.dvtb = {};
 
-        $scope.AddNews = AddNews;
-        function AddNews() {
-            apiService.post('api/news/create', $scope.newNews, function (result) {
+        $scope.AddDVTB = AddDVTB;
+        function AddDVTB() {
+            apiService.post('api/dvtb/create', $scope.dvtb, function (result) {
                 $state.reload();
                 $uibModalInstance.close();
             }, function (error) {
@@ -17,9 +15,20 @@
             });
         };
 
+
         $scope.cancel = function () {
             $uibModalInstance.dismiss();
         };
+
+        $scope.ChooseImage = function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (filter) {
+                $scope.dvtb.Image = filter;
+                console.log($scope.dvtb.Image);
+
+            };
+            finder.popup();
+        }
     };
 
-})(angular.module('onlineshop.news'));
+})(angular.module('onlineshop.dvtb'));

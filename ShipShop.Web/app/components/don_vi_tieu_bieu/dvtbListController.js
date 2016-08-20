@@ -24,7 +24,7 @@
             };
 
             apiService.get('/api/dvtb/getall', config, function (result) {
-                $scope.listNews = result.data.Items;
+                $scope.listDVTB = result.data.Items;
                 $scope.page = result.data.Page;
                 $scope.pagesCount = result.data.TotalPages;
                 $scope.totalCount = result.data.TotalCount;

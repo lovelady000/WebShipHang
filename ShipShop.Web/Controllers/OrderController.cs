@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Linq;
+using ClosedXML.Excel;
 
 namespace ShipShop.Web.Controllers
 {
@@ -156,6 +157,74 @@ namespace ShipShop.Web.Controllers
                 var response = new { Code = 0, Msg = "Thất bại" };
                 return Json(response);
             }
+        }
+
+        public async Task<ActionResult> ExportExel()
+        {
+            //using (XLWorkbook wb = new XLWorkbook())
+            //{
+            //    wb.Worksheets.Add("sheet1");
+            //    IXLWorksheet ws = wb.Worksheet("sheet1");
+            //    ws.Cell("A2").Value = "DemoXML";
+            //}
+            //return Redirect("/");
+            System.IO.Stream spreadsheetStream = new System.IO.MemoryStream();
+            XLWorkbook workbook = new XLWorkbook();
+            IXLWorksheet worksheet = workbook.Worksheets.Add("Danh sách đơn hàng");
+
+            worksheet.Cell(1, 1).SetValue("Demo danh sách đơn hàng");
+            workbook.SaveAs(spreadsheetStream);
+
+            spreadsheetStream.Position = 0;
+
+            return new FileStreamResult(spreadsheetStream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") { FileDownloadName = "example.xlsx" };
+        }
+
+        public bool UpdateValue(IXLWorksheet ixlWorkSheet, int row, string col, object value, int alignment, int fontStyle, bool isFormula)
+        {
+            if (value == null || (value.GetType() == typeof(string) && value == "") || (value.GetType() == typeof(string) && value == "0"))
+            {
+                return false;
+            }
+            if (value.GetType() == typeof(double) && Convert.ToDouble(value) == 0)
+            {
+                return false;
+            }
+            bool updated = false;
+
+            IXLWorksheet xlsheet = ixlWorkSheet;
+
+            if (xlsheet != null)
+            {
+                //if (value.GetType() == typeof(double))
+                //{
+                //    if (flagDonViTinh == DonViTinh.DVT_TrieuDong)
+                //        value = Convert.ToDouble(value) / 1000000;
+                //    else if (flagDonViTinh == DonViTinh.DVT_TyDong)
+                //        value = Convert.ToDouble(value) / 1000000000;
+                //    else if (flagDonViTinh == DonViTinh.DVT_Nghin)
+                //        value = Convert.ToDouble(value) / 1000;
+                //}
+
+                IXLCell cell = xlsheet.Cell(row, col);
+                cell.Value = value.ToString();
+                if (isFormula == true)
+                    cell.FormulaA1 = value.ToString();
+                if (alignment > 0)
+                {
+                    cell.Style.Alignment.SetVertical(XLAlignmentVerticalValues.Center);
+                    cell.Style.Alignment.SetHorizontal((XLAlignmentHorizontalValues)alignment);
+                }
+                if (fontStyle > 0)
+                {
+                    cell.Style.Font.Bold = (fontStyle & 1) == 1 ? true : false;
+                    cell.Style.Font.Italic = (fontStyle & 2) == 2 ? true : false;
+                    cell.Style.Font.Underline = (fontStyle & 3) == 3 ? XLFontUnderlineValues.Single : XLFontUnderlineValues.None;
+                }
+                updated = true;
+            }
+
+            return updated;
         }
     }
 }

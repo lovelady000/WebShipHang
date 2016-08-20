@@ -6,6 +6,15 @@
         <form class="form-horizontal" novalidate name="frmUpdateMenu" role="form" ng-submit="UpdateWebInfo()">
             <div class="box-body">
                 <div class="form-group">
+                    <label class="col-md-3 control-label">Logo</label>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" name="Logo" ng-model="webInformation.Logo" />
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-default" type="button" ng-click="ChooseImage();">Chọn ảnh</button>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label  class="col-md-3 control-label">Slogan</label>
                     <div class="col-md-9">
                         <input type="text"  class="form-control" name="Slogan" ng-model="webInformation.Slogan"/>

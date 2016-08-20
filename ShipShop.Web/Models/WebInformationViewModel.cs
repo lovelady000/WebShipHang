@@ -4,6 +4,8 @@
     {
         public int ID { set; get; }
 
+        public string Logo { set; get; }
+
         public string Slogan { set; get; }
 
         public string HotLine { set; get; }

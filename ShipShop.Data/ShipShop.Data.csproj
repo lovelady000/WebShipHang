@@ -157,6 +157,10 @@
     <Compile Include="Migrations\201608150645004_addGroupUser.Designer.cs">
       <DependentUpon>201608150645004_addGroupUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608200642199_AddLogoWebInfo.cs" />
+    <Compile Include="Migrations\201608200642199_AddLogoWebInfo.Designer.cs">
+      <DependentUpon>201608200642199_AddLogoWebInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="OnlineShopDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -252,6 +256,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608150645004_addGroupUser.resx">
       <DependentUpon>201608150645004_addGroupUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608200642199_AddLogoWebInfo.resx">
+      <DependentUpon>201608200642199_AddLogoWebInfo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

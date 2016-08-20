@@ -31,5 +31,14 @@
             languague: 'vi',
             height:'200px',
         };
+
+
+        $scope.ChooseImage = function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (filter) {
+                $scope.webInformation.Logo = filter;
+            };
+            finder.popup();
+        }
     };
 })(angular.module('onlineshop.webInformation'));

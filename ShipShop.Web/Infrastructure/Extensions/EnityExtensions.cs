@@ -75,6 +75,7 @@ namespace ShipShop.Web.Infrastructure.Extensions
         }
         public static void UpdateWebInformation(this WebInformation webInformation, WebInformationViewModel webInformationVM)
         {
+            webInformation.Logo = webInformationVM.Logo;
             webInformation.Slogan = webInformationVM.Slogan;
             webInformation.HotLine = webInformationVM.HotLine;
             webInformation.Skyper = webInformationVM.Skyper;

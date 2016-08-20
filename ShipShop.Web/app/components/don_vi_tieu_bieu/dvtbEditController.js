@@ -1,27 +1,27 @@
 ﻿(function (app) {
-    app.controller('newsEditController', newsEditController);
-    newsEditController.$inject = ['$scope', 'apiService', '$state','params','$uibModalInstance'];
+    app.controller('dvtbEditController', dvtbEditController);
+    dvtbEditController.$inject = ['$scope', 'apiService', '$state', 'params', '$uibModalInstance'];
 
-    function newsEditController($scope, apiService, $state, params, $uibModalInstance) {
-        $scope.news = {};
+    function dvtbEditController($scope, apiService, $state, params, $uibModalInstance) {
+        $scope.dvtb = {};
 
-        function GetDetailnews() {
+        function GetDetailDVTB() {
             var config = {
                 params: {
                     id: params.objectID,
                 }
             };
-            apiService.get('api/news/getbyid', config, function (result) {
-                $scope.news = result.data;
+            apiService.get('api/dvtb/getbyid', config, function (result) {
+                $scope.dvtb = result.data;
             }, function (error) {
                 console.log('error');
             });
         };
-        GetDetailnews();
+        GetDetailDVTB();
 
-        $scope.UpdateNews = UpdateNews;
-        function UpdateNews() {
-            apiService.put('api/news/update', $scope.news, function (result) {
+        $scope.UpdateDVTB = UpdateDVTB;
+        function UpdateDVTB() {
+            apiService.put('api/dvtb/update', $scope.dvtb, function (result) {
                 $uibModalInstance.close();
                 $state.reload();
             }, function (error) {
@@ -32,5 +32,15 @@
         $scope.cancel = function () {
             $uibModalInstance.dismiss();
         };
+
+        $scope.ChooseImage = function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (filter) {
+                $scope.dvtb.Image = filter;
+                console.log($scope.dvtb.Image);
+
+            };
+            finder.popup();
+        }
     };
-})(angular.module('onlineshop.news'));
+})(angular.module('onlineshop.dvtb'));
