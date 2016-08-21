@@ -107,5 +107,10 @@ namespace ShipShop.Web.Infrastructure.Extensions
             page.MetaDescription = pageVM.MetaDescription;
             page.Status = pageVM.Status;
         }
+
+        public static void UpdateArea(this Area area, AreaViewModel areaViewModel)
+        {
+            area.Name = areaViewModel.Name;
+        }
     }
 }

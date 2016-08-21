@@ -33,7 +33,7 @@ namespace ShipShop.Data
         public DbSet<News> News { set; get; }
         public DbSet<DonViTieuBieu> DonViTieuBieu { set; get; }
         public DbSet<Region> Regions { set; get; }
-        public DbSet<Areas> Areas { set; get; }
+        public DbSet<Area> Areas { set; get; }
         public DbSet<WebInformation> WebInformations { set; get; }
 
 

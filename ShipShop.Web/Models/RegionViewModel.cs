@@ -10,6 +10,6 @@ namespace ShipShop.Web.Models
 
         public string Name { set; get; }
 
-        public virtual Areas Areas { set; get; }
+        public virtual Area Areas { set; get; }
     }
 }

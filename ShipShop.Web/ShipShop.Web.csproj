@@ -205,6 +205,7 @@
     <Compile Include="Api\AccountController.cs" />
     <Compile Include="Api\ApplicationGroupController.cs" />
     <Compile Include="Api\ApplicationRoleController.cs" />
+    <Compile Include="Api\AreaController.cs" />
     <Compile Include="Api\DonViTieuBieuController.cs" />
     <Compile Include="Api\HomeController.cs" />
     <Compile Include="Api\MenuController.cs" />
@@ -237,7 +238,7 @@
     <Compile Include="Models\ApplicationGroupViewModel.cs" />
     <Compile Include="Models\ApplicationRoleViewModel.cs" />
     <Compile Include="Models\ApplicationUserViewModel.cs" />
-    <Compile Include="Models\AreasViewModel.cs" />
+    <Compile Include="Models\AreaViewModel.cs" />
     <Compile Include="Models\DonViTieuBieuViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\MenuGroupViewModel.cs" />
@@ -268,6 +269,13 @@
     <Content Include="app\components\application_roles\applicationRoleListController.js" />
     <Content Include="app\components\application_roles\applicationRoleListView.html" />
     <Content Include="app\components\application_roles\applicationRoles.module.js" />
+    <Content Include="app\components\area\area.module.js" />
+    <Content Include="app\components\area\areaAddController.js" />
+    <Content Include="app\components\area\areaAddView.html" />
+    <Content Include="app\components\area\areaEditController.js" />
+    <Content Include="app\components\area\areaEditView.html" />
+    <Content Include="app\components\area\areaListController.js" />
+    <Content Include="app\components\area\areaListView.html" />
     <Content Include="app\components\don_vi_tieu_bieu\dvtb.module.js" />
     <Content Include="app\components\don_vi_tieu_bieu\dvtbAddController.js" />
     <Content Include="app\components\don_vi_tieu_bieu\dvtbAddView.html" />
@@ -322,6 +330,7 @@
     <Content Include="app\shared\service\apiService.js" />
     <Content Include="app\shared\service\authData.js" />
     <Content Include="app\shared\service\authenticationService.js" />
+    <Content Include="app\shared\service\commonService.js" />
     <Content Include="app\shared\service\loginService.js" />
     <Content Include="app\shared\service\notificationService.js" />
     <Content Include="app\shared\service\popupService.js" />

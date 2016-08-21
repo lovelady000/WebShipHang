@@ -16,7 +16,7 @@ namespace ShipShop.Model.Models
         public string Name { set; get; }
 
         [ForeignKey("AreaID")]
-        public virtual Areas Areas { set; get; }
+        public virtual Area Areas { set; get; }
 
         public virtual IEnumerable<ApplicationUser> ApplicationUser { set; get; }
 

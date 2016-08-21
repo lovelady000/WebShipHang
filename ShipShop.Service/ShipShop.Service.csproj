@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="ApplicationGroupService.cs" />
     <Compile Include="ApplicationRoleService.cs" />
+    <Compile Include="AreaService.cs" />
     <Compile Include="DonViTieuBieuService.cs" />
     <Compile Include="ErrorService.cs" />
     <Compile Include="FooterService.cs" />

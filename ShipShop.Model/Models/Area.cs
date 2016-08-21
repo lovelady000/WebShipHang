@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ShipShop.Model.Models
 {
     [Table("Areas")]
-    public class Areas
+    public class Area
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

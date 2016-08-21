@@ -1,8 +1,8 @@
 ﻿(function (app) {
     app.controller('pageAddController', pageAddController);
-    pageAddController.$inject = ['$scope', 'apiService', '$state', '$uibModalInstance'];
+    pageAddController.$inject = ['$scope', 'apiService', '$state', '$uibModalInstance','commonService'];
 
-    function pageAddController($scope, apiService, $state, $uibModalInstance) {
+    function pageAddController($scope, apiService, $state, $uibModalInstance,commonService) {
         $scope.page = {
             Status:true,
         };
@@ -15,6 +15,10 @@
             }, function (error) {
                 console.log(error);
             });
+        };
+
+        $scope.ChangeName = function () {
+            $scope.page.Alias = commonService.getSeoTitle($scope.page.Name);
         };
 
         $scope.cancel = function () {

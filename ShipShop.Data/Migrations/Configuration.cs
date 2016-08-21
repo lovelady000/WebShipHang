@@ -70,7 +70,7 @@
         {
             if (context.Areas.Count() == 0)
             {
-                var area1 = new Areas()
+                var area1 = new Area()
                 {
                     Name = "Vùng 1",
                 };
@@ -88,7 +88,7 @@
                 };
                 context.Regions.AddRange(listRegion);
                 context.SaveChanges();
-                var area2 = new Areas()
+                var area2 = new Area()
                 {
                     Name = "Vùng 2",
                 };

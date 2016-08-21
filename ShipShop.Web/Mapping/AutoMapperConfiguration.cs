@@ -13,7 +13,7 @@ namespace ShipShop.Web.Mapping
             Mapper.CreateMap<DonViTieuBieu, DonViTieuBieuViewModel>();
             Mapper.CreateMap<News, NewsViewModel>();
             Mapper.CreateMap<Region, RegionViewModel>();
-            Mapper.CreateMap<Areas, AreasViewModel>();
+            Mapper.CreateMap<Area, AreaViewModel>();
 
             Mapper.CreateMap<Order, OrderViewModel>();
             Mapper.CreateMap<OrderDetail, OrderDetailViewModel>();

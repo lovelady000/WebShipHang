@@ -43,7 +43,8 @@
 
         $scope.Add = Add;
         function Add() {
-            popupService.open('', '/app/components/menu/menuAddView.html', 'menuAddController', '');
+            //popupService.open('lg', '/app/components/menu/menuAddView.html', 'menuAddController', '');
+            popupService.open('', '/app/components/menu/menuAddView.html', 'menuAddController', '');    
         };
         $scope.Edit = Edit;
         function Edit(id) {

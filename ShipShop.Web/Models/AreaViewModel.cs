@@ -2,7 +2,7 @@
 
 namespace ShipShop.Web.Models
 {
-    public class AreasViewModel
+    public class AreaViewModel
     {
         public int AreaID { set; get; }
 
