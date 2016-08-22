@@ -28,7 +28,6 @@
                 $scope.page = result.data.Page;
                 $scope.pagesCount = result.data.TotalPages;
                 $scope.totalCount = result.data.TotalCount;
-                //notificationService.displaySuccess('Thành công');
             }, function () {
                 console.log('error');
             });

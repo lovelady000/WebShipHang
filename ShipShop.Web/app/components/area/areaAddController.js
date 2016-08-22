@@ -1,15 +1,14 @@
 ﻿(function (app) {
-    app.controller('newsAddController', newsAddController);
-    newsAddController.$inject = ['$scope','apiService','$state','$uibModalInstance'];
+    app.controller('areaAddController', areaAddController);
+    areaAddController.$inject = ['$scope', 'apiService', '$state', '$uibModalInstance'];
 
-    function newsAddController($scope, apiService, $state, $uibModalInstance) {
-        $scope.newNews = {
-            Status:true,
+    function areaAddController($scope, apiService, $state, $uibModalInstance) {
+        $scope.area = {
         };
 
-        $scope.AddNews = AddNews;
-        function AddNews() {
-            apiService.post('api/news/create', $scope.newNews, function (result) {
+        $scope.AddArea = AddArea;
+        function AddArea() {
+            apiService.post('/api/area/create', $scope.area, function (result) {
                 $state.reload();
                 $uibModalInstance.close();
             }, function (error) {
@@ -22,4 +21,4 @@
         };
     };
 
-})(angular.module('onlineshop.news'));
+})(angular.module('onlineshop.area'));

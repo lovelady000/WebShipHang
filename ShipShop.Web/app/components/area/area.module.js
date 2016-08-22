@@ -22,5 +22,4 @@
             controller: "areaEditController"
         });
     };
-
 })();

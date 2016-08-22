@@ -12,7 +12,8 @@
          'onlineshop.news',
          'onlineshop.webInformation',
          'onlineshop.dvtb',
-         'onlineshop.page'
+         'onlineshop.page',
+         'onlineshop.area'
         ]).config(config).config(configAuthentication);
     config.$inject = ["$stateProvider", "$urlRouterProvider"];
 
