@@ -56,15 +56,11 @@ namespace ShipShop.Web.Infrastructure.Extensions
             appRole.Description = appRoleViewModel.Description;
         }
 
-        //public static void UpdateUser(this ApplicationUser appUser, ApplicationUserViewModel appUserViewModel, string action = "add")
-        //{
-        //    appUser.Id = appUserViewModel.Id;
-        //    appUser.FullName = appUserViewModel.FullName;
-        //    appUser.BirthDay = appUserViewModel.BirthDay;
-        //    appUser.Email = appUserViewModel.Email;
-        //    appUser.UserName = appUserViewModel.UserName;
-        //    appUser.PhoneNumber = appUserViewModel.PhoneNumber;
-        //}
+        public static void UpdateUser(this ApplicationUser appUser, ApplicationUserViewModel appUserViewModel, string action = "add")
+        {
+            appUser.Id = appUserViewModel.Id;
+            appUser.UserName = appUserViewModel.UserName;
+        }
 
         public static void UpdateNews(this News news, NewsViewModel newsViewModel)
         {

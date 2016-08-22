@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ShipShop.Web.Models
 {
@@ -21,5 +22,7 @@ namespace ShipShop.Web.Models
         public int RegionID { set; get; }
 
         public virtual RegionViewModel Region { set; get; }
+
+        public IEnumerable<ApplicationGroupViewModel> Groups { set; get; }
     }
 }

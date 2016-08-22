@@ -205,6 +205,7 @@
     <Compile Include="Api\AccountController.cs" />
     <Compile Include="Api\ApplicationGroupController.cs" />
     <Compile Include="Api\ApplicationRoleController.cs" />
+    <Compile Include="Api\ApplicationUserController.cs" />
     <Compile Include="Api\AreaController.cs" />
     <Compile Include="Api\DonViTieuBieuController.cs" />
     <Compile Include="Api\HomeController.cs" />
@@ -239,6 +240,7 @@
     <Compile Include="Models\ApplicationRoleViewModel.cs" />
     <Compile Include="Models\ApplicationUserViewModel.cs" />
     <Compile Include="Models\AreaViewModel.cs" />
+    <Compile Include="Models\ChangePassViewModel.cs" />
     <Compile Include="Models\DonViTieuBieuViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\MenuGroupViewModel.cs" />
@@ -269,6 +271,15 @@
     <Content Include="app\components\application_roles\applicationRoleListController.js" />
     <Content Include="app\components\application_roles\applicationRoleListView.html" />
     <Content Include="app\components\application_roles\applicationRoles.module.js" />
+    <Content Include="app\components\application_users\applicationUserAddController.js" />
+    <Content Include="app\components\application_users\applicationUserAddView.html" />
+    <Content Include="app\components\application_users\applicationUserEditController.js" />
+    <Content Include="app\components\application_users\applicationUserEditView.html" />
+    <Content Include="app\components\application_users\applicationUserListController.js" />
+    <Content Include="app\components\application_users\applicationUserListView.html" />
+    <Content Include="app\components\application_users\applicationUserResetPassController.js" />
+    <Content Include="app\components\application_users\applicationUserResetPassView.html" />
+    <Content Include="app\components\application_users\applicationUsers.module.js" />
     <Content Include="app\components\area\area.module.js" />
     <Content Include="app\components\area\areaAddController.js" />
     <Content Include="app\components\area\areaAddView.html" />
