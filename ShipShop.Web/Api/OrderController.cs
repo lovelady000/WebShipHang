@@ -29,12 +29,21 @@ namespace ShipShop.Web.Api
 
         [Route("getall")]
         [HttpGet]
-        public HttpResponseMessage Get(HttpRequestMessage request, string keyword, int page, int pageSize = 10)
+        public HttpResponseMessage Get(HttpRequestMessage request, string keyword, int page, int typeOrder,int pageSize = 10)
         {
             return CreateHttpResponse(request, () =>
             {
+                int type = typeOrder;
                 int total = 0;
                 var model = _orderService.GetAll(new string[] { "SenderRegion", "ReceiverRegion", "User" });
+                if(type == 1)
+                {
+                    model = model.Where(x => x.User.Vendee);
+                }
+                if (type == 2)
+                {
+                    model = model.Where(x => !x.User.Vendee);
+                }
                 total = model.Count();
                 var query = model.OrderByDescending(x => x.CreatedDate).Skip(page * pageSize).Take(pageSize);
 

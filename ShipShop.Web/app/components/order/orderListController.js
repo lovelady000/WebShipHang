@@ -7,6 +7,7 @@
 
         $scope.sortType = 'CreatedDate'; // set the default sort type
         $scope.sortReverse = true;  // set the default sort order
+        $scope.typeOfOrder = "0";
 
 
         $scope.order = [];
@@ -29,6 +30,7 @@
                     keyword: $scope.keyword,
                     page: page,
                     pageSize: 10,
+                    typeOrder: $scope.typeOfOrder,
                 }
             };
 
@@ -56,6 +58,11 @@
                 console.log('error');
             });
         }
+
+        $scope.changeTypeOrder = changeTypeOrder;
+        function changeTypeOrder() {
+            getOrder(0);
+        };
     };
 
 })(angular.module('onlineshop.order'));
