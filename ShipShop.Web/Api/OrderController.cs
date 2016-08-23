@@ -77,5 +77,20 @@ namespace ShipShop.Web.Api
                 return response;
             });
         }
+
+        [Route("changeOrderStatus")]
+        [HttpPut]
+        public HttpResponseMessage ChangeOrderStatus(HttpRequestMessage request, OrderViewModel orderVM)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                var order = _orderService.GetByID(orderVM.ID);
+                order.Status = false;
+                _orderService.Update(order);
+                _orderService.Save();
+                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, "");
+                return response;
+            });
+        }
     }
 }

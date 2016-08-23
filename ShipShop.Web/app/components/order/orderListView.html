@@ -1,4 +1,5 @@
-﻿<!-- Content Header (Page header) -->
+﻿<link href="../../../Assets/admin/css/TableFilter.css" rel="stylesheet" />
+<script src="../../../Assets/admin/js/TableFilter.js"></script>
 <section class="content-header">
     <h1>
         Blank page
@@ -34,23 +35,55 @@
                     </span>
                 </div><!-- /input-group -->
             </div>
+            <div class="co-md-6">
 
-            <table class="table table-bordered">
+            </div>
+            <!--<table class="table table-bordered">
                 <tr>
-                    <th style="width: 10px">#</th>
-                    <th>Thời gian tạo</th>
-                    <th>Tài khoản</th>
+                    <th style="width: 40px">
+                        <a href="javascript:" ng-click="sortType = 'ID'; sortReverse = !sortReverse">
+                            #
+                            <span ng-show="sortType == 'ID' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'ID' && sortReverse" class="fa fa-caret-up"></span>
+                        </a>
+                    </th>
+                    <th>
+                        <a href="javascript:" ng-click="sortType = 'CreatedDate'; sortReverse = !sortReverse">
+                            Thời gian tạo
+                            <span ng-show="sortType == 'CreatedDate' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'CreatedDate' && sortReverse" class="fa fa-caret-up"></span>
+                        </a>
+                    </th>
+                    <th>
+                        <a href="javascript:" ng-click="sortType = 'UserName'; sortReverse = !sortReverse">
+                            Tài khoản
+                            <span ng-show="sortType == 'UserName' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'UserName' && sortReverse" class="fa fa-caret-up"></span>
+                        </a>
+                    </th>
                     <th>Website hoặc tên shop</th>
-                    <th>SĐT người nhận</th>
+                    <th>
+                        <a href="javascript:" ng-click="sortType = 'ReceiverMobile'; sortReverse = !sortReverse">
+                            SĐT người nhận
+                            <span ng-show="sortType == 'ReceiverMobile' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'ReceiverMobile' && sortReverse" class="fa fa-caret-up"></span>
+                        </a>
+                    </th>
                     <th>Địa chỉ</th>
-                    <th>Vùng</th>
+                    <th>
+                        <a href="javascript:" ng-click="sortType = 'ReceiverRegion.Name'; sortReverse = !sortReverse">
+                            Vùng
+                            <span ng-show="sortType == 'ReceiverRegion.Name' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'ReceiverRegion.Name' && sortReverse" class="fa fa-caret-up"></span>
+                        </a>
+                    </th>
                     <th>COD(VNĐ)</th>
                     <th>Ghi chú</th>
                     <th>Chi tiết</th>
                     <th style="width:85px;">Thao tác</th>
                 </tr>
-                <tr ng-repeat="item in order">
-                    <td>
+                <tr ng-repeat="item in order | orderBy:sortType:sortReverse">
+                    <td style="text-align:center;">
                         {{item.ID}}
                     </td>
                     <td>
@@ -69,7 +102,7 @@
                         {{item.ReceiverAddress}}
                     </td>
                     <td>
-                       {{item.ReceiverRegion.Name}} 
+                        {{item.ReceiverRegion.Name}}
                     </td>
                     <td>
                         {{item.PayCOD}}
@@ -81,7 +114,7 @@
                         <a ui-sref="orderDetail({orderID:item.ID})">Xem</a>
                     </td>
                     <td>
-                        <button title="Hủy đơn hàng" class="btn btn-sm btn-primary" ui-sref="edit_menu({id:item.ID})"><i class="fa fa-times"></i></button>
+                        <button title="Hủy đơn hàng" class="btn btn-sm btn-primary" ng-click="cancelOrder(item.ID);" type="button"><i class="fa fa-times"></i></button>
                     </td>
                 </tr>
                 <tfoot>
@@ -89,7 +122,70 @@
                         <td colspan="100">Tổng số bản ghi:{{totalCount}}</td>
                     </tr>
                 </tfoot>
-            </table>
+            </table>-->
+                <div class="panel panel-primary filterable">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Hóa đơn</h3>
+                        <div class="pull-right">
+                            <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
+                        </div>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr class="filters">
+                                <th>#</th>
+                                <th><input type="text" class="form-control" placeholder="Thời gian tạo" disabled></th>
+                                <th><input type="text" class="form-control" placeholder="Tài khoản" disabled></th>
+                                <th>Tên shop</th>
+                                <th><input type="text" class="form-control" placeholder="Người nhận" disabled></th>
+                                <th>Địa chỉ người nhận</th>
+                                <th><input type="text" class="form-control" placeholder="Vùng" disabled></th>
+                                <th>Phí COD</th>
+                                <th>Ghi chú</th>
+                                <th>Chi tiết</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in order | orderBy:sortType:sortReverse">
+                                <td style="text-align:center;">
+                                    {{item.ID}}
+                                </td>
+                                <td>
+                                    {{item.CreatedDate | date:'HH:mm dd/MM/yyyy'}}
+                                </td>
+                                <td>
+                                    {{item.User.UserName}}
+                                </td>
+                                <td>
+                                    {{item.User.WebOrShopName}}
+                                </td>
+                                <td>
+                                    {{item.ReceiverMobile}}
+                                </td>
+                                <td>
+                                    {{item.ReceiverAddress}}
+                                </td>
+                                <td>
+                                    {{item.ReceiverRegion.Name}}
+                                </td>
+                                <td>
+                                    {{item.PayCOD}}
+                                </td>
+                                <td>
+                                    {{item.Note}}
+                                </td>
+                                <td>
+                                    <a ui-sref="orderDetail({orderID:item.ID})">Xem</a>
+                                </td>
+                                <td>
+                                    <button ng-show="item.Status" type="button" title="Hủy đơn hàng" class="btn btn-sm btn-primary" ng-click="cancelOrder(item.ID);"><i class="fa fa-times"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
         </div>
         <!-- /.box-body -->
         <div class="box-footer">

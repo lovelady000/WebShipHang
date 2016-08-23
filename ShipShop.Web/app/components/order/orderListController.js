@@ -1,9 +1,13 @@
 ﻿(function (app) {
     app.controller('orderListController', orderListController);
 
-    orderListController.$inject = ['$scope', 'apiService', 'notificationService'];
+    orderListController.$inject = ['$scope', 'apiService', 'notificationService', '$state'];
 
-    function orderListController($scope, apiService, notificationService) {
+    function orderListController($scope, apiService, notificationService, $state) {
+
+        $scope.sortType = 'CreatedDate'; // set the default sort type
+        $scope.sortReverse = true;  // set the default sort order
+
 
         $scope.order = [];
         $scope.page = 0;
@@ -40,6 +44,18 @@
         };
 
         $scope.getOrder();
+        $scope.cancelOrder = cancelOrder;
+        function cancelOrder(id) {
+            var obj = {
+                ID: id,
+            };
+            apiService.put('/api/order/changeOrderStatus', obj, function (result) {
+                $state.reload();
+                notificationService.displaySuccess('Hủy đơn hàng thành công');
+            }, function () {
+                console.log('error');
+            });
+        }
     };
 
 })(angular.module('onlineshop.order'));

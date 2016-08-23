@@ -375,6 +375,7 @@
     <Content Include="Assets\admin\css\skins\_all-skins.css" />
     <Content Include="Assets\admin\css\skins\_all-skins.min.css" />
     <Content Include="Assets\admin\css\styleCustom.css" />
+    <Content Include="Assets\admin\css\TableFilter.css" />
     <Content Include="Assets\admin\img\avatar.png" />
     <Content Include="Assets\admin\img\avatar04.png" />
     <Content Include="Assets\admin\img\avatar2.png" />
@@ -409,6 +410,7 @@
     <Content Include="Assets\admin\js\jquery-2.2.3.min.js" />
     <Content Include="Assets\admin\js\pages\dashboard.js" />
     <Content Include="Assets\admin\js\pages\dashboard2.js" />
+    <Content Include="Assets\admin\js\TableFilter.js" />
     <Content Include="Assets\admin\libs\angular-loading-bar\build\loading-bar.css" />
     <Content Include="Assets\admin\libs\angular-loading-bar\build\loading-bar.js" />
     <Content Include="Assets\admin\libs\angular-loading-bar\build\loading-bar.min.css" />
