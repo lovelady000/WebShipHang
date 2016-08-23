@@ -5,7 +5,8 @@
 
     applicationUserListController.$inject = ['$scope', 'apiService', 'notificationService', '$ngBootbox','popupService'];
 
-    function applicationUserListController($scope, apiService, notificationService, $ngBootbox,popupService) {
+    function applicationUserListController($scope, apiService, notificationService, $ngBootbox, popupService) {
+
         $scope.loading = true;
         $scope.data = [];
         $scope.page = 0;
@@ -76,5 +77,15 @@
             };
             popupService.open('', '/app/components/application_users/applicationUserResetPassView.html', 'applicationUserResetPassController', params);
         };
+
+        $scope.AddPermission = AddPermission;
+        function AddPermission(id, userName) {
+            var params = {
+                objectID: id,
+                userName: userName,
+            };
+            popupService.open('', '/app/components/application_users/applicationUserEditView.html', 'applicationUserEditController', params);
+        }
+
     }
 })(angular.module('onlineshop.application_users'));

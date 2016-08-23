@@ -30,6 +30,7 @@
                                 <th>Web - Tên shop</th>
                                 <th>Vùng</th>
                                 <th>Địa chỉ</th>
+                                <th>Phân quyền</th>
                                 <th style="width:10%"></th>
                             </tr>
                         </thead>
@@ -39,6 +40,7 @@
                                 <td>{{item.WebOrShopName}}</td>
                                 <td>{{item.Region.Name}}</td>
                                 <td>{{item.Address}}</td>
+                                <td><button type="button" ng-click="AddPermission(item.Id,item.UserName);" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></button></td>
                                 <td>
                                     <button type="button" ng-click="ResetPass(item.Id,item.UserName);" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></button>
                                     <button class="btn btn-sm btn-danger" ng-click="deleteItem(item.Id)"><i class="fa fa-trash-o"></i></button>

@@ -7,6 +7,7 @@ using ShipShop.Model.Models;
 using ShipShop.Service;
 using ShipShop.Web.App_Start;
 using ShipShop.Web.Infrastructure.Core;
+using ShipShop.Web.Infrastructure.Extensions;
 using ShipShop.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -39,7 +40,7 @@ namespace ShipShop.Web.Api
         }
         [Route("getlistpaging")]
         [HttpGet]
-        [Authorize(Roles = "User")]
+        //[Authorize(Roles = "User")]
         public HttpResponseMessage GetListPaging(HttpRequestMessage request, int page, int pageSize, string filter = null)
         {
             return CreateHttpResponse(request, () =>
@@ -147,7 +148,7 @@ namespace ShipShop.Web.Api
         [Route("resetPass")]
         public async Task<HttpResponseMessage> ResetPass(HttpRequestMessage request, ChangePassViewModel changePassVM)
         {
-            if(changePassVM.NewPassword != changePassVM.RePassword)
+            if (changePassVM.NewPassword != changePassVM.RePassword)
             {
                 return request.CreateResponse(HttpStatusCode.BadRequest, "Không thể khôi phục mật khẩu");
             }
@@ -161,6 +162,60 @@ namespace ShipShop.Web.Api
             await store.SetPasswordHashAsync(cUser, hashedNewPassword);
             await store.UpdateAsync(cUser);
             return request.CreateResponse(HttpStatusCode.OK, "");
+        }
+
+        [HttpPut]
+        [Route("update")]
+        //[Authorize(Roles = "edit_user,full_control")]
+        public async Task<HttpResponseMessage> Update(HttpRequestMessage request, ApplicationUserViewModel applicationUserViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var appUser = await _userManager.FindByIdAsync(applicationUserViewModel.Id);
+                var listRoles = await _userManager.GetRolesAsync(applicationUserViewModel.Id);
+                foreach (var item in listRoles)
+                {
+                    await _userManager.RemoveFromRoleAsync(appUser.Id, item);
+                }
+                try
+                {
+                    //appUser.UpdateUser(applicationUserViewModel);
+                    var result = await _userManager.UpdateAsync(appUser);
+                    if (result.Succeeded)
+                    {
+                        var listAppUserGroup = new List<ApplicationUserGroup>();
+                        foreach (var group in applicationUserViewModel.Groups)
+                        {
+                            listAppUserGroup.Add(new ApplicationUserGroup()
+                            {
+                                GroupId = group.ID,
+                                UserId = applicationUserViewModel.Id
+                            });
+                            //add role to user
+                            var listRole = _appRoleService.GetListRoleByGroupId(group.ID);
+                            foreach (var role in listRole)
+                            {
+                                await _userManager.RemoveFromRoleAsync(appUser.Id, role.Name);
+                                await _userManager.AddToRoleAsync(appUser.Id, role.Name);
+                            }
+                        }
+                        _appGroupService.AddUserToGroups(listAppUserGroup, applicationUserViewModel.Id);
+                        _appGroupService.Save();
+                        return request.CreateResponse(HttpStatusCode.OK, applicationUserViewModel);
+
+                    }
+                    else
+                        return request.CreateErrorResponse(HttpStatusCode.BadRequest, string.Join(",", result.Errors));
+                }
+                catch (NameDuplicatedException dex)
+                {
+                    return request.CreateErrorResponse(HttpStatusCode.BadRequest, dex.Message);
+                }
+            }
+            else
+            {
+                return request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+            }
         }
 
         [HttpDelete]

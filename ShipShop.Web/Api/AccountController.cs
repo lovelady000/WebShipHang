@@ -12,12 +12,6 @@ using System.Web.Http;
 namespace ShipShop.Web.Api
 {
 
-    /// <summary>
-    /// select appR.Name
-    ///from dbo.ApplicationUsers as appU, dbo.ApplicationRoles as appR, dbo.ApplicationUserRoles as appUR
-   /// where appU.id = appUR.UserId and appUR.RoleId = appR.Id
-   /// and appU.UserName = '0983007974'
-    /// </summary>
     [RoutePrefix("api/account")]
     public class AccountController : ApiController
     {
