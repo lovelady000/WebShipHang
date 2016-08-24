@@ -49,11 +49,11 @@ namespace ShipShop.Web.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 ViewBag.Title = "Chi tiết đơn hàng";
-                var modelOrderDetail = _orderDetailService.GetAllByOrder(id,new string[] { "Order" });
+                var modelOrderDetail = _orderDetailService.GetAllByOrder(id, new string[] { "Order" });
                 var query = Mapper.Map<IEnumerable<OrderDetailViewModel>>(modelOrderDetail);
-                var order = _orderService.GetByID(id,new string [] { "ReceiverRegion", "SenderRegion" });
+                var order = _orderService.GetByID(id, new string[] { "ReceiverRegion", "SenderRegion" });
                 var orderVM = Mapper.Map<OrderViewModel>(order);
-                if(order.Username != User.Identity.Name)
+                if (order.Username != User.Identity.Name)
                 {
                     return Redirect("/");
                 }
@@ -67,7 +67,7 @@ namespace ShipShop.Web.Controllers
         }
         #endregion
         // GET: Order
-        public async  Task<ActionResult> Index()
+        public async Task<ActionResult> Index()
         {
             if (User.Identity.IsAuthenticated)
             {
@@ -77,8 +77,8 @@ namespace ShipShop.Web.Controllers
                 {
                     string denNgay = Request["dtDenNgay"].ToString();
                     ViewBag.dtDenNgay = denNgay;
-                    if(denNgay != "")
-                    dtToDate = DateTime.ParseExact(denNgay, "dd/MM/yyyy", CultureInfo.InvariantCulture).AddDays(1);
+                    if (denNgay != "")
+                        dtToDate = DateTime.ParseExact(denNgay, "dd/MM/yyyy", CultureInfo.InvariantCulture).AddDays(1);
                 }
 
                 if (Request["dtTuNgay"] != null)
@@ -100,14 +100,14 @@ namespace ShipShop.Web.Controllers
                 }
 
                 ViewBag.Title = "Quản trị tài khoản";
-                var model = _orderService.GetAllByUserName(User.Identity.Name, dtBeginDate,dtToDate, new string[] { "ReceiverRegion", "SenderRegion" });
+                var model = _orderService.GetAllByUserName(User.Identity.Name, dtBeginDate, dtToDate, new string[] { "ReceiverRegion", "SenderRegion" });
                 var query = Mapper.Map<IEnumerable<OrderViewModel>>(model);
                 var currenUser = await _userManager.FindByNameAsync(User.Identity.Name);
                 //ViewBag.CurrenUser = currenUser;
                 ViewBag.Address = currenUser.Address;
                 ViewBag.Vendee = currenUser.Vendee;
                 ViewBag.WebsiteOrShop = currenUser.WebOrShopName;
-                
+
                 return View(query);
             }
             else
@@ -119,7 +119,7 @@ namespace ShipShop.Web.Controllers
         [HttpPost]
         public async Task<JsonResult> CreateOrder(OrderHomePageViewModel orderHomePage)
         {
-            if(User.Identity.IsAuthenticated)
+            if (User.Identity.IsAuthenticated)
             {
                 var orderVM = orderHomePage.Order;
                 var order = new Order();
@@ -159,15 +159,26 @@ namespace ShipShop.Web.Controllers
             }
         }
 
+        [HttpPost]
+        public JsonResult CancelOrder(OrderViewModel orderVM)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var order = _orderService.GetByID(orderVM.ID);
+                if (order.Username == User.Identity.Name)
+                {
+                    order.Status = false;
+                    _orderService.Update(order);
+                    _orderService.Save();
+                    return Json(new { Code = 1, Msg = "success" });
+                }
+            }
+            return Json(new { Code = 0, Msg = "Faile" });
+
+        }
+
         public async Task<ActionResult> ExportExel()
         {
-            //using (XLWorkbook wb = new XLWorkbook())
-            //{
-            //    wb.Worksheets.Add("sheet1");
-            //    IXLWorksheet ws = wb.Worksheet("sheet1");
-            //    ws.Cell("A2").Value = "DemoXML";
-            //}
-            //return Redirect("/");
             System.IO.Stream spreadsheetStream = new System.IO.MemoryStream();
             XLWorkbook workbook = new XLWorkbook();
             IXLWorksheet worksheet = workbook.Worksheets.Add("Danh sách đơn hàng");

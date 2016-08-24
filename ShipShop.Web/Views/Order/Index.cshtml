@@ -110,9 +110,9 @@
                                         @item.Note
                                     </td>
                                     <td style="text-align:center;">
-                                        <a href="chi-tiet-don-hang-@item.ID-o.html">Xem</a>
+                                        <a href="/chi-tiet-don-hang-@item.ID-o.html">Xem</a>
                                     </td>
-                                    <td>Hủy</td>
+                                    <td>@(item.Status? Html.Raw("<a href=\"javascript: \" onclick=\"CancelOrder(" +item.ID+"); \">Hủy</a>"): Html.Raw(""))</td>
                                 </tr>
                             }
 
@@ -131,6 +131,22 @@
         $('#sandbox-container .input-group.date').datepicker({
             format: "dd/mm/yyyy"
         });
+        function CancelOrder(id) {
+            var obj = {
+                ID: id,
+            };
+            $.ajax({
+                type: "POST",
+                url: "/Order/CancelOrder",
+                data: JSON.stringify(obj),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    window.location.reload();
+                },
+                error: function () { alert('Có lỗi sảy ra! Xin lỗi quý khách!'); }
+            });
+        };
         //$('#btnFilter').click(function () {
 
         //})
