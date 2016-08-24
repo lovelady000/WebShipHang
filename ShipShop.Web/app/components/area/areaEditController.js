@@ -1,9 +1,9 @@
 ﻿(function (app) {
-    app.controller('newsEditController', newsEditController);
-    newsEditController.$inject = ['$scope', 'apiService', '$state','params','$uibModalInstance'];
+    app.controller('areaEditController', areaEditController);
+    areaEditController.$inject = ['$scope', 'apiService', '$state', 'params', '$uibModalInstance'];
 
-    function newsEditController($scope, apiService, $state, params, $uibModalInstance) {
-        $scope.news = {};
+    function areaEditController($scope, apiService, $state, params, $uibModalInstance) {
+        $scope.area = {};
 
         function GetDetailnews() {
             var config = {
@@ -11,17 +11,17 @@
                     id: params.objectID,
                 }
             };
-            apiService.get('api/news/getbyid', config, function (result) {
-                $scope.news = result.data;
+            apiService.get('api/area/getbyid', config, function (result) {
+                $scope.area = result.data;
             }, function (error) {
                 console.log('error');
             });
         };
         GetDetailnews();
 
-        $scope.UpdateNews = UpdateNews;
-        function UpdateNews() {
-            apiService.put('api/news/update', $scope.news, function (result) {
+        $scope.UpdateArea = UpdateArea;
+        function UpdateArea() {
+            apiService.put('api/area/update', $scope.area, function (result) {
                 $uibModalInstance.close();
                 $state.reload();
             }, function (error) {
@@ -33,4 +33,4 @@
             $uibModalInstance.dismiss();
         };
     };
-})(angular.module('onlineshop.news'));
+})(angular.module('onlineshop.area'));

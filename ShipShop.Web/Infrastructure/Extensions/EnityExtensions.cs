@@ -108,5 +108,11 @@ namespace ShipShop.Web.Infrastructure.Extensions
         {
             area.Name = areaViewModel.Name;
         }
+
+        public static void UpdateRegion(this Region region, RegionViewModel regionViewModel)
+        {
+            region.Name = regionViewModel.Name;
+            region.AreaID = regionViewModel.AreaID;
+        }
     }
 }

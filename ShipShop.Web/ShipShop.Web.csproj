@@ -326,6 +326,13 @@
     <Content Include="app\components\page\pageEditView.html" />
     <Content Include="app\components\page\pageListController.js" />
     <Content Include="app\components\page\pageListView.html" />
+    <Content Include="app\components\region\region.module.js" />
+    <Content Include="app\components\region\regionAddController.js" />
+    <Content Include="app\components\region\regionAddView.html" />
+    <Content Include="app\components\region\regionEditController.js" />
+    <Content Include="app\components\region\regionEditView.html" />
+    <Content Include="app\components\region\regionListController.js" />
+    <Content Include="app\components\region\regionListView.html" />
     <Content Include="app\components\user\user.module.js" />
     <Content Include="app\components\user\userListController.js" />
     <Content Include="app\components\user\userListView.html" />

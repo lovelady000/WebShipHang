@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
     $.ajax({
         type: "GET",
-        url: "api/region/getallnopaging",
+        url: "/api/region/getallnopaging",
         //data: JSON.stringify(loginModel),
         contentType: "application/json; charset=utf-8",
         dataType: "json",

@@ -53,6 +53,22 @@ namespace ShipShop.Web.Api
         }
 
 
+        [Route("getallnopaging")]
+        [HttpGet]
+        public HttpResponseMessage GetAllNoPaging(HttpRequestMessage request)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                int total = 0;
+                var model = _areaService.GetAll();
+                total = model.Count();
+                var query = model.OrderBy(x => x.AreaID);
+                var responseData = Mapper.Map<List<AreaViewModel>>(query);
+                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, responseData);
+                return response;
+            });
+        }
+
         [Route("create")]
         [HttpPost]
         public HttpResponseMessage Create(HttpRequestMessage request, AreaViewModel areaVM)
