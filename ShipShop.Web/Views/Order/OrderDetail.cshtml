@@ -42,7 +42,16 @@
                                 @stt
                             </td>
                             <td>
-                                @item.NameProduct
+                                @if (item.UrlProductDetail != null && item.UrlProductDetail.Length > 0)
+                                {
+                                    string html = "<a href='" + item.UrlProductDetail + "' target='_blank'>" + item.NameProduct + "</a>";
+                              
+                                    @Html.Raw(html);
+                                }
+                                else
+                                {
+                                    @item.NameProduct
+                                }
                             </td>
                             <td>
                                 @item.Note

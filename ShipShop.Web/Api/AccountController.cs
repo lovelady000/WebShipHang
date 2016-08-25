@@ -62,11 +62,24 @@ namespace ShipShop.Web.Api
             }
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(userName, password, rememberMe, shouldLockout: false);
-            return request.CreateResponse(HttpStatusCode.OK, result);
+            var user = await SignInManager.UserManager.FindByNameAsync(userName);
+            if (user == null)
+            {
+                return request.CreateResponse(HttpStatusCode.OK, false);
+            }
+            else
+            {
+                var listRoles = await _userManager.GetRolesAsync(user.Id);
+                if (!listRoles.Contains("Admin"))
+                {
+                    return request.CreateResponse(HttpStatusCode.OK, false);
+                }
+                else
+                {
+                    var result = await SignInManager.PasswordSignInAsync(userName, password, rememberMe, shouldLockout: false);
+                    return request.CreateResponse(HttpStatusCode.OK, result);
+                }
+            }
         }
-
-
-
     }
 }

@@ -13,6 +13,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Linq;
 using ClosedXML.Excel;
+using ShipShop.Web.Infrastructure.Core;
+using ShipShop.Common;
 
 namespace ShipShop.Web.Controllers
 {
@@ -23,6 +25,8 @@ namespace ShipShop.Web.Controllers
         private IOrderDetailService _orderDetailService;
         private IRegionService _regionService;
         private ApplicationUserManager _userManager;
+        private int _pageSize;
+        private int _maxPage;
 
         public OrderController(ApplicationUserManager userManager, IOrderService orderService, IOrderDetailService orderDetailService, IRegionService regionService)
         {
@@ -30,8 +34,9 @@ namespace ShipShop.Web.Controllers
             this._orderService = orderService;
             this._orderDetailService = orderDetailService;
             this._regionService = regionService;
-        }
-
+            this._pageSize = int.Parse(ConfigHelper.GetByKey("PageSize"));
+            this._maxPage = int.Parse(ConfigHelper.GetByKey("MaxPage"));
+        } 
         public ApplicationUserManager UserManager
         {
             get
@@ -67,10 +72,14 @@ namespace ShipShop.Web.Controllers
         }
         #endregion
         // GET: Order
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int page = 1)
         {
+           
             if (User.Identity.IsAuthenticated)
             {
+                int pageSize = this._pageSize;
+                int totalCount = 0;
+                int maxPage = this._maxPage;
                 DateTime dtBeginDate = DateTime.MinValue;
                 DateTime dtToDate = DateTime.MaxValue;
                 if (Request["dtDenNgay"] != null)
@@ -100,15 +109,28 @@ namespace ShipShop.Web.Controllers
                 }
 
                 ViewBag.Title = "Quản trị tài khoản";
-                var model = _orderService.GetAllByUserName(User.Identity.Name, dtBeginDate, dtToDate, new string[] { "ReceiverRegion", "SenderRegion" });
+                var model = _orderService.GetAllByUserName(User.Identity.Name, dtBeginDate, dtToDate,page,pageSize,out totalCount, new string[] { "ReceiverRegion", "SenderRegion" });
+
                 var query = Mapper.Map<IEnumerable<OrderViewModel>>(model);
+
                 var currenUser = await _userManager.FindByNameAsync(User.Identity.Name);
                 //ViewBag.CurrenUser = currenUser;
                 ViewBag.Address = currenUser.Address;
                 ViewBag.Vendee = currenUser.Vendee;
                 ViewBag.WebsiteOrShop = currenUser.WebOrShopName;
+                ViewBag.TotalCOD = query.Sum(x => x.PayCOD);
+                int totalPage = (int)Math.Ceiling((double)totalCount / pageSize);
+                var paginationSet = new PaginationSet<OrderViewModel>()
+                {
+                    Items = query,
+                    MaxPage = maxPage,
+                    Page = page,
+                    TotalCount = totalCount,
+                    TotalPages = totalPage,
 
-                return View(query);
+                };
+
+                return View(paginationSet);
             }
             else
             {
@@ -183,7 +205,7 @@ namespace ShipShop.Web.Controllers
             XLWorkbook workbook = new XLWorkbook();
             IXLWorksheet worksheet = workbook.Worksheets.Add("Danh sách đơn hàng");
 
-            worksheet.Cell(1, 1).SetValue("Demo danh sách đơn hàng");
+            worksheet.Cell(1, 1).SetValue("Chức năng đang chờ hoàn thiện");
             workbook.SaveAs(spreadsheetStream);
 
             spreadsheetStream.Position = 0;

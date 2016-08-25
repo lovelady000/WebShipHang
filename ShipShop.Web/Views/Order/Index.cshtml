@@ -1,4 +1,6 @@
-﻿@model IEnumerable<ShipShop.Web.Models.OrderViewModel>
+﻿@using ShipShop.Web.Models
+@using ShipShop.Web.Infrastructure.Core
+@model PaginationSet<OrderViewModel>
 @{
 
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,120 +8,212 @@
 }
 
 <div class="container">
-
-    <div class="panel panel-default">
-        <div class="panel-heading">Thông tin tài khoản</div>
-        <div class="panel-body">
-            <p><i>Xin chào! @User.Identity.Name</i></p>
-            <p>Bạn là:@( (bool)ViewBag.Vendee ? "Người bán" : "Người mua") </p>
-            <p>@((bool)ViewBag.Vendee ? "Website hoặc tên shop:" + ViewBag.WebsiteOrShop : "" )</p>
-            <p>Địa chỉ:@ViewBag.Address</p>
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">Thông tin tài khoản </div>
+            <div class="panel-body">
+                <p><i>Xin chào! @User.Identity.Name</i></p>
+                <p>Bạn là:@( (bool)ViewBag.Vendee ? "Người bán" : "Người mua") </p>
+                <p>@((bool)ViewBag.Vendee ? "Website hoặc tên shop:" + ViewBag.WebsiteOrShop : "" )</p>
+                <p>Địa chỉ:@ViewBag.Address</p>
+            </div>
         </div>
     </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">Danh sách đơn hàng</div>
-        <div class="panel-body">
-            <div class="">
-                <div class="form-group">
-                    @using (Html.BeginForm("Index", "Order", FormMethod.Get, new { @class = "form-horizontal" }))
-                    {
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label class="control-label col-md-4">Từ ngày</label>
-                                <div id="sandbox-container" class="col-md-8">
-                                    <div class="input-group date" style="margin-bottom:0px;">
-                                        <input type="text" value="@ViewBag.dtTuNgay" class="form-control" name="dtTuNgay" id="dtTuNgay"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label class="control-label col-md-4">Đến ngày</label>
-                                <div id="sandbox-container" class="col-md-8">
-                                    <div class="input-group date" style="margin-bottom:0px;">
-                                        <input type="text" class="form-control" id="dtDenNgay" name="dtDenNgay" value="@ViewBag.dtDenNgay"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label class="control-label col-md-3">Vùng</label>
-                                <div class="col-md-9">
-                                    @Html.DropDownList("drdRegion", null, new { @class = "form-control" })
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="col-md-8">
-
-                                <div class="form-group">
-                                    <input class="form-control" id="txtSoDienThoai" name="txtSoDienThoai" placeholder="Số điện thoại" />
-                                </div>
-                            </div>
-                            <div class="col-md-4" style="padding-left:30px;">
-                                <div class="form-group" style="text-align:center;">
-                                    <button type="submit" class="btn btn-default" id="btnFilter">Lọc</button>
-                                </div>
-                            </div>
-                        </div>
-                    }
+    @*<div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">Thay đổi mật khẩu </div>
+                <div class="panel-body">
+                       <input class="form-control" id="OldPassword" />
+                    <input class="form-control" id="NewPassword" />
+                    <input class="form-control" id="ReNewPassword" />
+                    <button class="pull-left btn btn-default">Thay đổi mật khẩu</button>
                 </div>
             </div>
-            <div class="col-md-12">
-                <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>STT</th>
-                                <th>Thời gian</th>
-                                <th>SĐT người nhận</th>
-                                <th>Địa chỉ</th>
-                                <th>Vùng</th>
-                                <th style="width:100px;">COD(VNĐ)</th>
-                                <th>Ghi chú</th>
-                                <th style="width:75px;">Chi tiết</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
-                                stt++;
-                                <tr>
-                                    <td>
-                                        @stt
-                                    </td>
-                                    <td>
-                                        @item.CreatedDate.GetValueOrDefault(DateTime.Now).ToString("HH:mm dd/MM/yyyy")
-                                    </td>
-                                    <td>
-                                        @item.ReceiverMobile
-                                    </td>
-                                    <td>
-                                        @item.ReceiverAddress
-                                    </td>
-                                    <td>
-                                        @item.ReceiverRegion.Name
-                                    </td>
-                                    <td>
-                                        @item.PayCOD
-                                    </td>
-                                    <td>
-                                        @item.Note
-                                    </td>
-                                    <td style="text-align:center;">
-                                        <a href="/chi-tiet-don-hang-@item.ID-o.html">Xem</a>
-                                    </td>
-                                    <td>@(item.Status? Html.Raw("<a href=\"javascript: \" onclick=\"CancelOrder(" +item.ID+"); \">Hủy</a>"): Html.Raw(""))</td>
-                                </tr>
-                            }
-
-                        </tbody>
-                    </table>
+        </div>*@
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">Danh sách đơn hàng</div>
+            <div class="panel-body">
+                <div class="">
+                    <div class="form-group">
+                        @using (Html.BeginForm("Index", "Order", FormMethod.Get, new { @class = "form-horizontal" }))
+                        {
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">Từ ngày</label>
+                                    <div id="sandbox-container" class="col-md-8">
+                                        <div class="input-group date" style="margin-bottom:0px;">
+                                            <input type="text" value="@ViewBag.dtTuNgay" class="form-control" name="dtTuNgay" id="dtTuNgay"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">Đến ngày</label>
+                                    <div id="sandbox-container" class="col-md-8">
+                                        <div class="input-group date" style="margin-bottom:0px;">
+                                            <input type="text" class="form-control" id="dtDenNgay" name="dtDenNgay" value="@ViewBag.dtDenNgay"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*<div class="col-md-3">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Vùng</label>
+                                        <div class="col-md-9">
+                                            @Html.DropDownList("drdRegion", null, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                </div>*@
+                            <div class="col-md-3">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <input class="form-control" id="txtSoDienThoai" name="txtSoDienThoai" placeholder="Số điện thoại" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4" style="padding-left:30px;">
+                                    <div class="form-group" style="text-align:center;">
+                                        <button type="submit" class="btn btn-default" id="btnFilter">Lọc</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                            </div>
+                        }
+                    </div>
                 </div>
-                <a class="btn btn-default" href="/Order/ExportExel">Export Exel</a>
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Thời gian</th>
+                                    <th>SĐT người nhận</th>
+                                    <th>Địa chỉ</th>
+                                    <th>Vùng</th>
+                                    <th style="width:100px;">COD(VNĐ)</th>
+                                    <th>Ghi chú</th>
+                                    <th style="width:75px;">Chi tiết</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Items)
+                                {
+                                    stt++;
+                                    <tr>
+                                        <td>
+                                            @stt
+                                        </td>
+                                        <td>
+                                            @item.CreatedDate.GetValueOrDefault(DateTime.Now).ToString("HH:mm dd/MM/yyyy")
+                                        </td>
+                                        <td>
+                                            @item.ReceiverMobile
+                                        </td>
+                                        <td>
+                                            @item.ReceiverAddress
+                                        </td>
+                                        <td>
+                                            @item.ReceiverRegion.Name
+                                        </td>
+                                        <td style="text-align:right;">
+                                            @item.PayCOD.ToString("N0")
+                                        </td>
+                                        <td>
+                                            @item.Note
+                                        </td>
+                                        <td style="text-align:center;">
+                                            <a href="/chi-tiet-don-hang-@item.ID-o.html">Xem</a>
+                                        </td>
+                                        <td>@(item.Status ? Html.Raw("<a href=\"javascript: \" onclick=\"CancelOrder(" + item.ID + "); \">Hủy</a>") : Html.Raw(""))</td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td style="border-color:#fff"></td>
+                                    <td colspan="4" style="border-color:#fff">
+                                        Tổng giá trị COD
+                                    </td>
+                                    <td style="border-color:#fff; text-align:right;">@ViewBag.TotalCOD.ToString("N0")</td>
+
+                                    <td style="border-color:#fff" colspan="3"></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+
+                    @if (Model.TotalPages > 1)
+                    {
+                        // Create numeric links
+                        var startPageIndex = Math.Max(1, Model.Page - Model.MaxPage / 2);
+                        var endPageIndex = Math.Min(Model.TotalPages, Model.Page + Model.MaxPage / 2);
+                        <div class="col-md-8">
+                            <nav>
+                                <ul class="pagination" style="margin:0px;">
+                                    @if (Model.Page > 1)
+                                    {
+                                        <li>
+                                            @*<a href="?page=1" aria-label="First">*@
+                                            <a href="javascript:changePage(1)" aria-label="First">
+                                                <i class="fa fa-angle-double-left"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            @*<a href="?page=@(Model.Page-1)" aria-label="Previous">*@
+                                            <a href="javascript:changePage(@(Model.Page-1))" aria-label="Previous">
+                                                <i class="fa fa-angle-double-left"></i>
+                                            </a>
+                                        </li>
+                                    }
+                                    @for (int i = startPageIndex; i <= endPageIndex; i++)
+                                    {
+                                        if (Model.Page == i)
+                                        {
+                                            <li class="active">
+                                                @*<a href="?page=@i" title="Trang @i">*@
+                                                <a href="javascript:" title="Trang @i">
+                                                    @i
+                                                </a>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li>
+                                                @*<a href="?page=@i" title="Trang @i">*@
+                                                <a href="javascript:changePage(@i)" title="Trang @i">
+                                                    @i
+                                                </a>
+                                            </li>
+                                        }
+                                    }
+                                    @if (Model.Page < Model.TotalPages)
+                                    {
+                                        <li>
+                                            @*<a href="?page=@(Model.Page+1)" aria-label="Next">*@
+                                            <a href="javascript:changePage(@(Model.Page+1))" aria-label="Next">
+                                                <i class="fa fa-angle-double-right"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            @*<a href="?page=@Model.TotalPages" aria-label="Last">*@
+                                            <a href="javascript:changePage(@(Model.TotalPages))" aria-label="Last">
+                                                <i class="fa fa-angle-double-right"></i>
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                            </nav>
+                        </div>
+                    }
+                    <div class="col-md-4">
+                        <a class="btn btn-default pull-right" href="/Order/ExportExel">Export Exel</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -147,9 +241,33 @@
                 error: function () { alert('Có lỗi sảy ra! Xin lỗi quý khách!'); }
             });
         };
-        //$('#btnFilter').click(function () {
-
-        //})
+        function changePage(page) {
+            var url = window.location;
+            var search = url.search;
+            var pathname = url.pathname;
+            if (search.length > 0) {
+                search = search.slice(1);
+                if (search.indexOf('&') != -1) {
+                    var arrParams = search.split('&');
+                    for (var i = 0 ; i < arrParams.length; ++i) {
+                        var arrNameAndValue = arrParams[i].split('=');
+                        if (arrNameAndValue[0] == "page") {
+                            arrParams.splice(i, 1);
+                        }
+                    }
+                    window.location.href = pathname + "?" + arrParams.join('&') + "&page=" + page;
+                }
+                else {
+                    if (search.split('=')[0] == "page") {
+                        window.location.href = pathname + "?page=" + page;
+                    } else {
+                        window.location.href = pathname + search + "?page=" + page;
+                    }
+                }
+            } else {
+                window.location.href = pathname + "?page=" + page;
+            }
+        }
     </script>
 }
 
