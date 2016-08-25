@@ -254,6 +254,7 @@
     <Compile Include="Models\RegisterViewModel.cs" />
     <Compile Include="Models\WebInformationViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resource\CommandSQL.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
