@@ -48,6 +48,11 @@ namespace ShipShop.Web.Api
                 HttpResponseMessage response = null;
                 int totalRow = 0;
                 var model = _userManager.Users.Where(x=>x.UserName != "administrator").Include("Region");
+                if(User.Identity.GetUserName() != "administrator")
+                {
+                    
+                }
+                var a = User.IsInRole("admin");
                 IEnumerable<ApplicationUserViewModel> modelVm = Mapper.Map<IEnumerable<ApplicationUser>, IEnumerable<ApplicationUserViewModel>>(model);
                 PaginationSet<ApplicationUserViewModel> pagedSet = new PaginationSet<ApplicationUserViewModel>()
                 {

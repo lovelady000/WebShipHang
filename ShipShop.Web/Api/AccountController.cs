@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity.Owin;
 using ShipShop.Web.App_Start;
+using ShipShop.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace ShipShop.Web.Api
 {
 
     [RoutePrefix("api/account")]
+    [Authorize]
     public class AccountController : ApiController
     {
         private ApplicationSignInManager _signInManager;
@@ -81,5 +83,47 @@ namespace ShipShop.Web.Api
                 }
             }
         }
+
+        [HttpPost]
+        [Route("changePass")]
+        public async Task<HttpResponseMessage> ChangePassword(HttpRequestMessage request, ChangePassViewModel model)
+        {
+            //ApplicationUser user = await _userManager.FindByIdAsync(User.Identity.GetUserId());
+            var user = await UserManager.FindAsync(User.Identity.Name, model.OldPassword);
+            if (user == null)
+            {
+                return request.CreateResponse(HttpStatusCode.OK, "Mật khẩu cũ không đúng!" );
+            }
+            else
+            {
+                if (model.NewPassword != model.RePassword)
+                {
+                    return request.CreateResponse(HttpStatusCode.OK, "Mật khẩu không trùng khớp!");
+                }
+                else
+                {
+                    var result = await UserManager.RemovePasswordAsync(user.Id);
+                    if (result.Succeeded)
+                    {
+                        result = await UserManager.AddPasswordAsync(user.Id, model.NewPassword);
+                        if (result.Succeeded)
+                        {
+                            return request.CreateResponse(HttpStatusCode.OK, "Thay đổi mật khẩu thành công!");
+
+                        }
+                        else
+                        {
+                            return request.CreateResponse(HttpStatusCode.OK, "Thay đổi mật khẩu thất bại!");
+                        }
+                    }
+                    else
+                    {
+                        return request.CreateResponse(HttpStatusCode.OK, "Thay đổi mật khẩu thất bại!");
+                    }
+                }
+            }
+        }
+
+
     }
 }

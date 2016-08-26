@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using ShipShop.Data;
 using ShipShop.Model.Models;
 using ShipShop.Service;
 using ShipShop.Web.App_Start;
@@ -101,7 +103,7 @@ namespace ShipShop.Web.Controllers
         [HttpPost]
         public async Task<JsonResult> Login(LoginViewModel model)
         {
-            
+
             ApplicationUser user = await _userManager.FindAsync(model.UserName, model.Password);
             if (user != null)
             {
@@ -129,6 +131,44 @@ namespace ShipShop.Web.Controllers
             authenticationManager.SignOut();
             //return RedirectToAction("Index", "Home");
             return Redirect("/");
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> ChangePassword(ChangePassViewModel model)
+        {
+            //ApplicationUser user = await _userManager.FindByIdAsync(User.Identity.GetUserId());
+            var user = await UserManager.FindAsync(User.Identity.Name, model.OldPassword);
+            if (user == null)
+            {
+                return Json(new { code = 0, msg = "Mật khẩu cũ không đúng!" });
+            }
+            else
+            {
+                if (model.NewPassword != model.RePassword)
+                {
+                    return Json(new { code = 0, msg = "Mật khẩu không trùng khớp!" });
+                }
+                else
+                {
+                    var result = await UserManager.RemovePasswordAsync(User.Identity.GetUserId());
+                    if (result.Succeeded)
+                    {
+                        result = await UserManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
+                        if (result.Succeeded)
+                        {
+                            return Json(new { code = 1, msg = "Thay đổi mật khẩu thành công!" });
+                        }
+                        else
+                        {
+                            return Json(new { code = 0, msg = "Thay đổi mật khẩu thất bại!" });
+                        }
+                    }
+                    else
+                    {
+                        return Json(new { code = 0, msg = "Thay đổi mật khẩu thất bại!" });
+                    }
+                }
+            }
         }
     }
 }

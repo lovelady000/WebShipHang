@@ -295,6 +295,8 @@
     <Content Include="app\components\don_vi_tieu_bieu\dvtbEditView.html" />
     <Content Include="app\components\don_vi_tieu_bieu\dvtbListController.js" />
     <Content Include="app\components\don_vi_tieu_bieu\dvtbListView.html" />
+    <Content Include="app\components\home\changePasswordController.js" />
+    <Content Include="app\components\home\changePasswordView.html" />
     <Content Include="app\components\home\homeController.js" />
     <Content Include="app\components\home\homeView.html" />
     <Content Include="app\components\login\loginController.js" />
@@ -342,6 +344,7 @@
     <Content Include="app\components\web_information\webInformationEditView.html" />
     <Content Include="app\components\web_information\webInformationListController.js" />
     <Content Include="app\components\web_information\webInformationListView.html" />
+    <Content Include="app\shared\directives\compareToDirective.js" />
     <Content Include="app\shared\directives\pagerDirective.html" />
     <Content Include="app\shared\directives\pagerDirective.js" />
     <Content Include="app\shared\filters\statusFilter.js" />

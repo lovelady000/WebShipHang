@@ -11,6 +11,8 @@ namespace ShipShop.Web.Models
 
         public string UserName { set; get; }
 
+        public string OldPassword { set; get; }
+
         public string NewPassword { set; get; }
 
         public string RePassword { set; get; }
