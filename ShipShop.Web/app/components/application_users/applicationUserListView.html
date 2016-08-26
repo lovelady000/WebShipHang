@@ -17,9 +17,9 @@
                         <div class="col-md-6">
                             <input type="text" id="txtSearch" ng-model="filterExpression" class="form-control" placeholder="Nhập từ khóa..." />
                         </div>
-                        <div class="col-md-6">
+                        <!--<div class="col-md-6">
                             <button class="btn btn-success pull-right" ui-sref="add_application_user"><i class="fa fa-plus"></i> Thêm mới</button>
-                        </div>
+                        </div>-->
                     </div>
                 </div><!-- /.box-header -->
                 <div class="box-body">
@@ -30,8 +30,8 @@
                                 <th>Web - Tên shop</th>
                                 <th>Vùng</th>
                                 <th>Địa chỉ</th>
-                                <th>Phân quyền</th>
-                                <th style="width:10%"></th>
+                                <th ng-if="authentication.userName == 'administrator'">Phân quyền</th>
+                                <th style="width:10%">Khôi phục mật khẩu</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -40,7 +40,7 @@
                                 <td>{{item.WebOrShopName}}</td>
                                 <td>{{item.Region.Name}}</td>
                                 <td>{{item.Address}}</td>
-                                <td><button type="button" ng-click="AddPermission(item.Id,item.UserName);" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></button></td>
+                                <td ng-if="authentication.userName == 'administrator'"><button type="button" ng-click="AddPermission(item.Id,item.UserName);" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></button></td>
                                 <td>
                                     <button type="button" ng-click="ResetPass(item.Id,item.UserName);" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></button>
                                     <button class="btn btn-sm btn-danger" ng-click="deleteItem(item.Id)"><i class="fa fa-trash-o"></i></button>

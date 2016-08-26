@@ -100,13 +100,13 @@ namespace ShipShop.Web.App_Start
                 }
                 if (user != null)
                 {
-                    var listRoles = await userManager.GetRolesAsync(user.Id);
-                    if (!listRoles.Contains("Admin"))
-                    {
-                        context.SetError("invalid_grant", "Bạn không có quyền!");
-                        context.Rejected();
-                    } 
-                    else
+                    //var listRoles = await userManager.GetRolesAsync(user.Id);
+                    //if (!listRoles.Contains("Admin"))
+                    //{
+                    //    context.SetError("invalid_grant", "Bạn không có quyền!");
+                    //    context.Rejected();
+                    //} 
+                    //else
                     {
                         ClaimsIdentity identity = await userManager.CreateIdentityAsync(
                                    user,

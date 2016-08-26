@@ -18,6 +18,7 @@ using System.Web.Script.Serialization;
 namespace ShipShop.Web.Api
 {
     [RoutePrefix("api/applicationGroup")]
+    [Authorize(Users ="administrator")]
     public class ApplicationGroupController : ApiControllerBase
     {
         private IApplicationGroupService _appGroupService;

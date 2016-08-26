@@ -9,8 +9,7 @@
             $state.go('login');
         }
         $scope.authentication = authData.authenticationData;
-
-        authenticationService.validateRequest();
+        //authenticationService.validateRequest();
 
     }
 

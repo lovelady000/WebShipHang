@@ -34,17 +34,17 @@
                 }
             }
 
-            this.validateRequest = function () {
-                var url = 'api/home/TestMethod';
-                var deferred = $q.defer();
-                this.setHeader();
-                $http.get(url).then(function () {
-                    deferred.resolve(null);
-                }, function (error) {
-                    deferred.reject(error);
-                });
-                return deferred.promise;
-            }
+            //this.validateRequest = function () {
+            //    var url = 'api/home/TestMethod';
+            //    var deferred = $q.defer();
+            //    this.setHeader();
+            //    $http.get(url).then(function () {
+            //        deferred.resolve(null);
+            //    }, function (error) {
+            //        deferred.reject(error);
+            //    });
+            //    return deferred.promise;
+            //}
 
             this.init();
         }

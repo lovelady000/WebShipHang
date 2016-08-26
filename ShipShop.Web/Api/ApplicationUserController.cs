@@ -120,10 +120,7 @@ namespace ShipShop.Web.Api
         //                }
         //                _appGroupService.AddUserToGroups(listAppUserGroup, newAppUser.Id);
         //                _appGroupService.Save();
-
-
         //                return request.CreateResponse(HttpStatusCode.OK, applicationUserViewModel);
-
         //            }
         //            else
         //                return request.CreateErrorResponse(HttpStatusCode.BadRequest, string.Join(",", result.Errors));
@@ -166,7 +163,7 @@ namespace ShipShop.Web.Api
 
         [HttpPut]
         [Route("update")]
-        //[Authorize(Roles = "edit_user,full_control")]
+        [Authorize(Roles = "full_control")]
         public async Task<HttpResponseMessage> Update(HttpRequestMessage request, ApplicationUserViewModel applicationUserViewModel)
         {
             if (ModelState.IsValid)

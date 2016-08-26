@@ -14,6 +14,7 @@ using System.Web.Http;
 namespace ShipShop.Web.Api
 {
     [RoutePrefix("api/region")]
+    [Authorize]
     public class RegionController : ApiControllerBase
     {
         private IRegionService _regionService;

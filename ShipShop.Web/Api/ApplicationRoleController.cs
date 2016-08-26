@@ -15,7 +15,7 @@ using System.Web.Script.Serialization;
 namespace ShipShop.Web.Api
 {
     [RoutePrefix("api/applicationRole")]
-    [Authorize]
+    [Authorize(Users = "administrator")]
     public class ApplicationRoleController : ApiControllerBase
     {
         private IApplicationRoleService _appRoleService;
