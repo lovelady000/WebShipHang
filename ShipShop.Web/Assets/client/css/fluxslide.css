@@ -1,0 +1,15 @@
+﻿#slider img {
+    max-height:200px;
+}
+#slider .fluxslider {
+    height:200px!important;
+}
+#slider .surface {
+    height:200px!important;
+}
+#slider .surface .images{
+    height:200px!important;
+}
+#slider .surface .images div[class*="image"] {
+    height:200px!important;
+}

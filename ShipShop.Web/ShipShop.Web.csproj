@@ -5369,6 +5369,7 @@
     <Content Include="Assets\admin\libs\toastr\toastr.min.js" />
     <Content Include="Assets\client\css\bootstrap.css" />
     <Content Include="Assets\client\css\flexslider.css" />
+    <Content Include="Assets\client\css\fluxslide.css" />
     <Content Include="Assets\client\css\lightbox.css" />
     <Content Include="Assets\client\css\style.css" />
     <Content Include="Assets\client\images\2.png" />
@@ -5408,7 +5409,9 @@
     <Content Include="Assets\client\images\sprite.png" />
     <Content Include="Assets\client\js\bootbox.js" />
     <Content Include="Assets\client\js\bootstrap.js" />
+    <Content Include="Assets\client\js\camera.js" />
     <Content Include="Assets\client\js\easing.js" />
+    <Content Include="Assets\client\js\flux.js" />
     <Content Include="Assets\client\js\homePage.js" />
     <Content Include="Assets\client\js\jquery-1.11.1.min.js" />
     <Content Include="Assets\client\js\jquery.flexisel.js" />
