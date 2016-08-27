@@ -47,7 +47,8 @@ namespace ShipShop.Web.Api
             {
                 HttpResponseMessage response = null;
                 int totalRow = 0;
-                var model = _userManager.Users.Where(x=>x.UserName != "administrator").Include("Region");
+                var model = _userManager.Users.Where(x => x.UserName != "administrator").Include("Region");
+                var user = User.IsInRole("Admin");
                 if(User.Identity.GetUserName() != "administrator")
                 {
                     
