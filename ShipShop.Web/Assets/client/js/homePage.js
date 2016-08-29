@@ -1,4 +1,8 @@
-﻿$(document).ready(function () {
+﻿function removeOrderDetail(elem) {
+    $(elem).closest('tr').remove();
+}
+
+$(document).ready(function () {
     $.ajax({
         type: "GET",
         url: "/api/region/getallnopaging",
@@ -117,10 +121,18 @@
             });
         }
     })
-    $('.removeOrderDetail').off('click').on('click', function (e) {
-        e.preventDefault();
-        $(this).closest('tr').remove();
-    })
+
+    //$('.removeOrderDetail').off('click').on('click', function (e) {
+    //    console.log('1');
+    //    e.preventDefault();
+    //    $(this).closest('tr').remove();
+    //})
+    //$('.removeOrderDetail').click(function (e) {
+    //    console.log('1');
+    //    e.preventDefault();
+    //    $(this).closest('tr').remove();
+    //})
+
     $('#modalAddDetail #txtTenHang').change(function () {
         var value = $(this).val();
         if (value = '') {
@@ -141,10 +153,15 @@
         var note = $('#modalAddDetail #txtGhiChu').val();
         $('#modalAddDetail #txtGhiChu').val('');
         if (url != '') {
-            $tb.find('tbody').append('<tr><td align="center"><a href="javascript:" class="removeOrderDetail">Xóa</a></td><td><a href="' + url + '" target="_blank">' + name + '</a></td><td>' + note + '</td></tr>');
+            //if ($tb.find('tbody').find('tr').length == 0) {
+            //    $tb.find('tbody').append('<tr><td align="center"><a href="javascript:" class="removeOrderDetail" onclick="removeOrderDetail(this);">Xóa</a></td><td><a href="' + url + '" target="_blank">' + name + '</a></td><td>' + note + '</td> <td rowspan="100"><input class="form-control"  /><td></tr>');
+            //} else {
+                $tb.find('tbody').append('<tr><td align="center"><a href="javascript:" class="removeOrderDetail" onclick="removeOrderDetail(this);">Xóa</a></td><td><a href="' + url + '" target="_blank">' + name + '</a></td><td>' + note + '</td></tr>');
+            //}
+            
         }
         else {
-            $tb.find('tbody').append('<tr><td align="center"><a href="javascript:" class="removeOrderDetail">Xóa</a></td><td>' + name + '</td><td>' + note + '</td></tr>');
+            $tb.find('tbody').append('<tr><td align="center"><a href="javascript:" class="removeOrderDetail" onclick="removeOrderDetail(this);">Xóa</a></td><td>' + name + '</td><td>' + note + '</td></tr>');
         }
         $('#modalAddDetail').modal('hide');
 
