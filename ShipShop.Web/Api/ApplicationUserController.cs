@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using ShipShop.Common;
 using ShipShop.Common.Exceptions;
 using ShipShop.Data;
 using ShipShop.Model.Models;
@@ -169,7 +170,7 @@ namespace ShipShop.Web.Api
 
         [HttpPut]
         [Route("update")]
-        [Authorize(Roles = "full_control")]
+        [Authorize(Roles = RolesConstants.ROLES_FULL_CONTROL + "," + RolesConstants.ROLES_ADD_PERMISSION_USER)]
         public async Task<HttpResponseMessage> Update(HttpRequestMessage request, ApplicationUserViewModel applicationUserViewModel)
         {
             if (ModelState.IsValid)

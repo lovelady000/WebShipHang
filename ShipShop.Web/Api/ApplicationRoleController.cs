@@ -11,11 +11,12 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Script.Serialization;
+using System.Linq;
 
 namespace ShipShop.Web.Api
 {
     [RoutePrefix("api/applicationRole")]
-    [Authorize(Users = "administrator")]
+    [Authorize]
     public class ApplicationRoleController : ApiControllerBase
     {
         private IApplicationRoleService _appRoleService;
@@ -28,6 +29,7 @@ namespace ShipShop.Web.Api
 
         [Route("getlistpaging")]
         [HttpGet]
+        [Authorize(Roles = Common.RolesConstants.ROLES_GET_LIST_ROLES + "," + Common.RolesConstants.ROLES_FULL_CONTROL)]
         public HttpResponseMessage GetListPaging(HttpRequestMessage request, int page, int pageSize, string filter = null)
         {
             return CreateHttpResponse(request, () =>
@@ -35,6 +37,11 @@ namespace ShipShop.Web.Api
                 HttpResponseMessage response = null;
                 int totalRow = 0;
                 var model = _appRoleService.GetAll(page, pageSize, out totalRow, filter);
+                if(User.Identity.Name != Common.RolesConstants.ACCOUNT_ADMINISTRATOR)
+                {
+                    model =  model.Where(x => x.Name != Common.RolesConstants.ROLES_FULL_CONTROL);
+                }
+
                 IEnumerable<ApplicationRoleViewModel> modelVm = Mapper.Map<IEnumerable<ApplicationRole>, IEnumerable<ApplicationRoleViewModel>>(model);
 
                 PaginationSet<ApplicationRoleViewModel> pagedSet = new PaginationSet<ApplicationRoleViewModel>()
@@ -58,6 +65,10 @@ namespace ShipShop.Web.Api
             {
                 HttpResponseMessage response = null;
                 var model = _appRoleService.GetAll();
+                if (User.Identity.Name != Common.RolesConstants.ACCOUNT_ADMINISTRATOR)
+                {
+                    model = model.Where(x => x.Name != Common.RolesConstants.ROLES_FULL_CONTROL);
+                }
                 IEnumerable<ApplicationRoleViewModel> modelVm = Mapper.Map<IEnumerable<ApplicationRole>, IEnumerable<ApplicationRoleViewModel>>(model);
 
                 response = request.CreateResponse(HttpStatusCode.OK, modelVm);

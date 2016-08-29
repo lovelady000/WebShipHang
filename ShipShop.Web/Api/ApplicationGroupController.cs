@@ -18,7 +18,8 @@ using System.Web.Script.Serialization;
 namespace ShipShop.Web.Api
 {
     [RoutePrefix("api/applicationGroup")]
-    [Authorize(Users ="administrator")]
+    //[Authorize(Users = Common.RolesConstants.ACCOUNT_ADMINISTRATOR)]
+    [Authorize]
     public class ApplicationGroupController : ApiControllerBase
     {
         private IApplicationGroupService _appGroupService;
@@ -37,15 +38,16 @@ namespace ShipShop.Web.Api
 
         [Route("getlistpaging")]
         [HttpGet]
+        [Authorize(Roles = Common.RolesConstants.ROLES_FULL_CONTROL + "," + Common.RolesConstants.ROLES_GET_LIST_GROUP)]
         public HttpResponseMessage GetListPaging(HttpRequestMessage request, int page, int pageSize, string filter = null)
         {
-
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
                 int totalRow = 0;
                 var model = _appGroupService.GetAll(page, pageSize, out totalRow, filter);
-                IEnumerable<ApplicationGroupViewModel> modelVm = Mapper.Map<IEnumerable<ApplicationGroup>, IEnumerable<ApplicationGroupViewModel>>(model);
+                model = model.Where(x => x.Name != "supper-admin");
+                IEnumerable <ApplicationGroupViewModel> modelVm = Mapper.Map<IEnumerable<ApplicationGroup>, IEnumerable<ApplicationGroupViewModel>>(model);
 
                 PaginationSet<ApplicationGroupViewModel> pagedSet = new PaginationSet<ApplicationGroupViewModel>()
                 {
@@ -62,12 +64,17 @@ namespace ShipShop.Web.Api
         }
         [Route("getlistall")]
         [HttpGet]
+
         public HttpResponseMessage GetAll(HttpRequestMessage request)
         {
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
                 var model = _appGroupService.GetAll();
+                if(User.Identity.Name != Common.RolesConstants.ACCOUNT_ADMINISTRATOR)
+                {
+                    model = model.Where(x => x.Name != "super-admin");
+                }
                 IEnumerable<ApplicationGroupViewModel> modelVm = Mapper.Map<IEnumerable<ApplicationGroup>, IEnumerable<ApplicationGroupViewModel>>(model);
 
                 response = request.CreateResponse(HttpStatusCode.OK, modelVm);
@@ -77,6 +84,7 @@ namespace ShipShop.Web.Api
         }
         [Route("detail/{id:int}")]
         [HttpGet]
+        [Authorize(Roles = Common.RolesConstants.ROLES_EDIT_GROUP + "," + Common.RolesConstants.ROLES_FULL_CONTROL)]
         public HttpResponseMessage Details(HttpRequestMessage request, int id)
         {
             if (id == 0)
@@ -96,6 +104,7 @@ namespace ShipShop.Web.Api
 
         [HttpPost]
         [Route("add")]
+        [Authorize(Roles = Common.RolesConstants.ROLES_ADD_GROUP + "," + Common.RolesConstants.ROLES_FULL_CONTROL)]
         public HttpResponseMessage Create(HttpRequestMessage request, ApplicationGroupViewModel appGroupViewModel)
         {
             if (ModelState.IsValid)
@@ -139,6 +148,7 @@ namespace ShipShop.Web.Api
 
         [HttpPut]
         [Route("update")]
+        [Authorize(Roles = Common.RolesConstants.ROLES_EDIT_GROUP + "," + Common.RolesConstants.ROLES_FULL_CONTROL)]
         public async Task<HttpResponseMessage> Update(HttpRequestMessage request, ApplicationGroupViewModel appGroupViewModel)
         {
             if (ModelState.IsValid)
@@ -191,6 +201,7 @@ namespace ShipShop.Web.Api
 
         [HttpDelete]
         [Route("delete")]
+        [Authorize(Roles = Common.RolesConstants.ROLES_DELETE_GROUP + "," + Common.RolesConstants.ROLES_FULL_CONTROL)]
         public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {
             var appGroup = _appGroupService.Delete(id);
@@ -200,6 +211,7 @@ namespace ShipShop.Web.Api
 
         [Route("deletemulti")]
         [HttpDelete]
+        [Authorize(Roles = Common.RolesConstants.ROLES_DELETE_GROUP + "," + Common.RolesConstants.ROLES_FULL_CONTROL)]
         public HttpResponseMessage DeleteMulti(HttpRequestMessage request, string checkedList)
         {
             return CreateHttpResponse(request, () =>
