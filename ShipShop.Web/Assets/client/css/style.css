@@ -655,7 +655,7 @@ a.diamond:hover p.servc-text{
 	display: none;
 	text-decoration: none;
 	position: fixed;
-	bottom: 3%;
+	bottom: 10%;
 	right: 3%;
 	overflow: hidden;
 	width: 32px;

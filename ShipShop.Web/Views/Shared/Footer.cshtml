@@ -1,15 +1,16 @@
 ﻿@{
     var listDonViTieuBieu = (IEnumerable<ShipShop.Web.Models.DonViTieuBieuViewModel>)ViewBag.listDonViTieuBieu;
-    var webInfo = (ShipShop.Web.Models.WebInformationViewModel) ViewBag.WebInfo;
+    var webInfo = (ShipShop.Web.Models.WebInformationViewModel)ViewBag.WebInfo;
 }
+<div id="fb-root"></div>
 <script>
-(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.7&appId=295059874188437";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.7&appId=295059874188437";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
 
 <div class="footer ">
     <div class="container ">
@@ -73,31 +74,101 @@
         </div>
         <div class="clearfix "> </div>
         <div style="padding-top:20px;">
-            <div class="col-md-5 pull-left">
-                <div class="fb-page" data-href="@webInfo.Facebook" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/facebook" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/facebook">Facebook</a></blockquote></div>
+            <div class="col-md-6 pull-left">
+                <div class="fb-comments pull-right" data-href="http://shipshop.com.vn/trang-chu" data-numposts="5"></div>
             </div>
-            <div class="col-md-7 pull-right">
+            <div class="col-md-6 pull-right">
+
+                <div class="fb-page" data-href="@webInfo.Facebook" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"></div>
+                <input id="pac-input" class="form-control" style="width:auto;" type="text" placeholder="Search Box">
                 <div id="map" style="width:100%; height:200px;"></div>
                 <script>
-                function initMap() {
-                    var mapDiv = document.getElementById('map');
-                    var map = new google.maps.Map(mapDiv, {
-                        center: { lat: @webInfo.Latitude, lng: @webInfo.Longitude },
-                        zoom: 16
-                    });
-                }
+                    function initMap() {
+                        var mapDiv = document.getElementById('map');
+                        var map = new google.maps.Map(mapDiv, {
+                            center: { lat: @webInfo.Latitude, lng: @webInfo.Longitude },
+                            zoom: 16
+                        });
+                        var input = document.getElementById('pac-input');
+                        var searchBox = new google.maps.places.SearchBox(input);
+                        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+                        // Bias the SearchBox results towards current map's viewport.
+                        map.addListener('bounds_changed', function() {
+                            searchBox.setBounds(map.getBounds());
+                        });
+                        var markers = [];
+                        // Listen for the event fired when the user selects a prediction and retrieve
+                        // more details for that place.
+                        searchBox.addListener('places_changed', function() {
+                            var places = searchBox.getPlaces();
+
+                            if (places.length == 0) {
+                                return;
+                            }
+
+                            // Clear out the old markers.
+                            markers.forEach(function(marker) {
+                                marker.setMap(null);
+                            });
+                            markers = [];
+
+                            // For each place, get the icon, name and location.
+                            var bounds = new google.maps.LatLngBounds();
+                            places.forEach(function(place) {
+                                if (!place.geometry) {
+                                    console.log("Returned place contains no geometry");
+                                    return;
+                                }
+                                var icon = {
+                                    url: place.icon,
+                                    size: new google.maps.Size(71, 71),
+                                    origin: new google.maps.Point(0, 0),
+                                    anchor: new google.maps.Point(17, 34),
+                                    scaledSize: new google.maps.Size(25, 25)
+                                };
+
+                                // Create a marker for each place.
+                                markers.push(new google.maps.Marker({
+                                    map: map,
+                                    icon: icon,
+                                    title: place.name,
+                                    position: place.geometry.location
+                                }));
+
+                                if (place.geometry.viewport) {
+                                    // Only geocodes have viewport.
+                                    bounds.union(place.geometry.viewport);
+                                } else {
+                                    bounds.extend(place.geometry.location);
+                                }
+                            });
+                            map.fitBounds(bounds);
+                        });
+                    }
                 </script>
                 <script async defer
-                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMmEivETT6cZzyDCJwnofL2J0ivpKpJc4&callback=initMap">
+                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJJ5esUOXq5LYShvfOsRyB3iYcWd7SqX0&libraries=places&callback=initMap">
                 </script>
             </div>
         </div>
-
-        <div class="col-md-12">
-            @*<div class="fb-comments" data-href="http://smartstore.somee.com/" data-numposts="5"></div>*@
-        </div>
-
     </div>
+</div>
+<div>
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+            s1.async=true;
+            s1.src='https://embed.tawk.to/57c45622b817ab6642222349/default';
+            s1.charset='UTF-8';
+            s1.setAttribute('crossorigin','*');
+            s0.parentNode.insertBefore(s1,s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
+    //https://dashboard.tawk.to/
 </div>
 <!--//footer-->
 <!--copy-right-->
