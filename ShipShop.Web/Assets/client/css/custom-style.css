@@ -1,4 +1,4 @@
-﻿.home-order, .login-home, .adv-home {
+﻿.home-order, .login-home, .adv-home, .footer .container .projects .project-left  {
     border: 1px solid #999;
     padding:10px;
 
@@ -17,4 +17,22 @@
 }
 .number {
     text-align:right;
+}
+.fb-page {
+    float:right;
+    padding-top:15px;
+}
+.feature-grids {
+    padding-left:30px;
+}
+.footer > .container > .projects > .container {
+    padding-right:45px!important;
+}
+.project-left {
+    padding-bottom:10px!important;
+}
+.project-left > label {
+    padding-left:10px;
+    padding-top:5px;
+    padding-bottom: 5px;
 }

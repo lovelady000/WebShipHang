@@ -1,4 +1,15 @@
-﻿$(document).ready(function(){
+﻿function addCommas(nStr) {
+    nStr += '';
+    x = nStr.split('.');
+    x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + ',' + '$2');
+    }
+    return x1 + x2;
+}
+$(document).ready(function () {
     $('.filterable .btn-filter').click(function(){
         var $panel = $(this).parents('.filterable'),
         $filters = $panel.find('.filters input'),
@@ -33,10 +44,22 @@
         $table.find('tbody .no-result').remove();
         /* Show all rows, hide filtered ones (never do that outside of a demo ! xD) */
         $rows.show();
+        var total = 0;
+        $rows.each(function () {
+            var value = Number($(this).find('td').eq(7).text().replace(/,/g, ''));
+            total += value;
+        });
+        console.log(total);
+        $filteredRows.each(function () {
+            var value = Number($(this).find('td').eq(7).text().replace(/,/g, ''));
+            total -= value;
+        });
+
         $filteredRows.hide();
         /* Prepend no-result row if all rows are filtered */
         if ($filteredRows.length === $rows.length) {
             $table.find('tbody').prepend($('<tr class="no-result text-center"><td colspan="'+ $table.find('.filters th').length +'">No result found</td></tr>'));
         }
+        $('#totalCOD').text(addCommas(total));
     });
 });

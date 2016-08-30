@@ -144,10 +144,10 @@
                             <th><input type="text" class="form-control" placeholder="Tài khoản" disabled></th>
                             <th>Tên shop</th>
                             <th><input type="text" class="form-control" placeholder="Người nhận" disabled></th>
-                            <th>Địa chỉ người nhận</th>
+                            <th style="width:135px;">Địa chỉ người nhận</th>
                             <th><input type="text" class="form-control" placeholder="Vùng" disabled></th>
                             <th>Phí COD</th>
-                            <th>Ghi chú</th>
+                            <!--<th>Ghi chú</th>-->
                             <th>Chi tiết</th>
                             <th></th>
                         </tr>
@@ -170,17 +170,18 @@
                                 {{item.ReceiverMobile}}
                             </td>
                             <td>
-                                {{item.ReceiverAddress}}
+                                <p class="ReceiverAddress" title="{{item.ReceiverAddress}}" style="">{{item.ReceiverAddress}}</p>
+
                             </td>
                             <td>
                                 {{item.ReceiverRegion.Name}}
                             </td>
-                            <td>
-                                {{item.PayCOD}}
+                            <td style="text-align:right;">
+                                {{item.PayCOD | currency:"":0}}
                             </td>
-                            <td>
+                            <!--<td>
                                 {{item.Note}}
-                            </td>
+                            </td>-->
                             <td>
                                 <a ui-sref="orderDetail({orderID:item.ID})">Xem</a>
                             </td>
@@ -191,7 +192,10 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="100">Tổng số bản ghi:{{totalCount}}</td>
+                            <td colspan="6">Tổng số bản ghi:{{totalCount}}</td>
+                            <td> Tổng phí COD</td>
+                            <td style="text-align:right;"> <p id="totalCOD">{{totalCOD | currency:"":0}}</p></td>
+                            <td colspan="100"></td>
                         </tr>
                     </tfoot>
                 </table>

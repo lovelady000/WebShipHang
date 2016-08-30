@@ -17,7 +17,20 @@
 
         $scope.getOrder = getOrder;
         $scope.search = search;
+        $scope.totalCOD = 0;
 
+        $scope.addCommas = addCommas;
+        function addCommas(nStr) {
+            nStr += '';
+            x = nStr.split('.');
+            x1 = x[0];
+            x2 = x.length > 1 ? '.' + x[1] : '';
+            var rgx = /(\d+)(\d{3})/;
+            while (rgx.test(x1)) {
+                x1 = x1.replace(rgx, '$1' + ',' + '$2');
+            }
+            return x1 + x2;
+        }
 
         function search() {
             getOrder();
@@ -40,6 +53,11 @@
                 $scope.pagesCount = result.data.TotalPages;
                 $scope.totalCount = result.data.TotalCount;
                 notificationService.displaySuccess('Thành công');
+                var total = 0;
+                for (var i = 0; i < result.data.Items.length; ++i) {
+                    total += result.data.Items[i].PayCOD;
+                }
+                $scope.totalCOD = total;
             }, function () {
                 console.log('error');
             });
@@ -63,6 +81,7 @@
         function changeTypeOrder() {
             getOrder(0);
         };
+
     };
 
 })(angular.module('onlineshop.order'));

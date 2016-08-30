@@ -9,7 +9,7 @@
             $state.go('login');
         }
         $scope.authentication = authData.authenticationData;
-        //authenticationService.validateRequest();
+        authenticationService.validateRequest();
         $scope.changPass = changPass;
         function changPass() {
             popupService.open('', '/app/components/home/changePasswordView.html', 'changePasswordController', '');
