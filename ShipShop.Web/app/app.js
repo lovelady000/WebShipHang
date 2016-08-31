@@ -15,7 +15,8 @@
          'onlineshop.page',
          'onlineshop.area',
          'onlineshop.region',
-         'onlineshop.application_users'
+         'onlineshop.application_users',
+         'onlineshop.slide',
         ]).config(config).config(configAuthentication);
     config.$inject = ["$stateProvider", "$urlRouterProvider"];
 

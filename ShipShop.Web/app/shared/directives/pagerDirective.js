@@ -4,6 +4,20 @@
     app.directive('pagerDirective', pagerDirective);
 
     function pagerDirective() {
+        var temp = '<div>';
+        temp += ' <div ng-hide="(!pagesCount || pagesCount < 2)" style="display:inline">';
+        temp += ' <ul class="pagination pagination-sm">';
+        temp += '<li><a ng-hide="page == 0" ng-click="search(0)"><<</a></li>';
+        temp += '<li><a ng-hide="page == 0" ng-click="search(page-1)"><</a></li>';
+        temp += '<li ng-repeat="n in range()" ng-class="{active: n == page}">';
+        temp += '<a ng-click="search(n)" ng-if="n != page">{{n+1}}</a>';
+        temp += '<span ng-if="n == page">{{n+1}}</span>';
+        temp += '</li>';
+        temp += '<li><a ng-hide="page == pagesCount - 1" ng-click="search(pagePlus(1))">></a></li>';
+        temp += '<li><a ng-hide="page == pagesCount - 1" ng-click="search(pagesCount - 1)">>></a></li>';
+        temp += '</ul>';
+        temp += '</div>';
+        temp += '</div>';
         return {
             scope: {
                 page: '@',
@@ -14,7 +28,8 @@
             },
             replace: true,
             restrict: 'E',
-            templateUrl: '/app/shared/directives/pagerDirective.html',
+            //templateUrl: '/app/shared/directives/pagerDirective.html',
+            template: temp,
             controller: [
                 '$scope', function ($scope) {
                     $scope.search = function (i) {

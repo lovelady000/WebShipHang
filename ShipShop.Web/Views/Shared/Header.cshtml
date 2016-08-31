@@ -2,6 +2,7 @@
 @{
     var listMenuViewModel = (IEnumerable<MenuViewModel>)ViewBag.listMenuVM;
     var listNewsVM = (IEnumerable<NewsViewModel>)ViewBag.listNewsVM;
+    var listSlideVM = (IEnumerable<SlideViewModel>)ViewBag.listSlideVM;
     var TinTuc = "";
     string html = "";
     var webInformation = (WebInformationViewModel)ViewBag.webInformationVM;
@@ -10,7 +11,7 @@
         html = "<a style='padding-right:30px;' href='" + item.Url + "'>" + item.Name + "</a>";
         TinTuc += html;
     }
-    string htmlTinTuc = "<marquee behavior=\"scroll\" onmouseover=\"this.stop();\" onmouseout=\"this.start();\" direction=\"left\">"+TinTuc+" </marquee>";
+    string htmlTinTuc = "<marquee behavior=\"scroll\" onmouseover=\"this.stop();\" onmouseout=\"this.start();\" direction=\"left\">" + TinTuc + " </marquee>";
 }
 <div class="row" style="margin:0px;">
     <div class="col-md-12">
@@ -85,25 +86,34 @@
 </div>
 <!--//header-->
 <!--banner-->
-<link href="~/Assets/client/css/fluxslide.css" rel="stylesheet" />
+<link href="~/Assets/client/css/camera.css" rel="stylesheet" />
+<script src="~/Assets/client/js/jquery.mobile.customized.min.js"></script>
+<script src="~/Assets/client/js/jquery.easing.1.3.js"></script>
+<script src="~/Assets/client/js/camera.js"></script>
 <div class="banner">
     <div class="container">
         <div class="col-md-12 ">
-            <div id="slider">
-                <img src="~/Assets/client/images/banner.jpg" alt="" height="200px" width="100%"/>
-            </div>
+            <div class="fluid_container">
+                <div class="camera_wrap camera_azure_skin" id="camera_wrap_1">
+                    @foreach (var item in listSlideVM)
+                    {
+                        <div data-src="@item.Image">
+                            <div class="camera_caption fadeFromBottom">
+                                <a href="@item.Url"> @item.Name</a>
+                            </div>
+                        </div>
+                    }
+                </div><!-- #camera_wrap_1 -->
+            </div><!-- .fluid_container -->
         </div>
     </div>
 
-    @*<script src="~/Assets/client/js/flux.js"></script>
-    <script type="text/javascript" charset="utf-8">
-			$(function(){
-				if(!flux.browser.supportsTransitions)
-					alert("Flux Slider requires a browser that supports CSS3 transitions");
-
-				window.f = new flux.slider('#slider', {
-					pagination: true
-				});
-			});
-    </script>*@
+    <script>
+        jQuery(function () {
+            jQuery('#camera_wrap_1').camera({
+                //thumbnails: true,
+                height: '200px',
+            });
+        });
+    </script>
 </div>

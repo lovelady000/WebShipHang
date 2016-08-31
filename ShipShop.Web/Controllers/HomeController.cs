@@ -14,13 +14,16 @@ namespace ShipShop.Web.Controllers
         private IDonViTieuBieuService _donViTieuBieuService;
         private INewsService _newsService;
         private IWebInformationService _webInformationService;
+        private ISlideService _slideService;
 
-        public HomeController(IMenuService menuService, IDonViTieuBieuService donViTieuBieuService, INewsService newsService, IWebInformationService webInformationService)
+        public HomeController(IMenuService menuService, IDonViTieuBieuService donViTieuBieuService, 
+            INewsService newsService, IWebInformationService webInformationService , ISlideService slideService)
         {
             this._menuService = menuService;
             this._donViTieuBieuService = donViTieuBieuService;
             this._newsService = newsService;
             this._webInformationService = webInformationService;
+            this._slideService = slideService;
         }
 
         public ActionResult Index()
@@ -70,6 +73,10 @@ namespace ShipShop.Web.Controllers
             var webInformationVM = Mapper.Map<WebInformation, WebInformationViewModel>(webInformation);
             ViewBag.webInformationVM = webInformationVM;
 
+            var slide = _slideService.GetAll();
+            slide = slide.OrderBy(x => x.DisplayOrder);
+            var listSlideVM = Mapper.Map<IEnumerable<Slide>, IEnumerable<SlideViewModel>>(slide);
+            ViewBag.listSlideVM = listSlideVM;
             return PartialView();
         }
  

@@ -114,5 +114,14 @@ namespace ShipShop.Web.Infrastructure.Extensions
             region.Name = regionViewModel.Name;
             region.AreaID = regionViewModel.AreaID;
         }
+        public static void UpdateSlide(this Slide slide, SlideViewModel slideViewModel)
+        {
+            slide.Name = slideViewModel.Name;
+            slide.Description = slideViewModel.Description;
+            slide.Image = slideViewModel.Image;
+            slide.Url = slideViewModel.Url;
+            slide.DisplayOrder = slideViewModel.DisplayOrder;
+            slide.Status = slide.Status;
+        }
     }
 }
