@@ -30,6 +30,7 @@ namespace ShipShop.Web.Api
 
         [Route("getall")]
         [HttpGet]
+        [Authorize(Roles = Common.RolesConstants.ROLES_GET_LIST_SLIDE + "," + Common.RolesConstants.ROLES_FULL_CONTROL)]
         public HttpResponseMessage Get(HttpRequestMessage request, string keyword, int page, int pageSize = 10)
         {
             return CreateHttpResponse(request, () =>
@@ -55,6 +56,7 @@ namespace ShipShop.Web.Api
 
         [Route("create")]
         [HttpPost]
+        [Authorize(Roles = Common.RolesConstants.ROLES_ADD_SLIDE + "," + Common.RolesConstants.ROLES_FULL_CONTROL)]
         public HttpResponseMessage Create(HttpRequestMessage request, SlideViewModel slideVM)
         {
             return CreateHttpResponse(request, () =>
@@ -81,6 +83,7 @@ namespace ShipShop.Web.Api
 
         [Route("getbyid")]
         [HttpGet]
+        [Authorize(Roles = Common.RolesConstants.ROLES_EDIT_SLIDE + "," + Common.RolesConstants.ROLES_FULL_CONTROL)]
         public HttpResponseMessage GetByID(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () =>
@@ -97,6 +100,7 @@ namespace ShipShop.Web.Api
 
         [Route("Update")]
         [HttpPut]
+        [Authorize(Roles = Common.RolesConstants.ROLES_EDIT_SLIDE + "," + Common.RolesConstants.ROLES_FULL_CONTROL)]
         public HttpResponseMessage Update(HttpRequestMessage request, SlideViewModel slideVM)
         {
             return CreateHttpResponse(request, () =>
@@ -123,6 +127,7 @@ namespace ShipShop.Web.Api
 
         [Route("Delete")]
         [HttpDelete]
+        [Authorize(Roles = Common.RolesConstants.ROLES_DELETE_SLIDE + "," + Common.RolesConstants.ROLES_FULL_CONTROL)]
         public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () =>

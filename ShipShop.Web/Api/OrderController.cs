@@ -29,6 +29,7 @@ namespace ShipShop.Web.Api
 
         [Route("getall")]
         [HttpGet]
+        [Authorize(Roles = Common.RolesConstants.ROLES_GET_LIST_ORDER + "," + Common.RolesConstants.ROLES_FULL_CONTROL)]
         public HttpResponseMessage Get(HttpRequestMessage request, string keyword, int page, int typeOrder,int pageSize = 10)
         {
             return CreateHttpResponse(request, () =>
@@ -68,6 +69,7 @@ namespace ShipShop.Web.Api
 
         [Route("getorderdetail")]
         [HttpGet]
+        [Authorize(Roles = Common.RolesConstants.ROLES_GET_LIST_ORDER + "," + Common.RolesConstants.ROLES_FULL_CONTROL)]
         public HttpResponseMessage GetByOrderID(HttpRequestMessage request,int orderID, int page, int pageSize = 10)
         {
             return CreateHttpResponse(request, () =>
@@ -93,6 +95,7 @@ namespace ShipShop.Web.Api
 
         [Route("changeOrderStatus")]
         [HttpPut]
+        [Authorize(Roles = Common.RolesConstants.ROLES_EDIT_ORDER + "," + Common.RolesConstants.ROLES_FULL_CONTROL)]
         public HttpResponseMessage ChangeOrderStatus(HttpRequestMessage request, OrderViewModel orderVM)
         {
             return CreateHttpResponse(request, () =>

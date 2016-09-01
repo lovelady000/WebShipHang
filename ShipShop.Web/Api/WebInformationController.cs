@@ -30,6 +30,7 @@ namespace ShipShop.Web.Api
 
         [Route("getsinger")]
         [HttpGet]
+        [Authorize(Roles = Common.RolesConstants.ROLES_EDIT_WEBINFO + "," + Common.RolesConstants.ROLES_FULL_CONTROL)]
         public HttpResponseMessage GetSinger(HttpRequestMessage request)
         {
             return CreateHttpResponse(request, () =>
@@ -44,6 +45,7 @@ namespace ShipShop.Web.Api
 
         [Route("Update")]
         [HttpPut]
+        [Authorize(Roles = Common.RolesConstants.ROLES_EDIT_WEBINFO + "," + Common.RolesConstants.ROLES_FULL_CONTROL)]
         public HttpResponseMessage Update(HttpRequestMessage request, WebInformationViewModel webInformationVM)
         {
             return CreateHttpResponse(request, () =>

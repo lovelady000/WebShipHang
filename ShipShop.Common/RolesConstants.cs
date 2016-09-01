@@ -15,5 +15,61 @@
         public const string ROLES_ADD_PERMISSION_USER = "add_permission_user";
         public const string ROLES_GET_LIST_ROLES = "get_list_roles";
         public const string ROLES_GET_LIST_GROUP = "get_list_group";
+
+        //Area
+        public const string ROLES_GET_LIST_AREA = "get_list_area";
+        public const string ROLES_ADD_AREA = "add_area";
+        public const string ROLES_EDIT_AREA = "edit_area";
+        public const string ROLES_DELETE_AREA = "delete_area";
+
+        //donvitieubieu
+
+        public const string ROLES_GET_LIST_DVTB = "get_list_dvtb";
+        public const string ROLES_ADD_DVTB = "add_dvtb";
+        public const string ROLES_EDIT_DVTB = "edit_dvtb";
+        public const string ROLES_DELETE_DVTB = "delete_dvtb";
+
+        //Menu
+
+        public const string ROLES_GET_LIST_MENU = "get_list_menu";
+        public const string ROLES_ADD_MENU = "add_menu";
+        public const string ROLES_EDIT_MENU = "edit_menu";
+        public const string ROLES_DELETE_MENU = "delete_menu";
+
+        //NEWS
+        public const string ROLES_GET_LIST_NEWS = "get_list_news";
+        public const string ROLES_ADD_NEWS = "add_news";
+        public const string ROLES_EDIT_NEWS = "edit_news";
+        public const string ROLES_DELETE_NEWS = "delete_news";
+
+        //ORDER
+
+        public const string ROLES_GET_LIST_ORDER = "get_list_order";
+        public const string ROLES_ADD_ORDER = "add_order";
+        public const string ROLES_EDIT_ORDER = "edit_order";
+        public const string ROLES_DELETE_ORDER = "delete_order";
+
+        //page
+
+        public const string ROLES_GET_LIST_PAGE = "get_list_page";
+        public const string ROLES_ADD_PAGE = "add_page";
+        public const string ROLES_EDIT_PAGE = "edit_page";
+        public const string ROLES_DELETE_PAGE = "delete_page";
+
+        //REGION
+
+        public const string ROLES_GET_LIST_REGION = "get_list_region";
+        public const string ROLES_ADD_REGION = "add_region";
+        public const string ROLES_EDIT_REGION = "edit_region";
+        public const string ROLES_DELETE_REGION = "delete_region";
+
+        //SLIDE
+        public const string ROLES_GET_LIST_SLIDE = "get_list_slide";
+        public const string ROLES_ADD_SLIDE = "add_slide";
+        public const string ROLES_EDIT_SLIDE = "edit_slide";
+        public const string ROLES_DELETE_SLIDE = "delete_slide";
+
+        //WEBINFO
+        public const string ROLES_EDIT_WEBINFO = "edit_webinfo";
     }
 }
