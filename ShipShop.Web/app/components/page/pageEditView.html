@@ -1,6 +1,6 @@
 ﻿<section class="content-header">
     <h1>
-        Cập nhập: {{newMenu.Name}}
+        Cập nhập: {{page.Name}}
     </h1>
 </section>
 <section class="content">
@@ -17,7 +17,8 @@
                 <div class="form-group">
                     <label for="inputPassword3" class="col-md-2 control-label">Tên không dấu</label>
                     <div class="col-md-10">
-                        <input type="text" class="form-control" ng-model="page.Alias" name="url">
+                        <input type="text" class="form-control" ng-model="page.Alias" name="Alias">
+                        <span ng-show="!frmAddMenu.Alias.$pristine && frmAddMenu.Alias.$invalid">Tên Alias không được bỏ trống!</span>
                     </div>
                 </div>
                 <div class="form-group">

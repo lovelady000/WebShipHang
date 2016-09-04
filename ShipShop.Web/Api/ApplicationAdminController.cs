@@ -22,33 +22,40 @@ using System.Web.Http;
 namespace ShipShop.Web.Api
 {
     [Authorize]
-    [RoutePrefix("api/applicationUser")]
-    public class ApplicationUserController : ApiControllerBase
+    [RoutePrefix("api/applicationAdmin")]
+    public class ApplicationAdminController : ApiControllerBase
     {
         private ApplicationUserManager _userManager;
         private IApplicationGroupService _appGroupService;
         private IApplicationRoleService _appRoleService;
-        public ApplicationUserController(
+        private IRegionService _regionService;
+        public ApplicationAdminController(
             IApplicationGroupService appGroupService,
             IApplicationRoleService appRoleService,
             ApplicationUserManager userManager,
-            IErrorService errorService)
+            IErrorService errorService,
+            IRegionService regionService)
             : base(errorService)
         {
             _appRoleService = appRoleService;
             _appGroupService = appGroupService;
             _userManager = userManager;
+            _regionService = regionService;
         }
         [Route("getlistpaging")]
         [HttpGet]
-        [Authorize(Roles = Common.RolesConstants.ROLES_FULL_CONTROL +","+Common.RolesConstants.ROLES_GET_LIST_USER)]
+        [Authorize(Roles = Common.RolesConstants.ROLES_FULL_CONTROL + "," + Common.RolesConstants.ROLES_GET_LIST_ADMIN)]
         public HttpResponseMessage GetListPaging(HttpRequestMessage request, int page, int pageSize, string filter = null)
         {
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
                 int totalRow = 0;
-                var model = _userManager.Users.Where(x => !x.IsAdmin).Include("Region");
+                var model = _userManager.Users.Where(x => x.IsAdmin).Include("Region");
+                if(User.Identity.GetUserName() != Common.RolesConstants.ACCOUNT_ADMINISTRATOR)
+                {
+                    model = model.Where(x => x.UserName != Common.RolesConstants.ACCOUNT_ADMINISTRATOR);
+                }
                 IEnumerable<ApplicationUserViewModel> modelVm = Mapper.Map<IEnumerable<ApplicationUser>, IEnumerable<ApplicationUserViewModel>>(model);
                 PaginationSet<ApplicationUserViewModel> pagedSet = new PaginationSet<ApplicationUserViewModel>()
                 {
@@ -65,11 +72,11 @@ namespace ShipShop.Web.Api
 
         [Route("detail/{id}")]
         [HttpGet]
+        [Authorize(Roles = Common.RolesConstants.ROLES_FULL_CONTROL + "," + Common.RolesConstants.ROLES_EDIT_ADMIN)]
         public HttpResponseMessage Details(HttpRequestMessage request, string id)
         {
             if (string.IsNullOrEmpty(id))
             {
-
                 return request.CreateErrorResponse(HttpStatusCode.BadRequest, nameof(id) + " không có giá trị.");
             }
             var user = _userManager.FindByIdAsync(id);
@@ -87,63 +94,66 @@ namespace ShipShop.Web.Api
 
         }
 
-        //[HttpPost]
-        //[Route("add")]
-        //[Authorize(Roles = "AddUser")]
-        //[Authorize(Roles = "Admin")]
-        //public async Task<HttpResponseMessage> Create(HttpRequestMessage request, ApplicationUserViewModel applicationUserViewModel)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var newAppUser = new ApplicationUser();
-        //        newAppUser.UpdateUser(applicationUserViewModel);
-        //        try
-        //        {
-        //            newAppUser.Id = Guid.NewGuid().ToString();
-        //            var result = await _userManager.CreateAsync(newAppUser, applicationUserViewModel.Password);
-        //            if (result.Succeeded)
-        //            {
-        //                var listAppUserGroup = new List<ApplicationUserGroup>();
-        //                foreach (var group in applicationUserViewModel.Groups)
-        //                {
-        //                    listAppUserGroup.Add(new ApplicationUserGroup()
-        //                    {
-        //                        GroupId = group.ID,
-        //                        UserId = newAppUser.Id
-        //                    });
-        //                    //add role to user
-        //                    var listRole = _appRoleService.GetListRoleByGroupId(group.ID);
-        //                    foreach (var role in listRole)
-        //                    {
-        //                        await _userManager.RemoveFromRoleAsync(newAppUser.Id, role.Name);
-        //                        await _userManager.AddToRoleAsync(newAppUser.Id, role.Name);
-        //                    }
-        //                }
-        //                _appGroupService.AddUserToGroups(listAppUserGroup, newAppUser.Id);
-        //                _appGroupService.Save();
-        //                return request.CreateResponse(HttpStatusCode.OK, applicationUserViewModel);
-        //            }
-        //            else
-        //                return request.CreateErrorResponse(HttpStatusCode.BadRequest, string.Join(",", result.Errors));
-        //        }
-        //        catch (NameDuplicatedException dex)
-        //        {
-        //            return request.CreateErrorResponse(HttpStatusCode.BadRequest, dex.Message);
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            return request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        return request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-        //    }
-        //}
+        [HttpPost]
+        [Route("add")]
+        [Authorize(Roles = Common.RolesConstants.ROLES_FULL_CONTROL + "," + Common.RolesConstants.ROLES_ADD_ADMIN)]
+        public async Task<HttpResponseMessage> Create(HttpRequestMessage request, ApplicationUserViewModel applicationUserViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var newAppUser = new ApplicationUser();
+                newAppUser.UpdateUser(applicationUserViewModel);
+                newAppUser.IsAdmin = true;
+                newAppUser.Vendee = false;
+                newAppUser.RegionID = _regionService.GetAll().First().RegionID;
+                try
+                {
+                    newAppUser.Id = Guid.NewGuid().ToString();
+                    var result = await _userManager.CreateAsync(newAppUser, applicationUserViewModel.Password);
+                    if (result.Succeeded)
+                    {
+                        var listAppUserGroup = new List<ApplicationUserGroup>();
+                        foreach (var group in applicationUserViewModel.Groups)
+                        {
+                            listAppUserGroup.Add(new ApplicationUserGroup()
+                            {
+                                GroupId = group.ID,
+                                UserId = newAppUser.Id
+                            });
+                            //add role to user
+                            var listRole = _appRoleService.GetListRoleByGroupId(group.ID);
+                            foreach (var role in listRole)
+                            {
+                                await _userManager.RemoveFromRoleAsync(newAppUser.Id, role.Name);
+                                await _userManager.AddToRoleAsync(newAppUser.Id, role.Name);
+                            }
+                        }
+                        _appGroupService.AddUserToGroups(listAppUserGroup, newAppUser.Id);
+                        _appGroupService.Save();
+                        return request.CreateResponse(HttpStatusCode.OK, applicationUserViewModel);
+                    }
+                    else
+                        return request.CreateErrorResponse(HttpStatusCode.BadRequest, string.Join(",", result.Errors));
+                }
+                catch (NameDuplicatedException dex)
+                {
+                    return request.CreateErrorResponse(HttpStatusCode.BadRequest, dex.Message);
+                }
+                catch (Exception ex)
+                {
+                    return request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
+                }
+            }
+            else
+            {
+                return request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+            }
+        }
 
 
         [HttpPut]
         [Route("resetPass")]
+        [Authorize(Roles = Common.RolesConstants.ROLES_FULL_CONTROL + "," + Common.RolesConstants.ROLES_EDIT_ADMIN)]
         public async Task<HttpResponseMessage> ResetPass(HttpRequestMessage request, ChangePassViewModel changePassVM)
         {
             if (changePassVM.NewPassword != changePassVM.RePassword)
@@ -218,6 +228,7 @@ namespace ShipShop.Web.Api
 
         [HttpDelete]
         [Route("delete")]
+        [Authorize(Roles = RolesConstants.ROLES_FULL_CONTROL + "," + RolesConstants.ROLES_DELETE_ADMIN)]
         public async Task<HttpResponseMessage> Delete(HttpRequestMessage request, string id)
         {
             var appUser = await _userManager.FindByIdAsync(id);

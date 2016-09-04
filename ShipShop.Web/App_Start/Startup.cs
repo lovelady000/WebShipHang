@@ -34,6 +34,7 @@ namespace ShipShop.Web.App_Start
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
             // Register your Web API controllers.
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly()); //Register WebApi Controllers
+            
 
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerRequest();
             builder.RegisterType<DbFactory>().As<IDbFactory>().InstancePerRequest();

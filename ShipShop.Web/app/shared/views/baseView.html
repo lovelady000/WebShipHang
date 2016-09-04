@@ -2,7 +2,8 @@
     <header class="main-header">
         <!-- Logo -->
         <a ui-sref="home" class="logo">
-            Quản trị
+            <span class="logo-mini"><b>A</b></span>
+            <span class="logo-lg"><b>Admin</b></span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
@@ -55,11 +56,11 @@
                 <li class="header">Quản trị hệ thống</li>
                 <li class="treeview">
                     <a ui-sref="home">
-                        <i class="fa fa-ticket ">Home</i>
-                        <span></span>
+                        <i class="fa fa-ticket "></i>
+                        <span>Home</span>
                     </a>
                 </li>
-                <li class="treeview">
+                <li class="treeview" ng-if="authentication.roles.indexOf(ROLES.ROLES_EDIT_WEBINFO) != -1 || authentication.roles.indexOf(ROLES.ROLES_GET_LIST_MENU) != -1 || authentication.roles.indexOf(ROLES.ROLES_GET_LIST_NEWS) != -1 || authentication.roles.indexOf(ROLES.ROLES_GET_LIST_SLIDE) != -1">
                     <a href="javascript:">
                         <i class="fa fa-dashboard"></i> <span>Quản trị website</span>
                         <span class="pull-right-container">
@@ -67,13 +68,13 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a ui-sref="webInformation"><i class="fa fa-circle-o"></i>Thông tin trang chủ</a></li>
-                        <li><a ui-sref="menu"><i class="fa fa-circle-o"></i>Menu</a></li>
-                        <li><a ui-sref="news"><i class="fa fa-circle-o"></i>Bài viết host</a></li>
-                        <li><a ui-sref="slide"><i class="fa fa-circle-o"></i>Slide</a></li>
+                        <li ng-if="authentication.roles.indexOf(ROLES.ROLES_EDIT_WEBINFO) != -1"><a ui-sref="webInformation"><i class="fa fa-circle-o"></i>Thông tin trang chủ</a></li>
+                        <li ng-if="authentication.roles.indexOf(ROLES.ROLES_GET_LIST_MENU) != -1"><a ui-sref="menu"><i class="fa fa-circle-o"></i>Menu</a></li>
+                        <li ng-if="authentication.roles.indexOf(ROLES.ROLES_GET_LIST_NEWS) != -1"><a ui-sref="news"><i class="fa fa-circle-o"></i>Bài viết host</a></li>
+                        <li ng-if="authentication.roles.indexOf(ROLES.ROLES_GET_LIST_SLIDE) != -1"><a ui-sref="slide"><i class="fa fa-circle-o"></i>Slide</a></li>
                     </ul>
                 </li>
-                <li class="treeview">
+                <li class="treeview" ng-if="authentication.roles.indexOf(ROLES.ROLES_GET_LIST_DVTB) != -1 || authentication.roles.indexOf(ROLES.ROLES_GET_LIST_AREA) != -1 || authentication.roles.indexOf(ROLES.ROLES_GET_LIST_REGION) != -1">
                     <a href="javascript:">
                         <i class="fa fa-cubes"></i> <span>Danh mục dùng chung</span>
                         <span class="pull-right-container">
@@ -81,24 +82,24 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a ui-sref="dvtb"><i class="fa fa-circle-o"></i>Đơn vị tiêu biểu</a></li>
-                        <li><a ui-sref="area"><i class="fa fa-circle-o"></i>Vùng</a></li>
-                        <li><a ui-sref="region"><i class="fa fa-circle-o"></i>Khu vực</a></li>
+                        <li ng-if="authentication.roles.indexOf(ROLES.ROLES_GET_LIST_DVTB) != -1"><a ui-sref="dvtb"><i class="fa fa-circle-o"></i>Đơn vị tiêu biểu</a></li>
+                        <li ng-if="authentication.roles.indexOf(ROLES.ROLES_GET_LIST_AREA) != -1"><a ui-sref="area"><i class="fa fa-circle-o"></i>Vùng</a></li>
+                        <li ng-if="authentication.roles.indexOf(ROLES.ROLES_GET_LIST_REGION) != -1"><a ui-sref="region"><i class="fa fa-circle-o"></i>Khu vực</a></li>
                     </ul>
                 </li>
-                <li class="treeview">
+                <li class="treeview" ng-if="authentication.roles.indexOf(ROLES.ROLES_GET_LIST_ORDER) != -1">
                     <a ui-sref="order">
                         <i class="fa fa-ticket "></i>
                         <span>Quản lý đơn hàng</span>
                     </a>
                 </li>
                 <li>
-                    <a ui-sref="application_users">
+                    <a ui-sref="application_users" ng-if="authentication.roles.indexOf(ROLES.ROLES_GET_LIST_USER) != -1">
                         <i class="fa fa-user-plus"></i> <span>Quản lý tài khoản</span>
                     </a>
                 </li>
 
-                <li class="treeview" ng-if="authentication.userName == 'administrator'" >
+                <li class="treeview" ng-if="authentication.roles.indexOf(ROLES.ROLES_GET_LIST_GROUP) != -1 || authentication.roles.indexOf(ROLES.ROLES_FULL_CONTROL) != -1" >
                     <a href="javascript:">  
                         <i class="fa fa-pie-chart"></i>
                         <span>Hệ thống</span>
@@ -107,11 +108,12 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a ui-sref="application_groups"><i class="fa fa-circle-o"></i> Nhóm người dùng</a></li>
-                        <li><a ui-sref="application_roles"><i class="fa fa-circle-o"></i> Quyền</a></li>
+                        <li ng-if="authentication.roles.indexOf(ROLES.ROLES_GET_LIST_GROUP) != -1"><a ui-sref="application_groups"><i class="fa fa-circle-o"></i> Nhóm người dùng</a></li>
+                        <li ng-if="authentication.roles.indexOf(ROLES.ROLES_FULL_CONTROL) != -1"><a ui-sref="application_roles"><i class="fa fa-circle-o"></i> Quyền</a></li>
+                        <li ><a ui-sref="application_admins"><i class="fa fa-circle-o"></i> Quản lý tài khoản admin</a></li>
                     </ul>
                 </li>
-                <li class="treeview">
+                <li class="treeview" ng-if="authentication.roles.indexOf(ROLES.ROLES_GET_LIST_PAGE) != -1">
                     <a href="javascript:">
                         <i class="fa fa-file-text-o "></i>
                         <span>Quản lý trang đơn</span>
@@ -120,7 +122,7 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a ui-sref="page"><i class="fa fa-circle-o"></i> Trang đơn</a></li>
+                        <li ng-if="authentication.roles.indexOf(ROLES.ROLES_GET_LIST_PAGE) != -1"><a ui-sref="page"><i class="fa fa-circle-o"></i> Trang đơn</a></li>
                     </ul>
                 </li>
             </ul>

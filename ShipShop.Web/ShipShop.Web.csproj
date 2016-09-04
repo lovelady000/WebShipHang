@@ -203,6 +203,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\AccountController.cs" />
+    <Compile Include="Api\ApplicationAdminController.cs" />
     <Compile Include="Api\ApplicationGroupController.cs" />
     <Compile Include="Api\ApplicationRoleController.cs" />
     <Compile Include="Api\ApplicationUserController.cs" />
@@ -260,6 +261,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
+    <Content Include="app\components\application_admins\applicationAdminAddController.js" />
+    <Content Include="app\components\application_admins\applicationAdminAddView.html" />
+    <Content Include="app\components\application_admins\applicationAdminListController.js" />
+    <Content Include="app\components\application_admins\applicationAdminListView.html" />
+    <Content Include="app\components\application_admins\applicationAdminResetPassController.js" />
+    <Content Include="app\components\application_admins\applicationAdminResetPassView.html" />
+    <Content Include="app\components\application_admins\applicationAdmin.module.js" />
+    <Content Include="app\components\application_admins\applicationAdminEditController.js" />
+    <Content Include="app\components\application_admins\applicationAdminEditView.html" />
     <Content Include="app\components\application_groups\applicationGroupAddController.js" />
     <Content Include="app\components\application_groups\applicationGroupAddView.html" />
     <Content Include="app\components\application_groups\applicationGroupEditController.js" />
@@ -361,6 +371,7 @@
     <Content Include="app\shared\service\apiService.js" />
     <Content Include="app\shared\service\authData.js" />
     <Content Include="app\shared\service\authenticationService.js" />
+    <Content Include="app\shared\service\permissionService.js" />
     <Content Include="app\shared\service\commonService.js" />
     <Content Include="app\shared\service\loginService.js" />
     <Content Include="app\shared\service\notificationService.js" />
@@ -5910,7 +5921,6 @@
     <Content Include="Views\Order\OrderDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\components\post\" />
     <Folder Include="App_Data\" />
     <Folder Include="Assets\admin\libs\checklist-model\test\" />
     <Folder Include="UploadedFiles\files\" />

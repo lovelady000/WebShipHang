@@ -21,6 +21,10 @@ namespace ShipShop.Web.Models
 
         public int RegionID { set; get; }
 
+        public bool IsAdmin { set; get; }
+
+        public string Password { set; get; }
+
         public virtual RegionViewModel Region { set; get; }
 
         public IEnumerable<ApplicationGroupViewModel> Groups { set; get; }

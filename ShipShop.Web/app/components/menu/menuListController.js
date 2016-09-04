@@ -72,6 +72,7 @@
                    });
                });
         };
+
     };
     
 })(angular.module('onlineshop.menu'));

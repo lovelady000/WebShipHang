@@ -78,6 +78,7 @@ namespace ShipShop.Web.Controllers
                 Vendee = register.Vendee,
                 RegionID = register.RegionID,
                 WebOrShopName = register.Vendee ? register.WebOrShopName : "",
+                IsAdmin = false,
             };
             await _userManager.CreateAsync(user, register.Password);
             var userFindByName = await _userManager.FindByNameAsync(register.UserName);
@@ -105,7 +106,7 @@ namespace ShipShop.Web.Controllers
         {
 
             ApplicationUser user = await _userManager.FindAsync(model.UserName, model.Password);
-            if (user != null)
+            if (user != null && !user.IsAdmin)
             {
                 IAuthenticationManager authenticationManager = HttpContext.GetOwinContext().Authentication;
                 authenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);

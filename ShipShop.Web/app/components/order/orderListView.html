@@ -149,7 +149,7 @@
                             <th>Phí COD</th>
                             <!--<th>Ghi chú</th>-->
                             <th>Chi tiết</th>
-                            <th></th>
+                            <th ng-if="authentication.roles.indexOf(ROLES.ROLES_EDIT_ORDER) != -1"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -185,7 +185,7 @@
                             <td>
                                 <a ui-sref="orderDetail({orderID:item.ID})">Xem</a>
                             </td>
-                            <td>
+                            <td ng-if="authentication.roles.indexOf(ROLES.ROLES_EDIT_ORDER) != -1">
                                 <button ng-show="item.Status" type="button" title="Hủy đơn hàng" class="btn btn-sm btn-primary" ng-click="cancelOrder(item.ID);"><i class="fa fa-times"></i></button>
                             </td>
                         </tr>

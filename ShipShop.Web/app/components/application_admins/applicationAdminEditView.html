@@ -1,0 +1,36 @@
+﻿<section class="content-header">
+  <h1>
+   Phân quyền tài khoản
+  </h1>
+</section>
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box box-info">
+        <div class="box-header with-border">
+          <h3 class="box-title">{{account.FullName}}</h3>
+        </div><!-- /.box-header -->
+        <!-- form start -->
+        <form class="form-horizontal" role="form" novalidate name="frmUpdateAccount" ng-submit="updateAccount()">
+          <div class="box-body">
+            <div class="col-md-8">
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10" ng-repeat="group in groups">
+                  <label>
+                    <input type="checkbox" checklist-model="account.Groups" checklist-value="group"> {{group.Name}}
+                  </label>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <button type="button" ng-click="cancel();" class="btn btn-default">Hủy bỏ</button>
+                  <input type="submit" class="btn btn-primary" value="Lưu lại" />
+                </div>
+              </div>
+            </div>
+          </div><!-- /.box-body -->
+        </form>
+      </div><!-- /.box -->
+    </div>
+  </div>
+</section>

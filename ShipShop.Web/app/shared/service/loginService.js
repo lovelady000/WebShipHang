@@ -12,18 +12,31 @@
                 headers:
                    { 'Content-Type': 'application/x-www-form-urlencoded' }
             }).success(function (response) {
-                userInfo = {
-                    accessToken: response.access_token,
-                    userName: userName
-                };
-                authenticationService.setTokenInfo(userInfo);
-                authData.authenticationData.IsAuthenticated = true;
-                authData.authenticationData.userName = userName;
-                deferred.resolve(null);
+                $http.defaults.headers.common['Authorization'] = 'Bearer ' + response.access_token;
+                $http.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
+                $http.get('/api/applicationRole/checkPermission', null).then(function (result) {
+
+                    userInfo = {
+                        accessToken: response.access_token,
+                        userName: userName,
+                        roles:result.data,
+                    };
+                    authenticationService.setTokenInfo(userInfo);
+                    authData.authenticationData.IsAuthenticated = true;
+                    authData.authenticationData.userName = userName;
+                    authData.authenticationData.roles = result.data;
+                    deferred.resolve(null);
+
+                }, function (error) {
+                    if (error.status === 401) {
+                        notificationService.displayError('Quyền truy cập bị từ chối!');
+                    }
+                });
             })
             .error(function (err, status) {
                 authData.authenticationData.IsAuthenticated = false;
                 authData.authenticationData.userName = "";
+                authData.authenticationData.roles = [];
                 deferred.resolve(err);
             });
             return deferred.promise;
@@ -33,6 +46,7 @@
             authenticationService.removeToken();
             authData.authenticationData.IsAuthenticated = false;
             authData.authenticationData.userName = "";
+            authData.authenticationData.roles = [];
         }
     }]);
 })(angular.module('onlineshop.common'));

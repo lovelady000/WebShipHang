@@ -58,7 +58,6 @@ namespace ShipShop.Web.Infrastructure.Extensions
 
         public static void UpdateUser(this ApplicationUser appUser, ApplicationUserViewModel appUserViewModel, string action = "add")
         {
-            appUser.Id = appUserViewModel.Id;
             appUser.UserName = appUserViewModel.UserName;
         }
 

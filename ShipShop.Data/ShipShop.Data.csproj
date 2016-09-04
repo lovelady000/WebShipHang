@@ -161,6 +161,14 @@
     <Compile Include="Migrations\201608200642199_AddLogoWebInfo.Designer.cs">
       <DependentUpon>201608200642199_AddLogoWebInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609040147553_ChangeApplUser.cs" />
+    <Compile Include="Migrations\201609040147553_ChangeApplUser.Designer.cs">
+      <DependentUpon>201609040147553_ChangeApplUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609040154362_ChangeApplUser-2.cs" />
+    <Compile Include="Migrations\201609040154362_ChangeApplUser-2.Designer.cs">
+      <DependentUpon>201609040154362_ChangeApplUser-2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="OnlineShopDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -259,6 +267,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608200642199_AddLogoWebInfo.resx">
       <DependentUpon>201608200642199_AddLogoWebInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609040147553_ChangeApplUser.resx">
+      <DependentUpon>201609040147553_ChangeApplUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609040154362_ChangeApplUser-2.resx">
+      <DependentUpon>201609040154362_ChangeApplUser-2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

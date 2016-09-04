@@ -23,6 +23,7 @@ namespace ShipShop.Model.Models
 
         public int RegionID { set; get; }
 
+        public bool IsAdmin { set; get; }
         //public virtual IEnumerable<Order> Order { set; get; }
 
         [ForeignKey("RegionID")]

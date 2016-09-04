@@ -12,6 +12,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Script.Serialization;
 using System.Linq;
+using System.Security.Claims;
 
 namespace ShipShop.Web.Api
 {
@@ -29,7 +30,7 @@ namespace ShipShop.Web.Api
 
         [Route("getlistpaging")]
         [HttpGet]
-        [Authorize(Roles = Common.RolesConstants.ROLES_GET_LIST_ROLES + "," + Common.RolesConstants.ROLES_FULL_CONTROL)]
+        [Authorize(Roles =  Common.RolesConstants.ROLES_FULL_CONTROL)]
         public HttpResponseMessage GetListPaging(HttpRequestMessage request, int page, int pageSize, string filter = null)
         {
             return CreateHttpResponse(request, () =>
@@ -59,6 +60,7 @@ namespace ShipShop.Web.Api
         }
         [Route("getlistall")]
         [HttpGet]
+        [Authorize(Roles = Common.RolesConstants.ROLES_GET_LIST_ROLES + "," + Common.RolesConstants.ROLES_FULL_CONTROL)]
         public HttpResponseMessage GetAll(HttpRequestMessage request)
         {
             return CreateHttpResponse(request, () =>
@@ -78,6 +80,8 @@ namespace ShipShop.Web.Api
         }
         [Route("detail/{id}")]
         [HttpGet]
+        [Authorize(Roles = Common.RolesConstants.ROLES_FULL_CONTROL)]
+
         public HttpResponseMessage Details(HttpRequestMessage request, string id)
         {
             if (string.IsNullOrEmpty(id))
@@ -94,6 +98,7 @@ namespace ShipShop.Web.Api
 
         [HttpPost]
         [Route("add")]
+        [Authorize(Roles =  Common.RolesConstants.ROLES_FULL_CONTROL)]
         public HttpResponseMessage Create(HttpRequestMessage request, ApplicationRoleViewModel applicationRoleViewModel)
         {
             if (ModelState.IsValid)
@@ -119,6 +124,7 @@ namespace ShipShop.Web.Api
 
         [HttpPut]
         [Route("update")]
+        [Authorize(Roles =  Common.RolesConstants.ROLES_FULL_CONTROL)]
         public HttpResponseMessage Update(HttpRequestMessage request, ApplicationRoleViewModel applicationRoleViewModel)
         {
             if (ModelState.IsValid)
@@ -144,6 +150,7 @@ namespace ShipShop.Web.Api
 
         [HttpDelete]
         [Route("delete")]
+        [Authorize(Roles =  Common.RolesConstants.ROLES_FULL_CONTROL)]
         public HttpResponseMessage Delete(HttpRequestMessage request, string id)
         {
             _appRoleService.Delete(id);
@@ -153,6 +160,7 @@ namespace ShipShop.Web.Api
 
         [Route("deletemulti")]
         [HttpDelete]
+        [Authorize(Roles =  Common.RolesConstants.ROLES_FULL_CONTROL)]
         public HttpResponseMessage DeleteMulti(HttpRequestMessage request, string checkedList)
         {
             return CreateHttpResponse(request, () =>
@@ -177,6 +185,16 @@ namespace ShipShop.Web.Api
 
                 return response;
             });
+        }
+        [Route("checkPermission")]
+        [HttpGet]
+        public HttpResponseMessage CheckPermission(HttpRequestMessage request)
+        {
+            //var responseData = User.IsInRole(permission);
+            var roles = ((ClaimsIdentity)User.Identity).Claims
+                .Where(c => c.Type == ClaimTypes.Role)
+                .Select(c => c.Value);
+            return request.CreateResponse(HttpStatusCode.OK, roles);
         }
     }
 }

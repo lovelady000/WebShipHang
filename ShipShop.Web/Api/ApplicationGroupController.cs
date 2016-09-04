@@ -18,7 +18,6 @@ using System.Web.Script.Serialization;
 namespace ShipShop.Web.Api
 {
     [RoutePrefix("api/applicationGroup")]
-    //[Authorize(Users = Common.RolesConstants.ACCOUNT_ADMINISTRATOR)]
     [Authorize]
     public class ApplicationGroupController : ApiControllerBase
     {
@@ -46,7 +45,12 @@ namespace ShipShop.Web.Api
                 HttpResponseMessage response = null;
                 int totalRow = 0;
                 var model = _appGroupService.GetAll(page, pageSize, out totalRow, filter);
-                model = model.Where(x => x.Name != "supper-admin");
+                //model = model.Where(x => x.Name != "supper-admin");
+                if (User.Identity.Name != Common.RolesConstants.ACCOUNT_ADMINISTRATOR)
+                {
+                    model = model.Where(x => x.Name != "supper-admin");
+                }
+                totalRow = model.Count();
                 IEnumerable <ApplicationGroupViewModel> modelVm = Mapper.Map<IEnumerable<ApplicationGroup>, IEnumerable<ApplicationGroupViewModel>>(model);
 
                 PaginationSet<ApplicationGroupViewModel> pagedSet = new PaginationSet<ApplicationGroupViewModel>()
@@ -64,7 +68,7 @@ namespace ShipShop.Web.Api
         }
         [Route("getlistall")]
         [HttpGet]
-
+        [Authorize(Roles = Common.RolesConstants.ROLES_FULL_CONTROL + "," + Common.RolesConstants.ROLES_ADD_PERMISSION_USER)]
         public HttpResponseMessage GetAll(HttpRequestMessage request)
         {
             return CreateHttpResponse(request, () =>
@@ -73,7 +77,7 @@ namespace ShipShop.Web.Api
                 var model = _appGroupService.GetAll();
                 if(User.Identity.Name != Common.RolesConstants.ACCOUNT_ADMINISTRATOR)
                 {
-                    model = model.Where(x => x.Name != "super-admin");
+                    model = model.Where(x => x.Name != "supper-admin");
                 }
                 IEnumerable<ApplicationGroupViewModel> modelVm = Mapper.Map<IEnumerable<ApplicationGroup>, IEnumerable<ApplicationGroupViewModel>>(model);
 
