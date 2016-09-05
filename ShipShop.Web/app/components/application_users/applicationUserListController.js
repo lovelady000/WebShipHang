@@ -87,5 +87,6 @@
             popupService.open('', '/app/components/application_users/applicationUserEditView.html', 'applicationUserEditController', params);
         }
 
+
     }
 })(angular.module('onlineshop.application_users'));

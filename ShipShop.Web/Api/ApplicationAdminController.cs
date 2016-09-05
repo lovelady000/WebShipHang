@@ -56,6 +56,10 @@ namespace ShipShop.Web.Api
                 {
                     model = model.Where(x => x.UserName != Common.RolesConstants.ACCOUNT_ADMINISTRATOR);
                 }
+                if (filter != null)
+                {
+                    model = model.Where(x => x.UserName.Contains(filter));
+                }
                 IEnumerable<ApplicationUserViewModel> modelVm = Mapper.Map<IEnumerable<ApplicationUser>, IEnumerable<ApplicationUserViewModel>>(model);
                 PaginationSet<ApplicationUserViewModel> pagedSet = new PaginationSet<ApplicationUserViewModel>()
                 {
