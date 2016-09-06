@@ -54,7 +54,7 @@ namespace ShipShop.Web.Api
                     model = model.Where(x => x.UserName.Contains(filter));
                 }
                 totalRow = model.Count();
-                model = model.Skip((page - 1) * pageSize).Take(pageSize);
+                model = model.OrderBy(x=>x.Id).Skip((page) * pageSize).Take(pageSize);
                 IEnumerable<ApplicationUserViewModel> modelVm = Mapper.Map<IEnumerable<ApplicationUser>, IEnumerable<ApplicationUserViewModel>>(model);
                 PaginationSet<ApplicationUserViewModel> pagedSet = new PaginationSet<ApplicationUserViewModel>()
                 {

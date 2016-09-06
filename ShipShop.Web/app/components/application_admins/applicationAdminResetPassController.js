@@ -8,7 +8,7 @@
         };
         $scope.ResetPass = ResetPass;
         function ResetPass() {
-            apiService.put('api/applicationAdmin/resetPass', $scope.user, function (result) {
+            apiService.put('/api/applicationAdmin/resetPass', $scope.user, function (result) {
                 $uibModalInstance.close();
                 $state.reload();
                 notificationService.displaySuccess('Khôi phục mật khẩu thành công!');

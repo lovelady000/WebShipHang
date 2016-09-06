@@ -7,7 +7,7 @@
 
         $scope.AddDVTB = AddDVTB;
         function AddDVTB() {
-            apiService.post('api/dvtb/create', $scope.dvtb, function (result) {
+            apiService.post('/api/dvtb/create', $scope.dvtb, function (result) {
                 $state.reload();
                 $uibModalInstance.close();
             }, function (error) {

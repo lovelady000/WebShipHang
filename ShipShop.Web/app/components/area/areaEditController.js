@@ -11,7 +11,7 @@
                     id: params.objectID,
                 }
             };
-            apiService.get('api/area/getbyid', config, function (result) {
+            apiService.get('/api/area/getbyid', config, function (result) {
                 $scope.area = result.data;
             }, function (error) {
                 console.log('error');
@@ -21,7 +21,7 @@
 
         $scope.UpdateArea = UpdateArea;
         function UpdateArea() {
-            apiService.put('api/area/update', $scope.area, function (result) {
+            apiService.put('/api/area/update', $scope.area, function (result) {
                 $uibModalInstance.close();
                 $state.reload();
             }, function (error) {

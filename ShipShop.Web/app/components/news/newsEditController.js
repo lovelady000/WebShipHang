@@ -11,7 +11,7 @@
                     id: params.objectID,
                 }
             };
-            apiService.get('api/news/getbyid', config, function (result) {
+            apiService.get('/api/news/getbyid', config, function (result) {
                 $scope.news = result.data;
             }, function (error) {
                 console.log('error');
@@ -21,7 +21,7 @@
 
         $scope.UpdateNews = UpdateNews;
         function UpdateNews() {
-            apiService.put('api/news/update', $scope.news, function (result) {
+            apiService.put('/api/news/update', $scope.news, function (result) {
                 $uibModalInstance.close();
                 $state.reload();
             }, function (error) {

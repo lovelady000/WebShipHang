@@ -8,7 +8,7 @@
         $scope.menuGroup = [];
 
         function loadMenuGroup() {
-            apiService.get('api/menu/getallgroup', null, function (result) {
+            apiService.get('/api/menu/getallgroup', null, function (result) {
                 $scope.menuGroup = result.data;
             }, function () {
                 console.log("service error");
@@ -18,7 +18,7 @@
         loadMenuGroup();
 
         function GetDetailMenu() {
-            apiService.get('api/menu/getbyid/' + params.objectID, null, function (result) {
+            apiService.get('/api/menu/getbyid/' + params.objectID, null, function (result) {
                 $scope.newMenu = result.data;
             }, function (error) {
                 console.log('error');
@@ -28,7 +28,7 @@
 
         $scope.UpdateMenu = UpdateMenu;
         function UpdateMenu() {
-            apiService.put('api/menu/update', $scope.newMenu, function (result) {
+            apiService.put('/api/menu/update', $scope.newMenu, function (result) {
                 $state.reload();
                 $uibModalInstance.close();
             }, function (error) {

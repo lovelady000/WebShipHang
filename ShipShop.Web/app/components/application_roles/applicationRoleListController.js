@@ -26,7 +26,7 @@
                     checkedList: JSON.stringify(listId)
                 }
             }
-            apiService.del('api/applicationRole/deletemulti', config, function (result) {
+            apiService.del('/api/applicationRole/deletemulti', config, function (result) {
                 notificationService.displaySuccess('Xóa thành công ' + result.data + ' bản ghi.');
                 search();
             }, function (error) {
@@ -88,7 +88,7 @@
                 }
             }
 
-            apiService.get('api/applicationRole/getlistpaging', config, dataLoadCompleted, dataLoadFailed);
+            apiService.get('/api/applicationRole/getlistpaging', config, dataLoadCompleted, dataLoadFailed);
         }
 
         function dataLoadCompleted(result) {

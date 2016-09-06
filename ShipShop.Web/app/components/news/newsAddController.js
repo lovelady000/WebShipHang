@@ -9,7 +9,7 @@
 
         $scope.AddNews = AddNews;
         function AddNews() {
-            apiService.post('api/news/create', $scope.newNews, function (result) {
+            apiService.post('/api/news/create', $scope.newNews, function (result) {
                 $state.reload();
                 $uibModalInstance.close();
             }, function (error) {

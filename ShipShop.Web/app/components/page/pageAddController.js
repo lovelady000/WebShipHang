@@ -9,7 +9,7 @@
 
         $scope.AddPage = AddPage;
         function AddPage() {
-            apiService.post('api/page/create', $scope.page, function (result) {
+            apiService.post('/api/page/create', $scope.page, function (result) {
                 $state.reload();
                 $uibModalInstance.close();
             }, function (error) {

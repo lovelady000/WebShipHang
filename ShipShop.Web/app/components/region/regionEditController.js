@@ -7,7 +7,7 @@
         $scope.listAreas = [];
 
         (function () {
-            apiService.get('api/area/getallnopaging', null, function (result) {
+            apiService.get('/api/area/getallnopaging', null, function (result) {
                 $scope.listAreas = result.data;
             }, function (error) {
                 console.log(error);
@@ -20,7 +20,7 @@
                     id: params.objectID,
                 }
             };
-            apiService.get('api/region/getbyid', config, function (result) {
+            apiService.get('/api/region/getbyid', config, function (result) {
                 $scope.region = result.data;
             }, function (error) {
                 console.log('error');
@@ -30,7 +30,7 @@
 
         $scope.UpdateRegion = UpdateRegion;
         function UpdateRegion() {
-            apiService.put('api/region/update', $scope.region, function (result) {
+            apiService.put('/api/region/update', $scope.region, function (result) {
                 $uibModalInstance.close();
                 $state.reload();
             }, function (error) {

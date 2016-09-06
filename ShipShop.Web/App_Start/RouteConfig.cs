@@ -29,7 +29,12 @@ namespace ShipShop.Web
                 defaults: new { controller = "Order", action = "OrderDetail", id = UrlParameter.Optional },
                 namespaces: new string[] { "ShipShop.Web.Controllers" }
             );
-
+            routes.MapRoute(
+                name: "Quan he thong",
+                url: "quan-tri/administrator.html",
+                defaults: new { controller = "Admin", action = "Index", id = UrlParameter.Optional },
+                namespaces: new string[] { "ShipShop.Web.Controllers" }
+            );
             //routes.MapRoute(
             //    name: "Admin",
             //    url: "administrator.html",
@@ -45,11 +50,27 @@ namespace ShipShop.Web
             );
 
             routes.MapRoute(
+                name: "Admin",
+                url: "Admin/Index",
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                namespaces: new string[] { "ShipShop.Web.Controllers" }
+            );
+            routes.MapRoute(
+                name: "Admin-2",
+                url: "Admin/",
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                namespaces: new string[] { "ShipShop.Web.Controllers" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Order", action = "Index", id = UrlParameter.Optional },
                 namespaces: new string[] { "ShipShop.Web.Controllers" }
             );
+
+
+
         }
     }
 }

@@ -1,8 +1,22 @@
-﻿function removeOrderDetail(elem) {
-    $(elem).closest('tr').remove();
-}
-
+﻿
 $(document).ready(function () {
+    $('input.text-num').change(function () {
+        if (isNaN(this.value)) {
+            $(this).css('border-color', 'red');
+            return;
+        }
+        $(this).css('border-color', '');
+        this.value = AddDotsToNumber(this.value);
+    });
+
+    $('input.text-phone-num').change(function () {
+        if (!CheckPhoneNo(this.value)) {
+            $(this).css('border-color', 'red');
+            return;
+        }
+        $(this).css('border-color', '');
+    });
+
     $.ajax({
         type: "GET",
         url: "/api/region/getallnopaging",
@@ -60,6 +74,27 @@ $(document).ready(function () {
     $('#btnTaoDon').on("click", function () {
 
         if ($('#frmCreateOrder #userName').length > 0) {
+            if (isNaN($('#PhiThuHo').val())) {
+                bootbox.alert("Tổng thanh toán phải là kiểu số!", function () {
+
+                });
+                return;
+            }
+
+            if (!CheckPhoneNo($('#SDTNguoiGui').val())) {
+                bootbox.alert("Thông tin người gửi chưa đúng !", function () {
+
+                });
+                return;
+            }
+
+            if (!CheckPhoneNo($('#DiaChiNguoiNhan').val())) {
+                bootbox.alert("Thông tin người nhận chưa đúng !", function () {
+
+                });
+                return;
+            }
+
 
             var orderDetail = [];
             $tb = $('#OrderDetail');

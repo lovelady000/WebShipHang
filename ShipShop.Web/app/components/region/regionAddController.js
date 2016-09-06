@@ -8,7 +8,7 @@
         $scope.listAreas = [];
 
         (function () {
-            apiService.get('api/area/getallnopaging', null, function (result) {
+            apiService.get('/api/area/getallnopaging', null, function (result) {
                 $scope.listAreas = result.data;
             }, function (error) {
                 console.log(error);
@@ -17,7 +17,7 @@
 
         $scope.AddNews = AddNews;
         function AddNews() {
-            apiService.post('api/region/create', $scope.region, function (result) {
+            apiService.post('/api/region/create', $scope.region, function (result) {
                 $state.reload();
                 $uibModalInstance.close();
             }, function (error) {

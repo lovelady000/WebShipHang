@@ -11,6 +11,19 @@
 
         $scope.getOrderDetail = getOrderDetail;
         $scope.orderID = $stateParams.orderID;
+
+        $scope.order = {};
+        var config = {
+            params: {
+                orderID: $stateParams.orderID,
+            }
+        };
+        apiService.get('/api/order/getorderbyid', config, function (result) {
+            $scope.order = result.data;
+        }, function () {
+            console.log('error');
+        });
+
         function getOrderDetail(page) {
             page = page || 0;
             var config = {

@@ -8,7 +8,7 @@
 
         $scope.AddSlide = AddSlide;
         function AddSlide() {
-            apiService.post('api/slide/create', $scope.slide, function (result) {
+            apiService.post('/api/slide/create', $scope.slide, function (result) {
                 $state.reload();
                 $uibModalInstance.close();
             }, function (error) {

@@ -29,7 +29,7 @@
         };
 
         var strError = "";
-        if (isNaN(register.UserName) || register.UserName.length < 10) {
+        if (CheckPhoneNo(register.UserName)) {
             $lblMsg.text('Số điện thoại không đúng!');
             return;
         }

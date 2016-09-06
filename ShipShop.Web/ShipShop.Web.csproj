@@ -5448,6 +5448,7 @@
     <Content Include="Assets\client\js\move-top.js" />
     <Content Include="Assets\client\js\responsiveslides.min.js" />
     <Content Include="Assets\client\js\registerAccount.js" />
+    <Content Include="Assets\client\js\utility.js" />
     <Content Include="Assets\client\libs\bootstrap-datepicker-1.6.1-dist\css\bootstrap-datepicker.css" />
     <Content Include="Assets\client\libs\bootstrap-datepicker-1.6.1-dist\css\bootstrap-datepicker.min.css" />
     <Content Include="Assets\client\libs\bootstrap-datepicker-1.6.1-dist\css\bootstrap-datepicker.standalone.css" />

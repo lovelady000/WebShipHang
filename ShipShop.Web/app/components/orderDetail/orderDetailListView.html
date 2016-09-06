@@ -25,6 +25,41 @@
             </div>
         </div>
         <div class="box-body">
+            <div class="col-md-12">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <span class="control-label col-md-2">Người gửi</span>
+                        <div class="col-md-3">
+                            <span>{{order.SenderMobile}}</span>
+                        </div>
+                        <div class="col-md-4">
+                            <span>{{order.SenderAddress}}</span>
+                        </div>
+                        <div class="col-md-3">
+                            <span>{{order.SenderRegion.Name}}</span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-md-12">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <span class="control-label col-md-2">Người nhận</span>
+                        <div class="col-md-3">
+                            <span>{{order.ReceiverMobile}}</span>
+                        </div>
+                        <div class="col-md-4">
+                            <span>{{order.ReceiverAddress}}</span>
+                        </div>
+                        <div class="col-md-3">
+                            <span>{{order.ReceiverRegion.Name}}</span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+
             <table class="table table-bordered">
                 <tr>
                     <th style="width: 10px">#</th>

@@ -66,11 +66,25 @@ namespace ShipShop.Web.Api
             });
         }
 
+        [Route("getorderbyid")]
+        [HttpGet]
+        [Authorize(Roles = Common.RolesConstants.ROLES_GET_LIST_ORDER + "," + Common.RolesConstants.ROLES_FULL_CONTROL)]
+        public HttpResponseMessage GetOrderByID(HttpRequestMessage request, int orderID)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                var model = _orderService.GetByID(orderID,new string[] { "SenderRegion", "ReceiverRegion" });
+                var responseData = Mapper.Map<OrderViewModel>(model);
+                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, responseData);
+                return response;
+            });
+        }
+
 
         [Route("getorderdetail")]
         [HttpGet]
         [Authorize(Roles = Common.RolesConstants.ROLES_GET_LIST_ORDER + "," + Common.RolesConstants.ROLES_FULL_CONTROL)]
-        public HttpResponseMessage GetByOrderID(HttpRequestMessage request,int orderID, int page, int pageSize = 10)
+        public HttpResponseMessage GetOrderDetailByOrderID(HttpRequestMessage request,int orderID, int page, int pageSize = 10)
         {
             return CreateHttpResponse(request, () =>
             {

@@ -16,7 +16,7 @@
 
         $scope.UpdateWebInfo = UpdateWebInfo;
         function UpdateWebInfo() {
-            apiService.put('api/webInformation/update', $scope.webInformation, function (result) {
+            apiService.put('/api/webInformation/update', $scope.webInformation, function (result) {
                 $uibModalInstance.close();
                 $state.reload();
             }, function (error) {

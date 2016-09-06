@@ -11,7 +11,7 @@
                     id: params.objectID,
                 }
             };
-            apiService.get('api/slide/getbyid', config, function (result) {
+            apiService.get('/api/slide/getbyid', config, function (result) {
                 $scope.slide = result.data;
             }, function (error) {
                 console.log('error');
@@ -21,7 +21,7 @@
 
         $scope.UpdateSlide = UpdateSlide;
         function UpdateSlide() {
-            apiService.put('api/slide/update', $scope.slide, function (result) {
+            apiService.put('/api/slide/update', $scope.slide, function (result) {
                 $uibModalInstance.close();
                 $state.reload();
             }, function (error) {

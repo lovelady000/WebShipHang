@@ -9,7 +9,7 @@
         $scope.menuGroup = [];
 
         function loadMenuGroup() {
-            apiService.get('api/menu/getallgroup', null, function (result) {
+            apiService.get('/api/menu/getallgroup', null, function (result) {
                 $scope.menuGroup = result.data;
             }, function () {
                 console.log("service error");
@@ -19,7 +19,7 @@
         $scope.AddMenu = AddMenu;
         function AddMenu() {
             console.log($scope.newMenu);
-            apiService.post('api/menu/create', $scope.newMenu, function (result) {
+            apiService.post('/api/menu/create', $scope.newMenu, function (result) {
                 $state.reload();
                 $uibModalInstance.close();
             }, function (error) {

@@ -11,7 +11,7 @@
                     id: params.objectID,
                 }
             };
-            apiService.get('api/dvtb/getbyid', config, function (result) {
+            apiService.get('/api/dvtb/getbyid', config, function (result) {
                 $scope.dvtb = result.data;
             }, function (error) {
                 console.log('error');
@@ -21,7 +21,7 @@
 
         $scope.UpdateDVTB = UpdateDVTB;
         function UpdateDVTB() {
-            apiService.put('api/dvtb/update', $scope.dvtb, function (result) {
+            apiService.put('/api/dvtb/update', $scope.dvtb, function (result) {
                 $uibModalInstance.close();
                 $state.reload();
             }, function (error) {
