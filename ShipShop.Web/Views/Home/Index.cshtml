@@ -5,8 +5,8 @@
 <script src="~/Assets/client/js/homePage.js"></script>
 @using Microsoft.AspNet.Identity;
 <div class="container">
-    <div class="col-md-8 feature-grids ">
-        <div class="row">
+    <div class="col-md-8">
+        <div class="">
             <div class="col-md-12 home-order">
                 <!--Version 2-->
                 <div class="col-md-12">
@@ -140,7 +140,7 @@
                             </tr>
                         </tfoot>
                     </table>
-                    <div class="col-md-10 pull-left">
+                    <div class="col-md-10">
                         <div class="form-horizontal">
                             <div class="form-group">
                                 <label class="control-label col-md-4 ">Tổng phí thanh toán hộ</label>
@@ -150,7 +150,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-2 pull-right">
+                    <div class="col-md-2">
                         @if (Request.IsAuthenticated)
                         {
                             using (Html.BeginForm("", "", FormMethod.Post, new { @id = "frmCreateOrder" }))
@@ -172,7 +172,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4 feature-grids ">
+    <div class="col-md-4">
         <div class="login-home">
             @if (Request.IsAuthenticated)
             {

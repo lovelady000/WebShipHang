@@ -12,6 +12,20 @@
       -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
       transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
+.fb-comments > span:first-child {
+    width:100%!important;
+} 
+.fb-comments .fb_ltr {
+     width:100%!important;
+}
+.fb_iframe_widget {display:block!important;}
+.home-order input{
+    margin-bottom:10px;
+}
+
+.home-order .form-group{
+    margin-bottom:0px;
+}
 .adv-home {
     margin-top:10px;
 }
@@ -19,7 +33,7 @@
     text-align:right;
 }
 .fb-page {
-    float:right;
+    /*float:right;*/
     padding-top:15px;
 }
 .feature-grids {
@@ -35,4 +49,7 @@
     padding-left:10px;
     padding-top:5px;
     padding-bottom: 5px;
+}
+.footer  {
+    padding-top:15px;
 }
