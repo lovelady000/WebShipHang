@@ -53,3 +53,9 @@
 .footer  {
     padding-top:15px;
 }
+.camera_wrap .camera_pag .camera_pag_ul {
+    display:none;
+}
+.camera_azure_skin {
+    margin-bottom:15px!important;
+}

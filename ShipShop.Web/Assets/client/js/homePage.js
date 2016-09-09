@@ -56,10 +56,10 @@ $(document).ready(function () {
                     var note = arr[i].Note;
 
                     if (url != '') {
-                        $tb.find('tbody').append('<tr><td align="center"><a href="javascript:" class="removeOrderDetail">Xóa</a></td><td><a href="' + url + '" target="_blank">' + name + '</a></td><td>' + note + '</td></tr>');
+                        $tb.find('tbody').append('<tr><td><a href="' + url + '" target="_blank">' + name + '</a></td><td>' + note + '</td><td align="center"><a href="javascript:" class="removeOrderDetail">Xóa</a></td></tr>');
                     }
                     else {
-                        $tb.find('tbody').append('<tr><td align="center"><a href="javascript:" class="removeOrderDetail">Xóa</a></td><td>' + name + '</td><td>' + note + '</td></tr>');
+                        $tb.find('tbody').append('<tr><td>' + name + '</td><td>' + note + '</td><td align="center"><a href="javascript:" class="removeOrderDetail">Xóa</a></td></tr>');
                     }
                 }
                 sessionStorage.removeItem('order');
@@ -191,12 +191,12 @@ $(document).ready(function () {
             //if ($tb.find('tbody').find('tr').length == 0) {
             //    $tb.find('tbody').append('<tr><td align="center"><a href="javascript:" class="removeOrderDetail" onclick="removeOrderDetail(this);">Xóa</a></td><td><a href="' + url + '" target="_blank">' + name + '</a></td><td>' + note + '</td> <td rowspan="100"><input class="form-control"  /><td></tr>');
             //} else {
-                $tb.find('tbody').append('<tr><td align="center"><a href="javascript:" class="removeOrderDetail" onclick="removeOrderDetail(this);">Xóa</a></td><td><a href="' + url + '" target="_blank">' + name + '</a></td><td>' + note + '</td></tr>');
+                $tb.find('tbody').append('<tr><td><a href="' + url + '" target="_blank">' + name + '</a></td><td>' + note + '</td><td align="center"><a href="javascript:" class="removeOrderDetail" onclick="removeOrderDetail(this);">Xóa</a></td></tr>');
             //}
             
         }
         else {
-            $tb.find('tbody').append('<tr><td align="center"><a href="javascript:" class="removeOrderDetail" onclick="removeOrderDetail(this);">Xóa</a></td><td>' + name + '</td><td>' + note + '</td></tr>');
+            $tb.find('tbody').append('<tr><td>' + name + '</td><td>' + note + '</td><td align="center"><a href="javascript:" class="removeOrderDetail" onclick="removeOrderDetail(this);">Xóa</a></td></tr>');
         }
         $('#modalAddDetail').modal('hide');
 

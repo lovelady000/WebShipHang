@@ -66,6 +66,7 @@ namespace ShipShop.Web.Controllers
             ViewBag.listNewsVM = listNewsVM;
 
             var model = _menuService.GetAll();
+            model = model.Where(x => x.Status);
             var listMenuViewModel = Mapper.Map<IEnumerable<Menu>, IEnumerable<MenuViewModel>>(model);
             ViewBag.listMenuVM = listMenuViewModel;
 

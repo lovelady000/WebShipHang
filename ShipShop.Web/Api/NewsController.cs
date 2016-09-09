@@ -36,7 +36,7 @@ namespace ShipShop.Web.Api
             return CreateHttpResponse(request, () =>
             {
                 int total = 0;
-                var model = _newsService.GetAll();
+                var model = _newsService.GetAll(false);
                 total = model.Count();
                 var query = model.OrderBy(x => x.Order).Skip(page * pageSize).Take(pageSize);
                 var responseData = Mapper.Map<List<NewsViewModel>>(query);
@@ -101,7 +101,7 @@ namespace ShipShop.Web.Api
         [Route("Update")]
         [HttpPut]
         [Authorize(Roles = Common.RolesConstants.ROLES_EDIT_NEWS + "," + Common.RolesConstants.ROLES_FULL_CONTROL)]
-    
+
         public HttpResponseMessage Update(HttpRequestMessage request, NewsViewModel newsVM)
         {
             return CreateHttpResponse(request, () =>
