@@ -29,12 +29,17 @@
         };
 
         var strError = "";
-        if (CheckPhoneNo(register.UserName)) {
+        if (!CheckPhoneNo(register.UserName)) {
             $lblMsg.text('Số điện thoại không đúng!');
             return;
         }
         if (register.Password != $rePassword.val()) {
             $lblMsg.text('Mật khẩu nhập lại không khớp!');
+            return;
+        }
+        if(register.Address.length  == 0) {
+            $lblMsg.text('Địa chỉ không thể bỏ trống!');
+            $('#frmRegister #Address').focus();
             return;
         }
 
