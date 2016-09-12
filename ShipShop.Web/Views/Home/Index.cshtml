@@ -2,7 +2,6 @@
     ViewBag.Title = "Trang chủ";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<script src="~/Assets/client/js/homePage.js"></script>
 @using Microsoft.AspNet.Identity;
 <div class="container">
     <div class="col-md-8">
@@ -182,7 +181,7 @@
                     <p id="pTimeSystem"></p>
 
                     @using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { @id = "frmLogout" }))
-                {
+                    {
 
                         @Html.AntiForgeryToken();
                         <a href="/quan-tri-tai-khoan.html" style="padding-right:20px;">Quản trị</a>
@@ -296,6 +295,10 @@
         getDate();
     }, 60000);
 </script>
+@section Script
+{
+    <script src="~/Assets/client/js/homePage.js"></script>
+}
 
 
 

@@ -17,6 +17,9 @@ $(document).ready(function () {
         $(this).css('border-color', '');
     });
 
+
+
+
     $.ajax({
         type: "GET",
         url: "/api/region/getallnopaging",
@@ -34,6 +37,41 @@ $(document).ready(function () {
                     text: item.Name
                 }));
             });
+
+            $.ajax({
+                type: "GET",
+                url: "/Account/GetCurrenAccount",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    if (result.code === 1) {
+                        var objApp = result.msg;
+                        if (objApp.Vendee) {
+                            $('#SDTNguoiGui').val(objApp.UserName);
+
+                            $('#VungNguoiGui option').each(function () {
+                                var objOption = JSON.parse($(this).attr('value'));
+                                if (objOption.RegionID == objApp.RegionID) {
+                                    $(this).prop('selected', 'selected');
+                                }
+                            });
+
+                            $('#DiaChiNguoiGui').val(objApp.Address);
+                        } else {
+                            $('#SDTNguoiNhan').val(objApp.UserName);
+                            $('#VungNguoiNhan option').each(function () {
+                                var objOption = JSON.parse($(this).attr('value'));
+                                if (objOption.RegionID == objApp.RegionID) {
+                                    $(this).prop('selected', 'selected');
+                                }
+                            });
+                            $('#DiaChiNguoiNhan').val(objApp.Address);
+                        }
+                    };
+                },
+                error: function () { console.log("không thể lấy dữ liệu"); }
+            });
+
             var store = sessionStorage.getItem('order');
 
             if (store != null) {
@@ -95,7 +133,6 @@ $(document).ready(function () {
                 return;
             }
 
-
             var orderDetail = [];
             $tb = $('#OrderDetail');
             $tb.find('tbody').find('tr').each(function () {
@@ -136,7 +173,8 @@ $(document).ready(function () {
                 dataType: "json",
                 success: function (result) {
                     if (result.Code === 1) {
-                        
+                            bootbox.alert("Đơn hàng được tạo thành công", function () {
+                        });
                         window.location.reload();
                     } else {
                         $password.val('');
@@ -150,23 +188,11 @@ $(document).ready(function () {
             //
 
         } else {
-            //console.log($('#VungNguoiGui').val());
             bootbox.alert("Bạn cần đăng nhập để thực hiện chứ năng", function () {
 
             });
         }
     })
-
-    //$('.removeOrderDetail').off('click').on('click', function (e) {
-    //    console.log('1');
-    //    e.preventDefault();
-    //    $(this).closest('tr').remove();
-    //})
-    //$('.removeOrderDetail').click(function (e) {
-    //    console.log('1');
-    //    e.preventDefault();
-    //    $(this).closest('tr').remove();
-    //})
 
     $('#modalAddDetail #txtTenHang').change(function () {
         var value = $(this).val();
@@ -188,12 +214,7 @@ $(document).ready(function () {
         var note = $('#modalAddDetail #txtGhiChu').val();
         $('#modalAddDetail #txtGhiChu').val('');
         if (url != '') {
-            //if ($tb.find('tbody').find('tr').length == 0) {
-            //    $tb.find('tbody').append('<tr><td align="center"><a href="javascript:" class="removeOrderDetail" onclick="removeOrderDetail(this);">Xóa</a></td><td><a href="' + url + '" target="_blank">' + name + '</a></td><td>' + note + '</td> <td rowspan="100"><input class="form-control"  /><td></tr>');
-            //} else {
                 $tb.find('tbody').append('<tr><td><a href="' + url + '" target="_blank">' + name + '</a></td><td>' + note + '</td><td align="center"><a href="javascript:" class="removeOrderDetail" onclick="removeOrderDetail(this);">Xóa</a></td></tr>');
-            //}
-            
         }
         else {
             $tb.find('tbody').append('<tr><td>' + name + '</td><td>' + note + '</td><td align="center"><a href="javascript:" class="removeOrderDetail" onclick="removeOrderDetail(this);">Xóa</a></td></tr>');

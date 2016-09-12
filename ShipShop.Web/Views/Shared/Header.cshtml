@@ -11,14 +11,10 @@
         html = "<a style='padding-right:30px;' href='" + item.Url + "'>" + item.Name + "</a>";
         TinTuc += html;
     }
-    string htmlTinTuc = "<marquee behavior=\"scroll\" onmouseover=\"this.stop();\" onmouseout=\"this.start();\" direction=\"left\">" + TinTuc + " </marquee>";
+    string htmlTinTuc = "<marquee class='marqueeTop' behavior=\"scroll\" onmouseover=\"this.stop();\" onmouseout=\"this.start();\" direction=\"left\">" + TinTuc + " </marquee>";
 }
-<div class="row" style="margin:0px;">
-    <div class="col-md-12">
-        <div class="container">
-            @Html.Raw(htmlTinTuc)
-        </div>
-    </div>
+<div class="row" style="margin:0px; height:10px;">
+
 </div>
 <div class="header">
 
@@ -116,4 +112,9 @@
             });
         });
     </script>
+</div>
+<div class="col-md-12">
+    <div class="container">
+        @Html.Raw(htmlTinTuc)
+    </div>
 </div>

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using AutoMapper;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -117,7 +118,6 @@ namespace ShipShop.Web.Controllers
                 var responseSuccess = new { Code = 1, Msg = "" };
                 return Json(responseSuccess);
             }
-
             //return RedirectToAction("Index","Home");
             //return Redirect("/");
             var response = new { Code = 0, Msg = "Số điện thoại hoặc mật khẩu không chính xác!" };
@@ -169,6 +169,20 @@ namespace ShipShop.Web.Controllers
                         return Json(new { code = 0, msg = "Thay đổi mật khẩu thất bại!" });
                     }
                 }
+            }
+        }
+        [HttpGet]
+        public async Task<JsonResult> GetCurrenAccount()
+        {
+            var user = await UserManager.FindByNameAsync(User.Identity.Name);
+            if(user == null)
+            {
+                return Json(new { code = 0, msg = "Thất bại!" });
+            }
+            else
+            {
+                ApplicationUserViewModel appVM = Mapper.Map<ApplicationUser, ApplicationUserViewModel>(user);
+                return Json(new { code = 1, msg = appVM },JsonRequestBehavior.AllowGet);
             }
         }
     }

@@ -48,7 +48,7 @@ namespace ShipShop.Web.Controllers
                 _userManager = value;
             }
         }
-
+        #endregion
         public ActionResult OrderDetail(int id)
         {
             if (User.Identity.IsAuthenticated)
@@ -70,7 +70,7 @@ namespace ShipShop.Web.Controllers
                 return Redirect("/");
             }
         }
-        #endregion
+       
         // GET: Order
         public async Task<ActionResult> Index(int page = 1)
         {
@@ -82,6 +82,7 @@ namespace ShipShop.Web.Controllers
                 int maxPage = this._maxPage;
                 DateTime dtBeginDate = DateTime.MinValue;
                 DateTime dtToDate = DateTime.MaxValue;
+                var typeOfOrder = Request["typeOfOrder"];
                 if (Request["dtDenNgay"] != null)
                 {
                     string denNgay = Request["dtDenNgay"].ToString();
@@ -190,6 +191,24 @@ namespace ShipShop.Web.Controllers
                 if (order.Username == User.Identity.Name)
                 {
                     order.Status = false;
+                    _orderService.Update(order);
+                    _orderService.Save();
+                    return Json(new { Code = 1, Msg = "success" });
+                }
+            }
+            return Json(new { Code = 0, Msg = "Faile" });
+
+        }
+
+        [HttpPost]
+        public JsonResult ReCancelOrder(OrderViewModel orderVM)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var order = _orderService.GetByID(orderVM.ID);
+                if (order.Username == User.Identity.Name)
+                {
+                    order.Status = true;
                     _orderService.Update(order);
                     _orderService.Save();
                     return Json(new { Code = 1, Msg = "success" });

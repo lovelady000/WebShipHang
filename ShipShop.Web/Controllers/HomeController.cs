@@ -1,9 +1,13 @@
 ﻿using AutoMapper;
+using Microsoft.AspNet.Identity.Owin;
 using ShipShop.Model.Models;
 using ShipShop.Service;
+using ShipShop.Web.App_Start;
 using ShipShop.Web.Models;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 
 namespace ShipShop.Web.Controllers
@@ -16,16 +20,18 @@ namespace ShipShop.Web.Controllers
         private IWebInformationService _webInformationService;
         private ISlideService _slideService;
 
+
         public HomeController(IMenuService menuService, IDonViTieuBieuService donViTieuBieuService, 
-            INewsService newsService, IWebInformationService webInformationService , ISlideService slideService)
+            INewsService newsService, IWebInformationService webInformationService ,
+            ISlideService slideService)
         {
             this._menuService = menuService;
             this._donViTieuBieuService = donViTieuBieuService;
             this._newsService = newsService;
             this._webInformationService = webInformationService;
             this._slideService = slideService;
-        }
 
+        }
         public ActionResult Index()
         {
             return View();

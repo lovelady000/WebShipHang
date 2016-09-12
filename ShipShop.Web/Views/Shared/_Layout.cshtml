@@ -8,22 +8,22 @@
     <meta property="fb:app_id" content="295059874188437" />
     <meta http-equiv="Access-Control-Allow-Origin" content="*" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="We Care Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
-	Smartphone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
+    <meta name="keywords" content="Ship 9k,Ship hàng chỉ với 9k" />
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!-- //Custom Theme files -->
-    <link href="~/Assets/client/css/bootstrap.css" rel="stylesheet" />
+    @*<link href="~/Assets/client/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Assets/client/css/style.css" rel="stylesheet" />
-    <link href="~/Assets/client/css/flexslider.css" rel="stylesheet" />
-    <link href="~/Assets/client/libs/bootstrap-datepicker-1.6.1-dist/css/bootstrap-datepicker.css" rel="stylesheet" />
-    <!-- js --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link href="~/Assets/client/css/custom-style.css" rel="stylesheet" />
+    <link href="~/Assets/client/libs/bootstrap-datepicker-1.6.1-dist/css/bootstrap-datepicker.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="~/Assets/client/css/custom-style.css" rel="stylesheet" />*@
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    @Styles.Render("~/Home/css")
     <script src="~/Assets/client/js/jquery-1.11.1.min.js"></script>
     <script src="~/Assets/client/js/utility.js"></script>
     <!-- //js -->
     <!-- start-smooth-scrolling-->
     <script src="~/Assets/client/js/move-top.js"></script>
-    <script src="~/Assets/client/js/easing.js"></script>
    
     <script type="text/javascript">
         jQuery(document).ready(function ($) {
@@ -34,33 +34,17 @@
 			});
 		});
     </script>
-    <!--//end-smooth-scrolling-->
 </head>
 
 <body>
-    <!--header-->
     @{ Html.RenderAction("Header", "Home");}
-    <!--banner-->
-
-    <!--features-->
     <div class="">
         @RenderBody()
     </div>
     @{ Html.RenderAction("Footer", "Home"); }
-    <!--smooth-scrolling-of-move-up-->
     <script type="text/javascript ">
         $(document).ready(function() {
-            /*
-            var defaults = {
-                containerID: 'toTop', // fading element id
-                containerHoverID: 'toTopHover', // fading element hover id
-                scrollSpeed: 1200,
-                easingType: 'linear'
-            };
-            */
-
             $().UItoTop({ easingType: 'easeOutQuart' });
-
         });
     </script>
     <a href="# " id="toTop " style="display: block; "> <span id="toTopHover " style="opacity: 1; "> </span></a>
@@ -68,19 +52,14 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="~/Assets/client/js/bootstrap.js"></script>
+
+    @*<script src="~/Assets/client/js/bootstrap.js"></script>
     <script src="~/Assets/client/js/marquee.js"></script>
     <script src="~/Assets/client/js/bootbox.js"></script>
     <script src="~/Assets/client/libs/bootstrap-datepicker-1.6.1-dist/js/bootstrap-datepicker.js"></script>
+    <script src="~/Assets/client/js/homePage.js"></script>*@
+    @Scripts.Render("~/Home/js")
     @RenderSection("Script",false)
-    <script>
-    $(document).ready(function () {
-        $("div[style='opacity: 0.9; z-index: 2147483647; position: fixed; left: 0px; bottom: 0px; height: 65px; right: 0px; display: block; width: 100%; background-color: #202020; margin: 0px; padding: 0px;']").remove();
-        $("div[style='margin: 0px; padding: 0px; left: 0px; width: 100%; height: 65px; right: 0px; bottom: 0px; display: block; position: fixed; z-index: 2147483647; opacity: 0.9; background-color: rgb(32, 32, 32);']").remove();
-        $("div[onmouseover='S_ssac();']").remove();
-        $("center").remove();
-    });
-    </script>
 </body>
 
 </html>

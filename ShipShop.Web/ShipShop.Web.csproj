@@ -5388,6 +5388,7 @@
     <Content Include="Assets\admin\libs\toastr\toastr.min.css" />
     <Content Include="Assets\admin\libs\toastr\toastr.min.js" />
     <Content Include="Assets\client\css\bootstrap.css" />
+    <Content Include="Assets\client\css\bootstrap.min.css" />
     <Content Include="Assets\client\css\camera.css" />
     <Content Include="Assets\client\css\custom-style.css" />
     <Content Include="Assets\client\css\flexslider.css" />
@@ -5435,17 +5436,16 @@
     <Content Include="Assets\client\js\bootstrap.js" />
     <Content Include="Assets\client\js\camera.js" />
     <Content Include="Assets\client\js\easing.js" />
-    <Content Include="Assets\client\js\flux.js" />
     <Content Include="Assets\client\js\homePage.js" />
     <Content Include="Assets\client\js\jquery-1.11.1.min.js" />
     <Content Include="Assets\client\js\jquery.easing.1.3.js" />
     <Content Include="Assets\client\js\jquery.flexisel.js" />
-    <Content Include="Assets\client\js\jquery.flexslider.js" />
     <Content Include="Assets\client\js\jquery.mobile.customized.min.js" />
     <Content Include="Assets\client\js\lightbox-plus-jquery.min.js" />
     <Content Include="Assets\client\js\login.ajax.js" />
     <Content Include="Assets\client\js\marquee.js" />
     <Content Include="Assets\client\js\move-top.js" />
+    <Content Include="Assets\client\js\order.js" />
     <Content Include="Assets\client\js\responsiveslides.min.js" />
     <Content Include="Assets\client\js\registerAccount.js" />
     <Content Include="Assets\client\js\utility.js" />
@@ -5532,8 +5532,6 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Libs\CKFinder.dll" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include=".bowerrc" />
     <Content Include="bower.json" />
     <Content Include="Assets\admin\libs\angular-ui-router\.bower.json" />
@@ -5882,18 +5880,6 @@
     <Content Include="Assets\admin\libs\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Assets\admin\libs\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Resource\shipper.bak" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\_references.js" />
     <Content Include="UploadedFiles\images\download.jpg" />
     <Content Include="UploadedFiles\images\ship-logo.png" />
     <Content Include="UploadedFiles\_thumbs\Images\download.jpg" />
@@ -5932,7 +5918,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ShipShop.Common\ShipShop.Common.csproj">
