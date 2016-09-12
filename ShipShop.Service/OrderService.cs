@@ -12,6 +12,10 @@ namespace ShipShop.Service
 
         IEnumerable<Order> GetAllByUserName(string userName,DateTime dtBeginDate, DateTime dtToDate, int page, int pageSize, out int totalCount, string[] include = null);
 
+        IEnumerable<Order> GetAllBySenderMobile(string userName, DateTime dtBeginDate, DateTime dtToDate, int page, int pageSize, out int totalCount, string[] include = null);
+
+        IEnumerable<Order> GetAllByReceiverMobile(string userName, DateTime dtBeginDate, DateTime dtToDate, int page, int pageSize, out int totalCount, string[] include = null);
+
         Order Add(Order order);
 
         void Update(Order order);
@@ -71,6 +75,20 @@ namespace ShipShop.Service
         {
             //return _orderRepository.GetSingleById(id);
             return _orderRepository.GetSingleByCondition(x => x.ID == id, includes);
+        }
+
+        public IEnumerable<Order> GetAllBySenderMobile(string userName, DateTime dtBeginDate, DateTime dtToDate, int page, int pageSize, out int totalCount, string[] include = null)
+        {
+            var model = _orderRepository.GetMulti(x => x.SenderMobile == userName && x.CreatedDate.HasValue && x.CreatedDate.Value.CompareTo(dtBeginDate) != -1 && x.CreatedDate.Value.CompareTo(dtToDate) != 1, include).OrderByDescending(x => x.CreatedDate);
+            totalCount = model.Count();
+            return model.Skip(pageSize * (page - 1)).Take(pageSize);
+        }
+
+        public IEnumerable<Order> GetAllByReceiverMobile(string userName, DateTime dtBeginDate, DateTime dtToDate, int page, int pageSize, out int totalCount, string[] include = null)
+        {
+            var model = _orderRepository.GetMulti(x => x.ReceiverMobile == userName && x.CreatedDate.HasValue && x.CreatedDate.Value.CompareTo(dtBeginDate) != -1 && x.CreatedDate.Value.CompareTo(dtToDate) != 1, include).OrderByDescending(x => x.CreatedDate);
+            totalCount = model.Count();
+            return model.Skip(pageSize * (page - 1)).Take(pageSize);
         }
     }
 }

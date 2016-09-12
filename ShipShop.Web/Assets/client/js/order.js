@@ -131,3 +131,6 @@ function changePass() {
         });
     }
 }
+$('#typeOfOrder').change(function () {
+    window.location.href = "?typeOfOrder=" + $('#typeOfOrder').val();
+})

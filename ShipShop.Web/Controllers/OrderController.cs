@@ -77,12 +77,14 @@ namespace ShipShop.Web.Controllers
            
             if (User.Identity.IsAuthenticated)
             {
+                var typeOfOrder = Request["typeOfOrder"];
+
                 int pageSize = this._pageSize;
                 int totalCount = 0;
                 int maxPage = this._maxPage;
                 DateTime dtBeginDate = DateTime.MinValue;
                 DateTime dtToDate = DateTime.MaxValue;
-                var typeOfOrder = Request["typeOfOrder"];
+            
                 if (Request["dtDenNgay"] != null)
                 {
                     string denNgay = Request["dtDenNgay"].ToString();
@@ -112,6 +114,18 @@ namespace ShipShop.Web.Controllers
                 ViewBag.Title = "Quản trị tài khoản";
                 var model = _orderService.GetAllByUserName(User.Identity.Name, dtBeginDate, dtToDate,page,pageSize,out totalCount, new string[] { "ReceiverRegion", "SenderRegion" });
 
+                if (typeOfOrder == "2")
+                {
+                    var user = await UserManager.FindByNameAsync(User.Identity.Name);
+                    if(user.Vendee)
+                    {
+                        model = _orderService.GetAllByReceiverMobile(User.Identity.Name, dtBeginDate, dtToDate, page, pageSize, out totalCount, new string[] { "ReceiverRegion", "SenderRegion" });
+                    }
+                    else
+                    {
+                        model = _orderService.GetAllBySenderMobile(User.Identity.Name, dtBeginDate, dtToDate, page, pageSize, out totalCount, new string[] { "ReceiverRegion", "SenderRegion" });
+                    }
+                }
                 var query = Mapper.Map<IEnumerable<OrderViewModel>>(model);
 
                 var currenUser = await _userManager.FindByNameAsync(User.Identity.Name);
