@@ -119,11 +119,12 @@ namespace ShipShop.Web.Controllers
                     var user = await UserManager.FindByNameAsync(User.Identity.Name);
                     if(user.Vendee)
                     {
-                        model = _orderService.GetAllByReceiverMobile(User.Identity.Name, dtBeginDate, dtToDate, page, pageSize, out totalCount, new string[] { "ReceiverRegion", "SenderRegion" });
+                        
+                           model = _orderService.GetAllBySenderMobile(User.Identity.Name, dtBeginDate, dtToDate, page, pageSize, out totalCount, new string[] { "ReceiverRegion", "SenderRegion" });
                     }
                     else
                     {
-                        model = _orderService.GetAllBySenderMobile(User.Identity.Name, dtBeginDate, dtToDate, page, pageSize, out totalCount, new string[] { "ReceiverRegion", "SenderRegion" });
+                        model = _orderService.GetAllByReceiverMobile(User.Identity.Name, dtBeginDate, dtToDate, page, pageSize, out totalCount, new string[] { "ReceiverRegion", "SenderRegion" });
                     }
                 }
                 var query = Mapper.Map<IEnumerable<OrderViewModel>>(model);

@@ -112,7 +112,7 @@ $(document).ready(function () {
     $('#btnTaoDon').on("click", function () {
 
         if ($('#frmCreateOrder #userName').length > 0) {
-            if (isNaN($('#PhiThuHo').val())) {
+            if (isNaN($('#PhiThuHo').val().replace(/\./g, ''))) {
                 bootbox.alert("Tổng thanh toán phải là kiểu số!", function () {
 
                 });
@@ -120,14 +120,14 @@ $(document).ready(function () {
             }
 
             if (!CheckPhoneNo($('#SDTNguoiGui').val())) {
-                bootbox.alert("Thông tin người gửi chưa đúng !", function () {
+                bootbox.alert("Số điện thoại người gửi chưa đúng !", function () {
 
                 });
                 return;
             }
 
-            if (!CheckPhoneNo($('#DiaChiNguoiNhan').val())) {
-                bootbox.alert("Thông tin người nhận chưa đúng !", function () {
+            if ($('#DiaChiNguoiNhan').val().length == 0) {
+                bootbox.alert("Địa chỉ người nhận chưa đúng !", function () {
 
                 });
                 return;
@@ -138,15 +138,15 @@ $(document).ready(function () {
             $tb.find('tbody').find('tr').each(function () {
                 var obj = {};
                 $tr = $(this)
-                if ($tr.find('td').eq(1).find('a').length == 0) {
-                    obj.NameProduct = $tr.find('td').eq(1).text();
+                if ($tr.find('td').eq(0).find('a').length == 0) {
+                    obj.NameProduct = $tr.find('td').eq(0).text();
                     obj.UrlProductDetail = '';
-                    obj.Note = $tr.find('td').eq(2).text();
+                    obj.Note = $tr.find('td').eq(1).text();
                 } else {
 
-                    obj.NameProduct = $tr.find('td').eq(1).text();
-                    obj.UrlProductDetail = $tr.find('td').eq(1).find('a').attr('href');
-                    obj.Note = $tr.find('td').eq(2).text();
+                    obj.NameProduct = $tr.find('td').eq(0).text();
+                    obj.UrlProductDetail = $tr.find('td').eq(0).find('a').attr('href');
+                    obj.Note = $tr.find('td').eq(1).text();
                 }
                 orderDetail.push(obj);
             });
@@ -159,11 +159,13 @@ $(document).ready(function () {
                     ReceiverMobile: $('#SDTNguoiNhan').val(),
                     ReceiverRegionID: JSON.parse($('#VungNguoiNhan').val()).RegionID,
                     ReceiverAddress: $('#DiaChiNguoiNhan').val(),
-                    PayCOD: $('#PhiThuHo').val(),
+                    PayCOD: $('#PhiThuHo').val().replace(/\./g, ''),
                     Note: $('#GhiChu').val(),
                 },
                 listOrderDetail: orderDetail,
             };
+            //console.log(objOrderHomePage);
+            //return;
             //sessionStorage.setItem('order', JSON.stringify(obj));
             $.ajax({
                 type: "POST",
@@ -173,9 +175,10 @@ $(document).ready(function () {
                 dataType: "json",
                 success: function (result) {
                     if (result.Code === 1) {
-                            bootbox.alert("Đơn hàng được tạo thành công", function () {
+                        bootbox.alert("Đơn hàng được tạo thành công", function () {
+                            window.location.reload();
                         });
-                        window.location.reload();
+                       
                     } else {
                         $password.val('');
                         $rePassword.val('');
@@ -205,16 +208,16 @@ $(document).ready(function () {
     $('#btnThemHang').click(function () {
         $tb = $('#OrderDetail');
         var name = $('#modalAddDetail #txtTenHang').val();
-        if (name == '') {
-            return;
-        }
+        //if (name == '') {
+        //    return;
+        //}
         $('#modalAddDetail #txtTenHang').val('');
         var url = $('#modalAddDetail #txtUrl').val();
         $('#modalAddDetail #txtUrl').val('');
         var note = $('#modalAddDetail #txtGhiChu').val();
         $('#modalAddDetail #txtGhiChu').val('');
         if (url != '') {
-                $tb.find('tbody').append('<tr><td><a href="' + url + '" target="_blank">' + name + '</a></td><td>' + note + '</td><td align="center"><a href="javascript:" class="removeOrderDetail" onclick="removeOrderDetail(this);">Xóa</a></td></tr>');
+            $tb.find('tbody').append('<tr><td><a href="' + url + '" target="_blank">' + name + '</a></td><td>' + note + '</td><td align="center"><a href="javascript:" class="removeOrderDetail" onclick="removeOrderDetail(this);">Xóa</a></td></tr>');
         }
         else {
             $tb.find('tbody').append('<tr><td>' + name + '</td><td>' + note + '</td><td align="center"><a href="javascript:" class="removeOrderDetail" onclick="removeOrderDetail(this);">Xóa</a></td></tr>');

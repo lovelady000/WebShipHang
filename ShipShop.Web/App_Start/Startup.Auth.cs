@@ -10,6 +10,7 @@ using ShipShop.Model.Models;
 using Microsoft.Owin.Security.OAuth;
 using System.Security.Claims;
 using Microsoft.AspNet.Identity.EntityFramework;
+using ShipShop.Web.Infrastructure.Core;
 
 [assembly: OwinStartup(typeof(ShipShop.Web.App_Start.Startup))]
 
@@ -29,9 +30,9 @@ namespace ShipShop.Web.App_Start
             {
                 TokenEndpointPath = new PathString("/oauth/token"),
                 Provider = new AuthorizationServerProvider(),
-                AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(30),
+                AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(1),
                 AllowInsecureHttp = true,
-
+                RefreshTokenProvider = new ApplicationRefreshTokenProvider(),
             });
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
 
