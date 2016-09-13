@@ -34,6 +34,23 @@
                     $http.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
                 }
             }
+            this.refreshToken = function refreshToken() {
+                var data = "grant_type=refresh_token&client_id=&refresh_token=" + tokenInfo.refresh_token;
+                $http.post('/oauth/token', data, {
+                    headers:
+                       { 'Content-Type': 'application/x-www-form-urlencoded' }
+                }).success(function (response) {
+                    //console.log('old token ' + tokenInfo.accessToken);
+                    //console.log(response);
+                    tokenInfo.accessToken = response.access_token;
+                    tokenInfo.refresh_token = response.refresh_token;
+                    $window.localStorage["TokenInfo"] = JSON.stringify(tokenInfo);
+                    //console.log('new token ' + tokenInfo.accessToken);
+                })
+                .error(function (err, status) {
+                    console.log(err);
+                });
+            }
 
             this.validateRequest = function () {
                 var url = '/api/home/TestMethod';

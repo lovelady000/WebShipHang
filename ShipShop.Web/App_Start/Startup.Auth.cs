@@ -11,6 +11,7 @@ using Microsoft.Owin.Security.OAuth;
 using System.Security.Claims;
 using Microsoft.AspNet.Identity.EntityFramework;
 using ShipShop.Web.Infrastructure.Core;
+using Microsoft.Owin.Security;
 
 [assembly: OwinStartup(typeof(ShipShop.Web.App_Start.Startup))]
 
@@ -30,7 +31,7 @@ namespace ShipShop.Web.App_Start
             {
                 TokenEndpointPath = new PathString("/oauth/token"),
                 Provider = new AuthorizationServerProvider(),
-                AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(1),
+                AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(30),
                 AllowInsecureHttp = true,
                 RefreshTokenProvider = new ApplicationRefreshTokenProvider(),
             });
@@ -76,8 +77,8 @@ namespace ShipShop.Web.App_Start
         {
             public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
             {
+                string s1 = "";
                 context.Validated();
-                
             }
             public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
             {
@@ -122,6 +123,19 @@ namespace ShipShop.Web.App_Start
                     context.SetError("invalid_grant", "Tài khoản hoặc mật khẩu không đúng.'");
                     context.Rejected();
                 }
+            }
+            public override Task GrantRefreshToken(OAuthGrantRefreshTokenContext context)
+            {
+ 
+
+                // Change authentication ticket for refresh token requests  
+                var newIdentity = new ClaimsIdentity(context.Ticket.Identity);
+                newIdentity.AddClaim(new Claim("newClaim", "newValue"));
+
+                var newTicket = new AuthenticationTicket(newIdentity, context.Ticket.Properties);
+                context.Validated(newTicket);
+
+                return Task.FromResult<object>(null);
             }
         }
 

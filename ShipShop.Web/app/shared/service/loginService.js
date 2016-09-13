@@ -15,16 +15,25 @@
                 $http.defaults.headers.common['Authorization'] = 'Bearer ' + response.access_token;
                 $http.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
                 $http.get('/api/applicationRole/checkPermission', null).then(function (result) {
-
+                    
                     userInfo = {
                         accessToken: response.access_token,
                         userName: userName,
-                        roles:result.data,
+                        roles: result.data,
+                        refresh_token: response.refresh_token,
                     };
+                    //console.log(userInfo);
                     authenticationService.setTokenInfo(userInfo);
                     authData.authenticationData.IsAuthenticated = true;
                     authData.authenticationData.userName = userName;
                     authData.authenticationData.roles = result.data;
+
+                    //setInterval(function () {
+                    //    //console.log(response);
+                    //    //alert("Hello");
+                    //    authenticationService.refreshToken();
+                    //}, 1500000);
+
                     deferred.resolve(null);
 
                 }, function (error) {
@@ -37,6 +46,7 @@
                 authData.authenticationData.IsAuthenticated = false;
                 authData.authenticationData.userName = "";
                 authData.authenticationData.roles = [];
+                authData.authenticationData.refresh_token = "";
                 deferred.resolve(err);
             });
             return deferred.promise;
@@ -47,6 +57,7 @@
             authData.authenticationData.IsAuthenticated = false;
             authData.authenticationData.userName = "";
             authData.authenticationData.roles = [];
+            authData.authenticationData.refresh_token = "";
         }
     }]);
 })(angular.module('onlineshop.common'));

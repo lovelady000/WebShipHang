@@ -13,6 +13,7 @@
             authenticationService.setHeader();
             $http.get(url, params).then(function (result) {
                 success(result);
+                //authenticationService.refreshToken();
             }, function (error) {
                  if (error.status === 401) {
                     notificationService.displayError('Quyền truy cập bị từ chối!');
@@ -57,5 +58,6 @@
 
             });
         }
+
     };
 })(angular.module('onlineshop.common'));
