@@ -1,8 +1,8 @@
 ﻿(function (app) {
     app.controller('pageAddController', pageAddController);
-    pageAddController.$inject = ['$scope', 'apiService', '$state', '$uibModalInstance','commonService'];
+    pageAddController.$inject = ['$scope', 'apiService', '$state', '$uibModalInstance', 'commonService', 'notificationService'];
 
-    function pageAddController($scope, apiService, $state, $uibModalInstance,commonService) {
+    function pageAddController($scope, apiService, $state, $uibModalInstance, commonService, notificationService) {
         $scope.page = {
             Status:true,
         };
@@ -10,6 +10,7 @@
         $scope.AddPage = AddPage;
         function AddPage() {
             apiService.post('/api/page/create', $scope.page, function (result) {
+                notificationService.displaySuccess('Thêm mới thành công !');
                 $state.reload();
                 $uibModalInstance.close();
             }, function (error) {

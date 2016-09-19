@@ -1,14 +1,15 @@
 ﻿(function (app) {
     app.controller('slideAddController', slideAddController);
-    slideAddController.$inject = ['$scope', 'apiService', '$state', '$uibModalInstance'];
+    slideAddController.$inject = ['$scope', 'apiService', '$state', '$uibModalInstance','notificationService'];
 
-    function slideAddController($scope, apiService, $state, $uibModalInstance) {
+    function slideAddController($scope, apiService, $state, $uibModalInstance, notificationService) {
         $scope.slide = {
         };
 
         $scope.AddSlide = AddSlide;
         function AddSlide() {
             apiService.post('/api/slide/create', $scope.slide, function (result) {
+                notificationService.displaySuccess('Thêm mới thành công !');
                 $state.reload();
                 $uibModalInstance.close();
             }, function (error) {

@@ -1,8 +1,8 @@
 ﻿(function (app) {
     app.controller('newsEditController', newsEditController);
-    newsEditController.$inject = ['$scope', 'apiService', '$state','params','$uibModalInstance'];
+    newsEditController.$inject = ['$scope', 'apiService', '$state','params','$uibModalInstance','notificationService'];
 
-    function newsEditController($scope, apiService, $state, params, $uibModalInstance) {
+    function newsEditController($scope, apiService, $state, params, $uibModalInstance, notificationService) {
         $scope.news = {};
 
         function GetDetailnews() {
@@ -22,6 +22,7 @@
         $scope.UpdateNews = UpdateNews;
         function UpdateNews() {
             apiService.put('/api/news/update', $scope.news, function (result) {
+                notificationService.displaySuccess('Sửa thông tin thành công !');
                 $uibModalInstance.close();
                 $state.reload();
             }, function (error) {

@@ -11,6 +11,7 @@
     box-shadow: none;
     padding: 0;
     height: auto;
+    text-align:center;
 }
 .filterable .filters input[disabled]::-webkit-input-placeholder {
     color: #333;
@@ -21,3 +22,10 @@
 .filterable .filters input[disabled]:-ms-input-placeholder {
     color: #333;
 }
+.filterable .filters th {
+    text-align:center;
+}
+.filterable .table td {
+    text-align:center;
+}
+

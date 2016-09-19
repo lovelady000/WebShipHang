@@ -1,4 +1,5 @@
-﻿$(document).ready(function () {
+﻿var error = "Có lỗi xảy ra! Xin lỗi quý khách! Vui lòng F5 lại trình duyệt và liên hệ với người quản trị. Xin cảm ơn!";
+$(document).ready(function () {
     $('#frmLogin #btnSubmit').on("click", function () {
         if ($('#frmLogin #UserName').val().length == 0 || $('#frmLogin #Password').val().length == 0) {
             $('#frmLogin #lblMsg').text('Số điện thoại và mật khẩu không được để trống!');
@@ -59,7 +60,7 @@
                         $('#frmLogin #lblMsg').text(result.Msg);
                     }
                 },
-                error: function () { alert('Có lỗi sảy ra! Xin lỗi quý khách!'); }
+                error: function () { alert(error); }
             });
         }
     });

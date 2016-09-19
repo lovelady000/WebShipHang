@@ -1,4 +1,4 @@
-﻿
+﻿var error = "Có lỗi xảy ra! Xin lỗi quý khách! Vui lòng F5 lại trình duyệt và liên hệ với người quản trị. Xin cảm ơn!";
 $(document).ready(function () {
     $('input.text-num').change(function () {
         if (isNaN(this.value)) {
@@ -103,7 +103,7 @@ $(document).ready(function () {
                 sessionStorage.removeItem('order');
             }
         },
-        error: function () { alert('Có lỗi sảy ra! Xin lỗi quý khách!'); }
+        error: function () { alert(error); }
     });
 
 
@@ -175,6 +175,7 @@ $(document).ready(function () {
                 dataType: "json",
                 success: function (result) {
                     if (result.Code === 1) {
+                        toastr.success("Đơn hàng được tạo thành công");
                         bootbox.alert("Đơn hàng được tạo thành công", function () {
                             window.location.reload();
                         });
@@ -185,7 +186,7 @@ $(document).ready(function () {
                         $lblMsg.text(result.Msg);
                     }
                 },
-                error: function () { alert('Có lỗi sảy ra! Xin lỗi quý khách!'); }
+                error: function () { alert(error); }
             });
 
             //

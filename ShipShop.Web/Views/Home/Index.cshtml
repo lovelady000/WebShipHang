@@ -4,7 +4,7 @@
 }
 @using Microsoft.AspNet.Identity;
 <div class="container">
-    <div class="col-md-8">
+    <div class="col-md-8" style="padding-bottom:10px;">
         <div class="">
             <div class="col-md-12 home-order">
                 <!--Version 2-->
@@ -167,7 +167,9 @@
                         }
 
                     </div>
-
+                    <div class="col-md-12">
+                        <p><b>Quy định và hướng dẫn sử dụng chi tiết bấm </b><a href="/trang/quy-dinh-bao-gia.html">vào đây</a></p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -238,19 +240,19 @@
                     <div class="form-group">
                         <label class="control-label col-md-3">Link chi tiết</label>
                         <div class="col-md-9">
-                            <input id="txtUrl" class="form-control" />
+                            <input id="txtUrl" class="form-control" placeholder="Copy link sản phẩm vào đây"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-3">Ghi chú</label>
                         <div class="col-md-9">
-                            <input id="txtGhiChu" class="form-control" />
+                            <input id="txtGhiChu" class="form-control" placeholder="Size, màu, số lượng, giờ giao ..."/>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Đóng</button>
                 <button type="button" class="btn btn-success pull-right" id="btnThemHang">Ghi</button>
             </div>
         </div>

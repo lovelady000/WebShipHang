@@ -15,7 +15,7 @@
                 <p><i>Xin chào! @User.Identity.Name</i><a href="#" data-toggle="modal" data-target="#ModalChangePass"> [Đổi mật khẩu]</a> <a id="btnLogout" href="#">[Thoát]</a></p>
                 <p>Bạn là:@( (bool)ViewBag.Vendee ? "Người bán" : "Người mua") </p>
                 <p>@((bool)ViewBag.Vendee ? "Website hoặc tên shop:" + ViewBag.WebsiteOrShop : "" )</p>
-                <p>Địa chỉ:@ViewBag.Address</p>
+                <p>Địa chỉ: <input id="UserAddress" value="@ViewBag.Address" type="text" class="form-control"></p>
             </div>
         </div>
     </div>
@@ -67,20 +67,22 @@
             <div class="">
                 <div class="col-md-5">
                     <div class="form-group">
-                        <select class="form-control" id="typeOfOrder" name="typeOfOrder">
-                            <option value="1">Đơn hàng tạo</option>
-                            <option value="2">Đơn hàng đồng bộ</option>
-                        </select>
+                        @*<select class="form-control" id="typeOfOrder" name="typeOfOrder">
+                                <option value="1">Đơn hàng tạo</option>
+                                <option value="2">Đơn hàng đồng bộ</option>
+                            </select>*@
+                        <a href="?typeOfOrder=1" class="btn btn-default">Đơn hàng tự tạo</a>
+                        <a href="?typeOfOrder=2" class="btn btn-default">Đơn hàng đồng bộ</a>
                         @*<div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                Loại đơn hàng
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <li><a href="?typeOfOrder=1">Đơn hàng tạo</a></li>
-                                <li><a href="?typeOfOrder=2">Đơn hàng đồng bộ</a></li>
-                            </ul>
-                        </div>*@
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    Loại đơn hàng
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <li><a href="?typeOfOrder=1">Đơn hàng tạo</a></li>
+                                    <li><a href="?typeOfOrder=2">Đơn hàng đồng bộ</a></li>
+                                </ul>
+                            </div>*@
                     </div>
                 </div>
             </div>
@@ -144,17 +146,26 @@
                                             <tr>
                                                 <th>STT</th>
                                                 <th>Thời gian</th>
-                                                <th>SĐT người nhận</th>
-                                                <th>Địa chỉ</th>
-                                                <th>Vùng</th>
+                                                @if ((bool)ViewBag.Vendee && (int)ViewBag.TypeOfOrder == 1)
+                                                {
+                                                    <th>SĐT người nhận</th>
+                                                    <th>Địa chỉ</th>
+                                                    <th>Vùng</th>
+                                                }
+                                                else
+                                                {
+                                                    <th>SĐT người gửi</th>
+                                                    <th>Địa chỉ</th>
+                                                    <th>Vùng</th>
+                                                }
+
                                                 <th style="width:100px;">COD(VNĐ)</th>
-                                                <th>Ghi chú</th>
                                                 <th style="width:75px;">Chi tiết</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach (var item in Model.Items)
+                                            @foreach (var item in Model.Items )
                                             {
                                                 stt++;
                                                 <tr>
@@ -164,21 +175,37 @@
                                                     <td>
                                                         @item.CreatedDate.GetValueOrDefault(DateTime.Now).ToString("HH:mm dd/MM/yyyy")
                                                     </td>
-                                                    <td>
-                                                        @item.ReceiverMobile
-                                                    </td>
-                                                    <td>
-                                                        @item.ReceiverAddress
-                                                    </td>
-                                                    <td>
-                                                        @item.ReceiverRegion.Name
-                                                    </td>
+                                                    @if ((bool)ViewBag.Vendee && (int)ViewBag.TypeOfOrder == 1)
+                                                    {
+                                                        <td>
+                                                            @item.ReceiverMobile
+                                                        </td>
+                                                        <td>
+                                                            @item.ReceiverAddress
+                                                        </td>
+                                                        <td>
+                                                            @item.ReceiverRegion.Name
+                                                        </td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>
+                                                            @item.SenderMobile
+                                                        </td>
+                                                        <td>
+                                                            @item.SenderAddress
+                                                        </td>
+                                                        <td>
+                                                            @item.SenderRegion.Name
+                                                        </td>
+                                                    }
+
                                                     <td style="text-align:right;">
                                                         @item.PayCOD.ToString("N0")
                                                     </td>
-                                                    <td>
-                                                        @item.Note
-                                                    </td>
+                                                    @*<td>
+                                                            @item.Note
+                                                        </td>*@
                                                     <td style="text-align:center;">
                                                         <a href="/chi-tiet-don-hang-@item.ID-o.html">Xem</a>
                                                     </td>

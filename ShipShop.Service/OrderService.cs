@@ -79,14 +79,14 @@ namespace ShipShop.Service
 
         public IEnumerable<Order> GetAllBySenderMobile(string userName, DateTime dtBeginDate, DateTime dtToDate, int page, int pageSize, out int totalCount, string[] include = null)
         {
-            var model = _orderRepository.GetMulti(x => x.SenderMobile == userName && x.CreatedDate.HasValue && x.CreatedDate.Value.CompareTo(dtBeginDate) != -1 && x.CreatedDate.Value.CompareTo(dtToDate) != 1, include).OrderByDescending(x => x.CreatedDate);
+            var model = _orderRepository.GetMulti(x => x.SenderMobile == userName && x.Username != userName && x.CreatedDate.HasValue && x.CreatedDate.Value.CompareTo(dtBeginDate) != -1 && x.CreatedDate.Value.CompareTo(dtToDate) != 1, include).OrderByDescending(x => x.CreatedDate);
             totalCount = model.Count();
             return model.Skip(pageSize * (page - 1)).Take(pageSize);
         }
 
         public IEnumerable<Order> GetAllByReceiverMobile(string userName, DateTime dtBeginDate, DateTime dtToDate, int page, int pageSize, out int totalCount, string[] include = null)
         {
-            var model = _orderRepository.GetMulti(x => x.ReceiverMobile == userName && x.CreatedDate.HasValue && x.CreatedDate.Value.CompareTo(dtBeginDate) != -1 && x.CreatedDate.Value.CompareTo(dtToDate) != 1, include).OrderByDescending(x => x.CreatedDate);
+            var model = _orderRepository.GetMulti(x => x.ReceiverMobile == userName && x.Username != userName && x.CreatedDate.HasValue && x.CreatedDate.Value.CompareTo(dtBeginDate) != -1 && x.CreatedDate.Value.CompareTo(dtToDate) != 1, include).OrderByDescending(x => x.CreatedDate);
             totalCount = model.Count();
             return model.Skip(pageSize * (page - 1)).Take(pageSize);
         }

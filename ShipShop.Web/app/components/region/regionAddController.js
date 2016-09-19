@@ -1,8 +1,8 @@
 ﻿(function (app) {
     app.controller('regionAddController', regionAddController);
-    regionAddController.$inject = ['$scope', 'apiService', '$state', '$uibModalInstance'];
+    regionAddController.$inject = ['$scope', 'apiService', '$state', '$uibModalInstance','notificationService'];
 
-    function regionAddController($scope, apiService, $state, $uibModalInstance) {
+    function regionAddController($scope, apiService, $state, $uibModalInstance, notificationService) {
         $scope.region = {
         };
         $scope.listAreas = [];
@@ -18,6 +18,7 @@
         $scope.AddNews = AddNews;
         function AddNews() {
             apiService.post('/api/region/create', $scope.region, function (result) {
+                notificationService.displaySuccess('Thêm mới thành công !');
                 $state.reload();
                 $uibModalInstance.close();
             }, function (error) {

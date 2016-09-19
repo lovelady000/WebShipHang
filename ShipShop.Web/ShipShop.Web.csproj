@@ -5397,6 +5397,8 @@
     <Content Include="Assets\client\css\lightbox.css" />
     <Content Include="Assets\client\css\style.css" />
     <Content Include="Assets\client\images\2.png" />
+    <Content Include="Assets\client\images\androidstore_download.png" />
+    <Content Include="Assets\client\images\appstore_download.png" />
     <Content Include="Assets\client\images\banner.jpg" />
     <Content Include="Assets\client\images\banner2.jpg" />
     <Content Include="Assets\client\images\camera-loader.gif" />

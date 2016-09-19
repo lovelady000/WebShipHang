@@ -2,7 +2,7 @@
     border: 1px solid #999;
     padding:10px;
 
-
+    background:#f9f9f9;
     background-image: none;
       border: 1px solid #ccc;
       border-radius: 4px;
@@ -11,6 +11,7 @@
       -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
       -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
       transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+
 }
 .fb-comments > span:first-child {
     width:100%!important;
@@ -67,3 +68,21 @@
     margin-left:15px;
     margin-right:15px;
 }
+.header > .navbar > .container {
+    padding:0 30px;
+}
+.header > .navbar > .container >.header-text {
+    padding-top:20px;
+}
+.social-icons a {
+    width:auto;
+    
+}.social-icons a img{
+   height:100%;
+    
+}
+ #OrderDetail tr td {
+    max-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+ }

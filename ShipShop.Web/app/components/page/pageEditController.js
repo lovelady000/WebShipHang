@@ -1,8 +1,8 @@
 ﻿(function (app) {
     app.controller('pageEditController', pageEditController);
-    pageEditController.$inject = ['$scope', 'apiService', '$state', 'params', '$uibModalInstance'];
+    pageEditController.$inject = ['$scope', 'apiService', '$state', 'params', '$uibModalInstance','notificationService'];
 
-    function pageEditController($scope, apiService, $state, params, $uibModalInstance) {
+    function pageEditController($scope, apiService, $state, params, $uibModalInstance, notificationService) {
         $scope.page = {};
 
         function GetDetailnews() {
@@ -22,6 +22,7 @@
         $scope.UpdateNews = UpdateNews;
         function UpdateNews() {
             apiService.put('/api/page/update', $scope.page, function (result) {
+                notificationService.displaySuccess('Sửa thông tin thành công !');
                 $uibModalInstance.close();
                 $state.reload();
             }, function (error) {

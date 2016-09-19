@@ -185,5 +185,20 @@ namespace ShipShop.Web.Controllers
                 return Json(new { code = 1, msg = appVM },JsonRequestBehavior.AllowGet);
             }
         }
+        [HttpPost]
+        public async Task<JsonResult> ChangeProfileAccount(ApplicationUserViewModel appVM)
+        {
+            var user = await UserManager.FindByNameAsync(User.Identity.Name);
+            if (user == null)
+            {
+                return Json(new { code = 0, msg = "Thất bại!" });
+            }
+            else
+            {
+                user.Address = appVM.Address;
+                await UserManager.UpdateAsync(user);
+                return Json(new { code = 1, msg="Sửa thông tin thành công!" });
+            }
+        }
     }
 }

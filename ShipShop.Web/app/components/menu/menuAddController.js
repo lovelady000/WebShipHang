@@ -1,8 +1,8 @@
 ﻿(function (app) {
     app.controller('menuAddController', menuAddController);
-    menuAddController.$inject = ['$scope', 'apiService', '$state','$uibModalInstance'];
+    menuAddController.$inject = ['$scope', 'apiService', '$state','$uibModalInstance','notificationService'];
 
-    function menuAddController($scope, apiService, $state,$uibModalInstance) {
+    function menuAddController($scope, apiService, $state, $uibModalInstance, notificationService) {
         $scope.newMenu = {
             Status: true,
         };
@@ -20,6 +20,7 @@
         function AddMenu() {
             console.log($scope.newMenu);
             apiService.post('/api/menu/create', $scope.newMenu, function (result) {
+                notificationService.displaySuccess('Thêm mới thành công !');
                 $state.reload();
                 $uibModalInstance.close();
             }, function (error) {

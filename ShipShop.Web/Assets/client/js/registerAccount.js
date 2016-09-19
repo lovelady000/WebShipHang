@@ -1,4 +1,5 @@
-﻿$(document).ready(function () {
+﻿var error = "Có lỗi xảy ra! Xin lỗi quý khách! Vui lòng F5 lại trình duyệt và liên hệ với người quản trị. Xin cảm ơn!";
+$(document).ready(function () {
     $password = $('#frmRegister #Password');
     $rePassword = $('#frmRegister #rePassword');
     $lblMsg = $('#frmRegister #lblMsg');
@@ -102,7 +103,7 @@
                         $lblMsg.text(result.Msg);
                     }
                 },
-                error: function () { alert('Có lỗi sảy ra! Xin lỗi quý khách!'); }
+                error: function () { alert(error); }
             });
         }
     });

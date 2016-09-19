@@ -18,8 +18,10 @@
     <link href="~/Assets/client/css/custom-style.css" rel="stylesheet" />*@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     @Styles.Render("~/Home/css")
     <script src="~/Assets/client/js/jquery-1.11.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="~/Assets/client/js/utility.js"></script>
     <!-- //js -->
     <!-- start-smooth-scrolling-->
@@ -43,9 +45,10 @@
     </div>
     @{ Html.RenderAction("Footer", "Home"); }
     <script type="text/javascript ">
-        $(document).ready(function() {
-            $().UItoTop({ easingType: 'easeOutQuart' });
-        });
+    $(document).ready(function() {
+        $().UItoTop({ easingType: 'easeOutQuart' });
+    });
+    
     </script>
     <a href="# " id="toTop " style="display: block; "> <span id="toTopHover " style="opacity: 1; "> </span></a>
     <!--//smooth-scrolling-of-move-up-->

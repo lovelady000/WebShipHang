@@ -23,9 +23,9 @@
         <div class="box-body">
             <div class="col-md-6 input-search">
                 <div class="input-group">
-                    <input type="text" class="form-control" ng-model="keyword" placeholder="Từ khóa">
+                    <input type="text" class="form-control" ng-model="keyword" placeholder="Tìm kiếm theo tên tài khoản hoặc tên shop">
                     <span class="input-group-btn">
-                        <button class="btn btn-success" ng-click="search();" type="button">Go!</button>
+                        <button class="btn btn-success" ng-click="search();" type="button">Tìm kiếm</button>
                     </span>
                 </div><!-- /input-group -->
             </div>
@@ -142,10 +142,10 @@
                             <th>#</th>
                             <th><input type="text" class="form-control" placeholder="Thời gian tạo" disabled></th>
                             <th><input type="text" class="form-control" placeholder="Tài khoản" disabled></th>
-                            <th>Tên shop</th>
+                            <!--<th>Tên shop</th>-->
                             <th><input type="text" class="form-control" placeholder="Người nhận" disabled></th>
                             <th style="width:135px;">Địa chỉ người nhận</th>
-                            <th><input type="text" class="form-control" placeholder="Vùng" disabled></th>
+                            <!--<th><input type="text" class="form-control" placeholder="Vùng" disabled></th>-->
                             <th>Phí COD</th>
                             <!--<th>Ghi chú</th>-->
                             <th>Chi tiết</th>
@@ -157,25 +157,27 @@
                             <td style="text-align:center;">
                                 {{item.ID}}
                             </td>
-                            <td>
+                            <td style="text-align:center;">
                                 {{item.CreatedDate | date:'HH:mm dd/MM/yyyy'}}
                             </td>
                             <td>
-                                {{item.User.UserName}}
-                            </td>
-                            <td>
+                                {{item.User.UserName}}<br />
                                 {{item.User.WebOrShopName}}
                             </td>
+                            <!--<td>
+                               
+                            </td>-->
                             <td>
                                 {{item.ReceiverMobile}}
                             </td>
                             <td>
-                                <p class="ReceiverAddress" title="{{item.ReceiverAddress}}" style="">{{item.ReceiverAddress}}</p>
+                                <p class="ReceiverAddress" title="{{item.ReceiverAddress}}" style="margin:0;">{{item.ReceiverAddress}}</p>
+                                <p style="margin:0;">{{item.ReceiverRegion.Name}}</p>
 
                             </td>
-                            <td>
-                                {{item.ReceiverRegion.Name}}
-                            </td>
+                            <!--<td>
+                                
+                            </td>-->
                             <td style="text-align:right;">
                                 {{item.PayCOD | currency:"":0}}
                             </td>

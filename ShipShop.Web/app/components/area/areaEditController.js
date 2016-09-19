@@ -1,8 +1,8 @@
 ﻿(function (app) {
     app.controller('areaEditController', areaEditController);
-    areaEditController.$inject = ['$scope', 'apiService', '$state', 'params', '$uibModalInstance'];
+    areaEditController.$inject = ['$scope', 'apiService', '$state', 'params', '$uibModalInstance','notificationService'];
 
-    function areaEditController($scope, apiService, $state, params, $uibModalInstance) {
+    function areaEditController($scope, apiService, $state, params, $uibModalInstance, notificationService) {
         $scope.area = {};
 
         function GetDetailnews() {
@@ -22,6 +22,7 @@
         $scope.UpdateArea = UpdateArea;
         function UpdateArea() {
             apiService.put('/api/area/update', $scope.area, function (result) {
+                notificationService.displaySuccess('Sửa thông tin thành công !');
                 $uibModalInstance.close();
                 $state.reload();
             }, function (error) {

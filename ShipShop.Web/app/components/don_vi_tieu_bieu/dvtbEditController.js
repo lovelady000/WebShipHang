@@ -1,8 +1,8 @@
 ﻿(function (app) {
     app.controller('dvtbEditController', dvtbEditController);
-    dvtbEditController.$inject = ['$scope', 'apiService', '$state', 'params', '$uibModalInstance'];
+    dvtbEditController.$inject = ['$scope', 'apiService', '$state', 'params', '$uibModalInstance','notificationService'];
 
-    function dvtbEditController($scope, apiService, $state, params, $uibModalInstance) {
+    function dvtbEditController($scope, apiService, $state, params, $uibModalInstance, notificationService) {
         $scope.dvtb = {};
 
         function GetDetailDVTB() {
@@ -22,6 +22,7 @@
         $scope.UpdateDVTB = UpdateDVTB;
         function UpdateDVTB() {
             apiService.put('/api/dvtb/update', $scope.dvtb, function (result) {
+                notificationService.displaySuccess('Sửa thông tin thành công !');
                 $uibModalInstance.close();
                 $state.reload();
             }, function (error) {

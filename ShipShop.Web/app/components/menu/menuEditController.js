@@ -1,8 +1,8 @@
 ﻿(function (app) {
     app.controller('menuEditController', menuEditController);
-    menuEditController.$inject = ['$scope', 'apiService', '$state', 'params', '$uibModalInstance'];
+    menuEditController.$inject = ['$scope', 'apiService', '$state', 'params', '$uibModalInstance','notificationService'];
 
-    function menuEditController($scope, apiService, $state, params, $uibModalInstance) {
+    function menuEditController($scope, apiService, $state, params, $uibModalInstance, notificationService) {
         $scope.newMenu = {};
 
         $scope.menuGroup = [];
@@ -29,6 +29,7 @@
         $scope.UpdateMenu = UpdateMenu;
         function UpdateMenu() {
             apiService.put('/api/menu/update', $scope.newMenu, function (result) {
+                notificationService.displaySuccess('Sửa thông tin thành công !');
                 $state.reload();
                 $uibModalInstance.close();
             }, function (error) {

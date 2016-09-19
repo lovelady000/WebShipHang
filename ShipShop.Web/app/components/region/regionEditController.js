@@ -1,8 +1,8 @@
 ﻿(function (app) {
     app.controller('regionEditController', regionEditController);
-    regionEditController.$inject = ['$scope', 'apiService', '$state','params','$uibModalInstance'];
+    regionEditController.$inject = ['$scope', 'apiService', '$state','params','$uibModalInstance','notificationService'];
 
-    function regionEditController($scope, apiService, $state, params, $uibModalInstance) {
+    function regionEditController($scope, apiService, $state, params, $uibModalInstance, notificationService) {
         $scope.region;
         $scope.listAreas = [];
 
@@ -31,6 +31,7 @@
         $scope.UpdateRegion = UpdateRegion;
         function UpdateRegion() {
             apiService.put('/api/region/update', $scope.region, function (result) {
+                notificationService.displaySuccess('Sửa thông tin thành công !');
                 $uibModalInstance.close();
                 $state.reload();
             }, function (error) {

@@ -1,4 +1,5 @@
-﻿$('#sandbox-container .input-group.date').datepicker({
+﻿var error = "Có lỗi xảy ra! Xin lỗi quý khách! Vui lòng F5 lại trình duyệt và liên hệ với người quản trị. Xin cảm ơn!";
+$('#sandbox-container .input-group.date').datepicker({
     format: "dd/mm/yyyy"
 });
 function CancelOrder(id) {
@@ -14,8 +15,7 @@ function CancelOrder(id) {
         success: function (result) {
             //window.location.reload();
             $('#StatusOrder-' + id).html("<a href=\"javascript: \" onclick=\"ReCancelOrder(" + id + "); \">Hoàn tác</a>");
-            bootbox.alert("Hủy đơn hàng thành công!", function () {
-            });
+            toastr.success("Hủy đơn hàng thành công!");
         },
         error: function () {
             bootbox.alert("Thực hiện không thành công.Quý khách vui lòng F5 lại trang và thử lại!", function () {
@@ -36,8 +36,7 @@ function ReCancelOrder(id) {
         success: function (result) {
             // window.location.reload();
             $('#StatusOrder-' + id).html("<a href=\"javascript: \" onclick=\"CancelOrder(" + id + "); \">Hủy</a>");
-            bootbox.alert("Hoàn tác đơn hàng thành công!", function () {
-            });
+            toastr.success("Hoàn tác đơn hàng thành công!");
         },
         error: function () {
             //alert('Có lỗi sảy ra! Xin lỗi quý khách!');
@@ -127,10 +126,35 @@ function changePass() {
                     $lblMsg.html('<span style="color:red;">' + result.msg + '</span>');
                 }
             },
-            error: function () { alert('Có lỗi sảy ra! Xin lỗi quý khách!'); }
+            error: function () { alert(error); }
         });
     }
 }
 $('#typeOfOrder').change(function () {
     window.location.href = "?typeOfOrder=" + $('#typeOfOrder').val();
+})
+
+$('#UserAddress').change(function () {
+    var obj = {
+        Address: $('#UserAddress').val(),
+    };
+    $.ajax({
+        type: "POST",
+        url: "/Account/ChangeProfileAccount",
+        data: JSON.stringify(obj),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            if (result.code == 1) {
+                toastr.success('Sửa thông tin tài khoản thành công!');
+            } else {
+                bootbox.alert("Thực hiện không thành công.Quý khách vui lòng F5 lại trang và thử lại!", function () {
+                });
+            }
+        },
+        error: function () {
+            bootbox.alert(error, function () {
+            });
+        }
+    });
 })

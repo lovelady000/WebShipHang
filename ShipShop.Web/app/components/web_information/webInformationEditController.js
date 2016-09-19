@@ -1,8 +1,8 @@
 ﻿(function (app) {
     app.controller('webInformationEditController', webInformationEditController);
-    webInformationEditController.$inject = ['$scope', 'apiService', '$state', '$uibModalInstance'];
+    webInformationEditController.$inject = ['$scope', 'apiService', '$state', '$uibModalInstance','notificationService'];
 
-    function webInformationEditController($scope, apiService, $state, $uibModalInstance) {
+    function webInformationEditController($scope, apiService, $state, $uibModalInstance, notificationService) {
         $scope.webInformation = {};
 
         function GetDetailnews() {
@@ -17,6 +17,7 @@
         $scope.UpdateWebInfo = UpdateWebInfo;
         function UpdateWebInfo() {
             apiService.put('/api/webInformation/update', $scope.webInformation, function (result) {
+                notificationService.displaySuccess('Sửa thông tin thành công !');
                 $uibModalInstance.close();
                 $state.reload();
             }, function (error) {

@@ -113,7 +113,7 @@ namespace ShipShop.Web.Controllers
 
                 ViewBag.Title = "Quản trị tài khoản";
                 var model = _orderService.GetAllByUserName(User.Identity.Name, dtBeginDate, dtToDate,page,pageSize,out totalCount, new string[] { "ReceiverRegion", "SenderRegion" });
-
+                ViewBag.TypeOfOrder = 1;
                 if (typeOfOrder == "2")
                 {
                     var user = await UserManager.FindByNameAsync(User.Identity.Name);
@@ -126,6 +126,7 @@ namespace ShipShop.Web.Controllers
                     {
                         model = _orderService.GetAllByReceiverMobile(User.Identity.Name, dtBeginDate, dtToDate, page, pageSize, out totalCount, new string[] { "ReceiverRegion", "SenderRegion" });
                     }
+                    ViewBag.TypeOfOrder = 2;
                 }
                 var query = Mapper.Map<IEnumerable<OrderViewModel>>(model);
 
@@ -239,12 +240,14 @@ namespace ShipShop.Web.Controllers
             XLWorkbook workbook = new XLWorkbook();
             IXLWorksheet worksheet = workbook.Worksheets.Add("Danh sách đơn hàng");
 
+
             worksheet.Cell(1, 1).SetValue("Chức năng đang chờ hoàn thiện");
+            //worksheet.Cells()
             workbook.SaveAs(spreadsheetStream);
 
             spreadsheetStream.Position = 0;
 
-            return new FileStreamResult(spreadsheetStream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") { FileDownloadName = "example.xlsx" };
+            return new FileStreamResult(spreadsheetStream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") { FileDownloadName = "DanhSachDonHang.xlsx" };
         }
 
         public bool UpdateValue(IXLWorksheet ixlWorkSheet, int row, string col, object value, int alignment, int fontStyle, bool isFormula)
