@@ -25,7 +25,6 @@
                     <th style="width: 10px">#</th>
                     <th>Tên page</th>
                     <th>Tên không dấu</th>
-                    <th>Nội dung</th>
                     <th style="width: 40px">Trạng thái</th>
                     <th style="width:85px;" ng-if="authentication.roles.indexOf(ROLES.ROLES_EDIT_PAGE) != -1 || authentication.roles.indexOf(ROLES.ROLES_DELETE_PAGE) != -1">Thao tác</th>
                 </tr>
@@ -38,9 +37,6 @@
                     </td>
                     <td>
                         {{item.Alias}}
-                    </td>
-                    <td>
-                        {{item.Content}}
                     </td>
                     <td>
                         <span ng-class="{'badge bg-red':item.Status == false,'badge bg-green':item.Status == true}">{{item.Status | status}}</span>

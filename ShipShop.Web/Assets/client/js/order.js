@@ -1,4 +1,15 @@
 ﻿var error = "Có lỗi xảy ra! Xin lỗi quý khách! Vui lòng F5 lại trình duyệt và liên hệ với người quản trị. Xin cảm ơn!";
+function addCommas(nStr) {
+    nStr += '';
+    x = nStr.split('.');
+    x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + ',' + '$2');
+    }
+    return x1 + x2;
+}
 $('#sandbox-container .input-group.date').datepicker({
     format: "dd/mm/yyyy"
 });
@@ -14,6 +25,10 @@ function CancelOrder(id) {
         dataType: "json",
         success: function (result) {
             //window.location.reload();
+            var COD = Number($('#StatusOrder-' + id).closest('tr').find('td').eq(5).text().replace(/,/g, ''));
+            var TotalCod = Number($('#TotalCOD').text().replace(/,/g, ''));
+
+            $('#TotalCOD').text(addCommas(TotalCod - COD));
             $('#StatusOrder-' + id).html("<a href=\"javascript: \" onclick=\"ReCancelOrder(" + id + "); \">Hoàn tác</a>");
             toastr.success("Hủy đơn hàng thành công!");
         },
@@ -35,6 +50,11 @@ function ReCancelOrder(id) {
         dataType: "json",
         success: function (result) {
             // window.location.reload();
+
+            var COD = Number($('#StatusOrder-' + id).closest('tr').find('td').eq(5).text().replace(/,/g, ''));
+            var TotalCod = Number($('#TotalCOD').text().replace(/,/g, ''));
+
+            $('#TotalCOD').text(addCommas(TotalCod + COD));
             $('#StatusOrder-' + id).html("<a href=\"javascript: \" onclick=\"CancelOrder(" + id + "); \">Hủy</a>");
             toastr.success("Hoàn tác đơn hàng thành công!");
         },

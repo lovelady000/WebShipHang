@@ -135,7 +135,7 @@ namespace ShipShop.Web.Controllers
                 ViewBag.Address = currenUser.Address;
                 ViewBag.Vendee = currenUser.Vendee;
                 ViewBag.WebsiteOrShop = currenUser.WebOrShopName;
-                ViewBag.TotalCOD = query.Sum(x => x.PayCOD);
+                ViewBag.TotalCOD = query.Where(x=>x.Status).Sum(x => x.PayCOD);
                 int totalPage = (int)Math.Ceiling((double)totalCount / pageSize);
                 var paginationSet = new PaginationSet<OrderViewModel>()
                 {

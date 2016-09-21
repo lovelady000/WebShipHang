@@ -55,7 +55,7 @@
                 notificationService.displaySuccess('Thành công');
                 var total = 0;
                 for (var i = 0; i < result.data.Items.length; ++i) {
-                    total += result.data.Items[i].PayCOD;
+                    if( result.data.Items[i].Status) total += result.data.Items[i].PayCOD;
                 }
                 $scope.totalCOD = total;
             }, function () {

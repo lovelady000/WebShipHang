@@ -142,12 +142,10 @@
                             <th>#</th>
                             <th><input type="text" class="form-control" placeholder="Thời gian tạo" disabled></th>
                             <th><input type="text" class="form-control" placeholder="Tài khoản" disabled></th>
-                            <!--<th>Tên shop</th>-->
                             <th><input type="text" class="form-control" placeholder="Người nhận" disabled></th>
-                            <th style="width:135px;">Địa chỉ người nhận</th>
-                            <!--<th><input type="text" class="form-control" placeholder="Vùng" disabled></th>-->
+                            <!--<th style="width:135px;">Địa chỉ người nhận</th>-->
+                            <th><input type="text" class="form-control" placeholder="Địa chỉ người nhận" disabled></th>
                             <th>Phí COD</th>
-                            <!--<th>Ghi chú</th>-->
                             <th>Chi tiết</th>
                             <th ng-if="authentication.roles.indexOf(ROLES.ROLES_EDIT_ORDER) != -1"></th>
                         </tr>
@@ -164,9 +162,6 @@
                                 {{item.User.UserName}}<br />
                                 {{item.User.WebOrShopName}}
                             </td>
-                            <!--<td>
-                               
-                            </td>-->
                             <td>
                                 {{item.ReceiverMobile}}
                             </td>
@@ -175,15 +170,11 @@
                                 <p style="margin:0;">{{item.ReceiverRegion.Name}}</p>
 
                             </td>
-                            <!--<td>
-                                
-                            </td>-->
+ 
                             <td style="text-align:right;">
                                 {{item.PayCOD | currency:"":0}}
                             </td>
-                            <!--<td>
-                                {{item.Note}}
-                            </td>-->
+  
                             <td>
                                 <a ui-sref="orderDetail({orderID:item.ID})">Xem</a>
                             </td>
@@ -194,7 +185,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="6">Tổng số bản ghi:{{totalCount}}</td>
+                            <td colspan="4" style="text-align:left;">Tổng số bản ghi:{{totalCount}}</td>
                             <td> Tổng phí COD</td>
                             <td style="text-align:right;"> <p id="totalCOD">{{totalCOD | currency:"":0}}</p></td>
                             <td colspan="100"></td>

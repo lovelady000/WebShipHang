@@ -10,7 +10,7 @@
     return x1 + x2;
 }
 $(document).ready(function () {
-    $('.filterable .btn-filter').click(function(){
+    $('.filterable .btn-filter').click(function () {
         var $panel = $(this).parents('.filterable'),
         $filters = $panel.find('.filters input'),
         $tbody = $panel.find('.table tbody');
@@ -24,7 +24,7 @@ $(document).ready(function () {
         }
     });
 
-    $('.filterable .filters input').keyup(function(e){
+    $('.filterable .filters input').keyup(function (e) {
         /* Ignore tab key */
         var code = e.keyCode || e.which;
         if (code == '9') return;
@@ -36,7 +36,7 @@ $(document).ready(function () {
         $table = $panel.find('.table'),
         $rows = $table.find('tbody tr');
         /* Dirtiest filter function ever ;) */
-        var $filteredRows = $rows.filter(function(){
+        var $filteredRows = $rows.filter(function () {
             var value = $(this).find('td').eq(column).text().toLowerCase();
             return value.indexOf(inputContent) === -1;
         });
@@ -46,19 +46,25 @@ $(document).ready(function () {
         $rows.show();
         var total = 0;
         $rows.each(function () {
-            var value = Number($(this).find('td').eq(7).text().replace(/,/g, ''));
-            total += value;
+            var status = $(this).find('td').eq(7).find('button').attr('class').indexOf('ng-hide') == -1;
+            if (status) {
+                var value = Number($(this).find('td').eq(5).text().replace(/,/g, ''));
+                total += value;
+            }
         });
-        console.log(total);
+
         $filteredRows.each(function () {
-            var value = Number($(this).find('td').eq(7).text().replace(/,/g, ''));
-            total -= value;
+            var status = $(this).find('td').eq(7).find('button').attr('class').indexOf('ng-hide') == -1;
+            if (status) {
+                var value = Number($(this).find('td').eq(5).text().replace(/,/g, ''));
+                total -= value;
+            }
         });
 
         $filteredRows.hide();
         /* Prepend no-result row if all rows are filtered */
         if ($filteredRows.length === $rows.length) {
-            $table.find('tbody').prepend($('<tr class="no-result text-center"><td colspan="'+ $table.find('.filters th').length +'">No result found</td></tr>'));
+            $table.find('tbody').prepend($('<tr class="no-result text-center"><td colspan="' + $table.find('.filters th').length + '">No result found</td></tr>'));
         }
         $('#totalCOD').text(addCommas(total));
     });
