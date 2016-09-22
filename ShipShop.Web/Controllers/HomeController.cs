@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNet.Identity.Owin;
+using ShipShop.Common;
 using ShipShop.Model.Models;
 using ShipShop.Service;
 using ShipShop.Web.App_Start;
@@ -61,6 +62,11 @@ namespace ShipShop.Web.Controllers
             var webInformation = _webInformationService.GetSingle();
             var webInformationVM = Mapper.Map<WebInformation, WebInformationViewModel>(webInformation);
             ViewBag.WebInfo = webInformationVM;
+
+            ViewBag.ConfigCommentFB = ConfigHelper.GetByKey("CommentFB");
+           // string s1 = ConfigHelper.GetByKey("CommentFB");
+            ViewBag.DataCommentFB = ConfigHelper.GetByKey("DataCommentFB");
+            ViewBag.ChatLine = ConfigHelper.GetByKey("SrcChatLine");
             return PartialView();
         }
 

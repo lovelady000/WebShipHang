@@ -31,7 +31,7 @@ namespace ShipShop.Web.App_Start
             {
                 TokenEndpointPath = new PathString("/oauth/token"),
                 Provider = new AuthorizationServerProvider(),
-                AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(30),
+                AccessTokenExpireTimeSpan = TimeSpan.FromHours(1),
                 AllowInsecureHttp = true,
                 RefreshTokenProvider = new ApplicationRefreshTokenProvider(),
             });

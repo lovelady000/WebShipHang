@@ -78,7 +78,7 @@
             <div class="col-md-6">
                 <div class="fb-page" data-href="@webInfo.Facebook" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"></div>
 
-                <div class="fb-comments" data-href="http://shipshop.com.vn/trang-chu" data-numposts="5"></div>
+                <div class="fb-comments" data-href="@ViewBag.DataCommentFB" data-numposts="5"></div>
             </div>
             <div class="col-md-6">
 
@@ -165,14 +165,13 @@
         (function(){
             var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
             s1.async=true;
-            s1.src='https://embed.tawk.to/57c45622b817ab6642222349/default';
+            s1.src='@ViewBag.ChatLine';
             s1.charset='UTF-8';
             s1.setAttribute('crossorigin','*');
             s0.parentNode.insertBefore(s1,s0);
         })();
     </script>
     <!--End of Tawk.to Script-->
-    @*https://dashboard.tawk.to/*@
 </div>
 <!--//footer-->
 <!--copy-right-->
