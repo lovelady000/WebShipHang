@@ -77,7 +77,6 @@ namespace ShipShop.Web.App_Start
         {
             public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
             {
-                string s1 = "";
                 context.Validated();
             }
             public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)

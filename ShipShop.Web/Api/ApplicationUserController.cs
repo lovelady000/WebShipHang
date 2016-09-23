@@ -41,7 +41,8 @@ namespace ShipShop.Web.Api
         }
         [Route("getlistpaging")]
         [HttpGet]
-        [Authorize(Roles = Common.RolesConstants.ROLES_FULL_CONTROL +","+Common.RolesConstants.ROLES_GET_LIST_USER)]
+        //[CustomAuthorize( Roles =RolesConstants.ROLES_FULL_CONTROL + "," + RolesConstants.ROLES_GET_LIST_USER)]
+        [CustomAuthorize(UserRole = "Admin2")]
         public HttpResponseMessage GetListPaging(HttpRequestMessage request, int page, int pageSize, string filter = null)
         {
             return CreateHttpResponse(request, () =>
