@@ -42,7 +42,8 @@ namespace ShipShop.Web.Api
         [Route("getlistpaging")]
         [HttpGet]
         //[CustomAuthorize( Roles =RolesConstants.ROLES_FULL_CONTROL + "," + RolesConstants.ROLES_GET_LIST_USER)]
-        [CustomAuthorize(UserRole = "Admin2")]
+        //[CustomAuthorize(UserRole = "Admin2")]
+        [Authorize(Roles = RolesConstants.ROLES_FULL_CONTROL + "," + RolesConstants.ROLES_GET_LIST_USER)]
         public HttpResponseMessage GetListPaging(HttpRequestMessage request, int page, int pageSize, string filter = null)
         {
             return CreateHttpResponse(request, () =>
@@ -70,29 +71,29 @@ namespace ShipShop.Web.Api
             });
         }
 
-        [Route("detail/{id}")]
-        [HttpGet]
-        public HttpResponseMessage Details(HttpRequestMessage request, string id)
-        {
-            if (string.IsNullOrEmpty(id))
-            {
+        //[Route("detail/{id}")]
+        //[HttpGet]
+        //public HttpResponseMessage Details(HttpRequestMessage request, string id)
+        //{
+        //    if (string.IsNullOrEmpty(id))
+        //    {
 
-                return request.CreateErrorResponse(HttpStatusCode.BadRequest, nameof(id) + " không có giá trị.");
-            }
-            var user = _userManager.FindByIdAsync(id);
-            if (user == null)
-            {
-                return request.CreateErrorResponse(HttpStatusCode.NoContent, "Không có dữ liệu");
-            }
-            else
-            {
-                var applicationUserViewModel = Mapper.Map<ApplicationUser, ApplicationUserViewModel>(user.Result);
-                var listGroup = _appGroupService.GetListGroupByUserId(applicationUserViewModel.Id);
-                applicationUserViewModel.Groups = Mapper.Map<IEnumerable<ApplicationGroup>, IEnumerable<ApplicationGroupViewModel>>(listGroup);
-                return request.CreateResponse(HttpStatusCode.OK, applicationUserViewModel);
-            }
+        //        return request.CreateErrorResponse(HttpStatusCode.BadRequest, nameof(id) + " không có giá trị.");
+        //    }
+        //    var user = _userManager.FindByIdAsync(id);
+        //    if (user == null)
+        //    {
+        //        return request.CreateErrorResponse(HttpStatusCode.NoContent, "Không có dữ liệu");
+        //    }
+        //    else
+        //    {
+        //        var applicationUserViewModel = Mapper.Map<ApplicationUser, ApplicationUserViewModel>(user.Result);
+        //        var listGroup = _appGroupService.GetListGroupByUserId(applicationUserViewModel.Id);
+        //        applicationUserViewModel.Groups = Mapper.Map<IEnumerable<ApplicationGroup>, IEnumerable<ApplicationGroupViewModel>>(listGroup);
+        //        return request.CreateResponse(HttpStatusCode.OK, applicationUserViewModel);
+        //    }
 
-        }
+        //}
 
         //[HttpPost]
         //[Route("add")]
@@ -151,6 +152,7 @@ namespace ShipShop.Web.Api
 
         [HttpPut]
         [Route("resetPass")]
+        [Authorize(Roles = RolesConstants.ROLES_FULL_CONTROL + "," + RolesConstants.ROLES_EDIT_USER)]
         public async Task<HttpResponseMessage> ResetPass(HttpRequestMessage request, ChangePassViewModel changePassVM)
         {
             if (changePassVM.NewPassword != changePassVM.RePassword)
@@ -223,17 +225,18 @@ namespace ShipShop.Web.Api
             }
         }
 
-        [HttpDelete]
-        [Route("delete")]
-        public async Task<HttpResponseMessage> Delete(HttpRequestMessage request, string id)
-        {
-            var appUser = await _userManager.FindByIdAsync(id);
-            var result = await _userManager.DeleteAsync(appUser);
-            if (result.Succeeded)
-                return request.CreateResponse(HttpStatusCode.OK, id);
-            else
-                return request.CreateErrorResponse(HttpStatusCode.OK, string.Join(",", result.Errors));
-        }
+        //[HttpDelete]
+        //[Route("delete")]
+        
+        //public async Task<HttpResponseMessage> Delete(HttpRequestMessage request, string id)
+        //{
+        //    var appUser = await _userManager.FindByIdAsync(id);
+        //    var result = await _userManager.DeleteAsync(appUser);
+        //    if (result.Succeeded)
+        //        return request.CreateResponse(HttpStatusCode.OK, id);
+        //    else
+        //        return request.CreateErrorResponse(HttpStatusCode.OK, string.Join(",", result.Errors));
+        //}
 
     }
 }

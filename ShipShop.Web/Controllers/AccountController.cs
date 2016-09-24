@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using ShipShop.Data;
 using ShipShop.Model.Models;
 using ShipShop.Service;
 using ShipShop.Web.App_Start;
@@ -91,7 +89,6 @@ namespace ShipShop.Web.Controllers
             props.IsPersistent = true;
             authenticationManager.SignIn(props, identity);
 
-
             var responseSuccess = new { Code = 1, Msg = "" };
             return Json(responseSuccess);
         }
@@ -105,7 +102,6 @@ namespace ShipShop.Web.Controllers
         [HttpPost]
         public async Task<JsonResult> Login(LoginViewModel model)
         {
-
             ApplicationUser user = await _userManager.FindAsync(model.UserName, model.Password);
             if (user != null && !user.IsAdmin)
             {
@@ -171,20 +167,22 @@ namespace ShipShop.Web.Controllers
                 }
             }
         }
+
         [HttpGet]
         public async Task<JsonResult> GetCurrenAccount()
         {
             var user = await UserManager.FindByNameAsync(User.Identity.Name);
-            if(user == null)
+            if (user == null)
             {
                 return Json(new { code = 0, msg = "Thất bại!" });
             }
             else
             {
                 ApplicationUserViewModel appVM = Mapper.Map<ApplicationUser, ApplicationUserViewModel>(user);
-                return Json(new { code = 1, msg = appVM },JsonRequestBehavior.AllowGet);
+                return Json(new { code = 1, msg = appVM }, JsonRequestBehavior.AllowGet);
             }
         }
+
         [HttpPost]
         public async Task<JsonResult> ChangeProfileAccount(ApplicationUserViewModel appVM)
         {
@@ -197,7 +195,7 @@ namespace ShipShop.Web.Controllers
             {
                 user.Address = appVM.Address;
                 await UserManager.UpdateAsync(user);
-                return Json(new { code = 1, msg="Sửa thông tin thành công!" });
+                return Json(new { code = 1, msg = "Sửa thông tin thành công!" });
             }
         }
     }

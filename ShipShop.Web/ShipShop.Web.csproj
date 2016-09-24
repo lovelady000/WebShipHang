@@ -219,6 +219,7 @@
     <Compile Include="Api\SlideController.cs" />
     <Compile Include="Api\WebInformationController.cs" />
     <Compile Include="AppMobileApi\AccountController.cs" />
+    <Compile Include="AppMobileApi\OrderController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />

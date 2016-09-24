@@ -15,6 +15,7 @@ namespace ShipShop.Web.Api
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         [Route("TestMethod")]
         public string TestMethod()
         {

@@ -13,6 +13,7 @@
                         notificationService.displayError("Đăng nhập không đúng.");
                     }
                     else {
+
                         var stateService = $injector.get('$state');
                         stateService.go('home');
                     }
