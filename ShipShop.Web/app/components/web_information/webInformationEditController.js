@@ -37,7 +37,10 @@
         $scope.ChooseImage = function () {
             var finder = new CKFinder();
             finder.selectActionFunction = function (filter) {
-                $scope.webInformation.Logo = filter;
+                $scope.$apply(function () {
+                    $scope.webInformation.Logo = filter;
+                })
+                
             };
             finder.popup();
         }

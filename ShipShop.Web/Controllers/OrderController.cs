@@ -58,12 +58,12 @@ namespace ShipShop.Web.Controllers
                 var query = Mapper.Map<IEnumerable<OrderDetailViewModel>>(modelOrderDetail);
                 var order = _orderService.GetByID(id, new string[] { "ReceiverRegion", "SenderRegion" });
                 var orderVM = Mapper.Map<OrderViewModel>(order);
-                if (order.Username != User.Identity.Name)
+                if (order.Username != User.Identity.Name || order.SenderMobile != User.Identity.Name || order.ReceiverMobile != User.Identity.Name)
                 {
-                    return Redirect("/");
+                    ViewBag.Order = orderVM;
+                    return View(query);
                 }
-                ViewBag.Order = orderVM;
-                return View(query);
+                return Redirect("/");
             }
             else
             {
