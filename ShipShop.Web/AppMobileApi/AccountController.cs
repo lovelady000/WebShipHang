@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 using ShipShop.Model.Models;
 using ShipShop.Service;
 using ShipShop.Web.App_Start;
@@ -7,6 +9,7 @@ using ShipShop.Web.Infrastructure.Core;
 using ShipShop.Web.Models;
 using System.Net;
 using System.Net.Http;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
@@ -14,7 +17,7 @@ using System.Web.Http;
 namespace ShipShop.Web.AppMobileApi
 {
     [RoutePrefix("api/app/account")]
-    [Authorize]
+    [Authorize(Roles = Common.RolesConstants.ROLES_USER)]
     public class AccountController : ApiControllerBase
     {
         public AccountController(IErrorService errorService) : base(errorService)
@@ -57,7 +60,7 @@ namespace ShipShop.Web.AppMobileApi
 
         [HttpPost]
         [Route("changePass")]
-        [Authorize]
+        [Authorize(Roles = Common.RolesConstants.ROLES_USER)]
         public async Task<HttpResponseMessage> ChangePassword(HttpRequestMessage request, ChangePassViewModel model)
         {
             //ApplicationUser user = await _userManager.FindByIdAsync(User.Identity.GetUserId());
@@ -95,9 +98,38 @@ namespace ShipShop.Web.AppMobileApi
             }
         }
 
+        [HttpPost]
+        [Route("Register")]
+        [AllowAnonymous]
+        public async Task<HttpResponseMessage> Register(HttpRequestMessage request, RegisterViewModel register)
+        {
+            var userByUsserName = await _userManager.FindByNameAsync(register.UserName);
+            if (userByUsserName != null)
+            {
+                var response = new { Code = 0, Msg = "Số điện thoại đã được đăng kí!" };
+                return request.CreateResponse(HttpStatusCode.BadRequest, "Số điện thoại đã được đăng kí!");
+            }
+            var user = new ApplicationUser()
+            {
+                UserName = register.UserName,
+                Address = register.Address,
+                Vendee = register.Vendee,
+                RegionID = register.RegionID,
+                WebOrShopName = register.Vendee ? register.WebOrShopName : "",
+                IsAdmin = false,
+            };
+            await UserManager.CreateAsync(user, register.Password);
+            var userFindByName = await _userManager.FindByNameAsync(register.UserName);
+            UserManager.AddToRoles(userFindByName.Id, new string[] { "User" });
+
+            var responseSuccess = new { Code = 1, Msg = "" };
+            return request.CreateResponse(HttpStatusCode.BadRequest, "Đăng kí thành công!");
+        }
+
+
         [HttpGet]
         [Route("getCurrenAccount")]
-        [Authorize]
+        [Authorize(Roles = Common.RolesConstants.ROLES_USER)]
         public async Task<HttpResponseMessage> ChangePassword(HttpRequestMessage request)
         {
             var user = await UserManager.FindByNameAsync(User.Identity.Name);

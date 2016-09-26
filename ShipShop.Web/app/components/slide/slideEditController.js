@@ -33,5 +33,14 @@
         $scope.cancel = function () {
             $uibModalInstance.dismiss();
         };
+        $scope.ChooseImage = function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (filter) {
+                $scope.$apply(function () {
+                    $scope.slide.Image = filter;
+                });
+            };
+            finder.popup();
+        }
     };
 })(angular.module('onlineshop.slide'));

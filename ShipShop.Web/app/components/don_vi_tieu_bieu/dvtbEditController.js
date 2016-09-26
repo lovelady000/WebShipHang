@@ -37,9 +37,10 @@
         $scope.ChooseImage = function () {
             var finder = new CKFinder();
             finder.selectActionFunction = function (filter) {
-                $scope.dvtb.Image = filter;
-                console.log($scope.dvtb.Image);
+                $scope.$apply(function () {
 
+                    $scope.dvtb.Image = filter;
+                });
             };
             finder.popup();
         }

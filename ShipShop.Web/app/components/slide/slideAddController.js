@@ -23,7 +23,9 @@
         $scope.ChooseImage = function () {
             var finder = new CKFinder();
             finder.selectActionFunction = function (filter) {
-                $scope.slide.Image = filter;
+                $scope.$apply(function () {
+                    $scope.slide.Image = filter;
+                });
             };
             finder.popup();
         }

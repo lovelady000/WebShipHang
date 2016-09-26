@@ -261,7 +261,6 @@
     <Compile Include="Models\SlideViewModel.cs" />
     <Compile Include="Models\WebInformationViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resource\CommandSQL.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
@@ -5885,7 +5884,6 @@
     <Content Include="Assets\admin\libs\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Assets\admin\libs\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Assets\admin\libs\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Resource\shipper.bak" />
     <Content Include="UploadedFiles\images\download.jpg" />
     <Content Include="UploadedFiles\images\ship-logo.png" />
     <Content Include="UploadedFiles\_thumbs\Images\download.jpg" />
@@ -5916,6 +5914,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Assets\admin\libs\checklist-model\test\" />
+    <Folder Include="Resource\" />
     <Folder Include="UploadedFiles\files\" />
   </ItemGroup>
   <ItemGroup>
