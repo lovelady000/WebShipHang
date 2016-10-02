@@ -1,5 +1,7 @@
 ﻿var error = "Có lỗi xảy ra! Xin lỗi quý khách! Vui lòng F5 lại trình duyệt và liên hệ với người quản trị. Xin cảm ơn!";
 $(document).ready(function () {
+
+
     $('input.text-num').change(function () {
         if (isNaN(this.value)) {
             $(this).css('border-color', 'red');
@@ -44,6 +46,10 @@ $(document).ready(function () {
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (result) {
+                    if (result.code === 2) {
+                        window.location.reload();
+                        return;
+                    }
                     if (result.code === 1) {
                         var objApp = result.msg;
                         if (objApp.Vendee) {

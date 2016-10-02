@@ -169,6 +169,10 @@
     <Compile Include="Migrations\201609040154362_ChangeApplUser-2.Designer.cs">
       <DependentUpon>201609040154362_ChangeApplUser-2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610011024520_UpdateApplicatonUserAndOrder.cs" />
+    <Compile Include="Migrations\201610011024520_UpdateApplicatonUserAndOrder.Designer.cs">
+      <DependentUpon>201610011024520_UpdateApplicatonUserAndOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="OnlineShopDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -273,6 +277,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609040154362_ChangeApplUser-2.resx">
       <DependentUpon>201609040154362_ChangeApplUser-2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610011024520_UpdateApplicatonUserAndOrder.resx">
+      <DependentUpon>201610011024520_UpdateApplicatonUserAndOrder.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

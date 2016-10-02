@@ -43,5 +43,9 @@ namespace ShipShop.Web.Models
         public string CreatedBy { set; get; }
 
         public bool Status { set; get; }
+
+        public bool? SenderView { set; get; }
+
+        public bool? ReceiverView { set; get; }
     }
 }

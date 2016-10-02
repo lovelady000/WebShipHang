@@ -29,6 +29,8 @@ namespace ShipShop.Model.Models
         [ForeignKey("RegionID")]
         public virtual Region Region { set; get; }
 
+        public bool? IsBanded { set; get; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

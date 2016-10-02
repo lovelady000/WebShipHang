@@ -26,8 +26,8 @@
             $uibModalInstance.dismiss();
         };
         $scope.ckeditorOption = {
-            languague: 'vi',
-            height:'300px',
+            //languague: 'vi',
+           // height:'300px',
         };
     };
 

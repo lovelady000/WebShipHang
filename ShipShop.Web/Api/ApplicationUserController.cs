@@ -170,53 +170,30 @@ namespace ShipShop.Web.Api
             await store.UpdateAsync(cUser);
             return request.CreateResponse(HttpStatusCode.OK, "");
         }
-
         [HttpPut]
-        [Route("update")]
-        [Authorize(Roles = RolesConstants.ROLES_FULL_CONTROL + "," + RolesConstants.ROLES_ADD_PERMISSION_USER)]
-        public async Task<HttpResponseMessage> Update(HttpRequestMessage request, ApplicationUserViewModel applicationUserViewModel)
+        [Route("BandAccount")]
+        [Authorize(Roles = RolesConstants.ROLES_FULL_CONTROL + "," + RolesConstants.ROLES_EDIT_USER)]
+        public async Task<HttpResponseMessage> BandAccount(HttpRequestMessage request, ApplicationUserViewModel applicationUserViewModel)
         {
             if (ModelState.IsValid)
             {
                 var appUser = await _userManager.FindByIdAsync(applicationUserViewModel.Id);
-                var listRoles = await _userManager.GetRolesAsync(applicationUserViewModel.Id);
-                foreach (var item in listRoles)
+                if(appUser != null)
                 {
-                    await _userManager.RemoveFromRoleAsync(appUser.Id, item);
-                }
-                try
-                {
-                    //appUser.UpdateUser(applicationUserViewModel);
-                    var result = await _userManager.UpdateAsync(appUser);
-                    if (result.Succeeded)
+                    if(!appUser.IsBanded.GetValueOrDefault(false))
                     {
-                        var listAppUserGroup = new List<ApplicationUserGroup>();
-                        foreach (var group in applicationUserViewModel.Groups)
-                        {
-                            listAppUserGroup.Add(new ApplicationUserGroup()
-                            {
-                                GroupId = group.ID,
-                                UserId = applicationUserViewModel.Id
-                            });
-                            //add role to user
-                            var listRole = _appRoleService.GetListRoleByGroupId(group.ID);
-                            foreach (var role in listRole)
-                            {
-                                await _userManager.RemoveFromRoleAsync(appUser.Id, role.Name);
-                                await _userManager.AddToRoleAsync(appUser.Id, role.Name);
-                            }
-                        }
-                        _appGroupService.AddUserToGroups(listAppUserGroup, applicationUserViewModel.Id);
-                        _appGroupService.Save();
-                        return request.CreateResponse(HttpStatusCode.OK, applicationUserViewModel);
-
+                        appUser.IsBanded = true;
                     }
                     else
-                        return request.CreateErrorResponse(HttpStatusCode.BadRequest, string.Join(",", result.Errors));
+                    {
+                        appUser.IsBanded = false;
+                    }
+                    _userManager.Update(appUser);
+                    return request.CreateResponse(HttpStatusCode.OK, "Thao tác thành công!");
                 }
-                catch (NameDuplicatedException dex)
+                else
                 {
-                    return request.CreateErrorResponse(HttpStatusCode.BadRequest, dex.Message);
+                    return request.CreateResponse(HttpStatusCode.BadRequest, "Thao tác không thành công!");
                 }
             }
             else
@@ -225,9 +202,63 @@ namespace ShipShop.Web.Api
             }
         }
 
+        //[HttpPut]
+        //[Route("update")]
+        //[Authorize(Roles = RolesConstants.ROLES_FULL_CONTROL + "," + RolesConstants.ROLES_ADD_PERMISSION_USER)]
+        //public async Task<HttpResponseMessage> Update(HttpRequestMessage request, ApplicationUserViewModel applicationUserViewModel)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var appUser = await _userManager.FindByIdAsync(applicationUserViewModel.Id);
+        //        var listRoles = await _userManager.GetRolesAsync(applicationUserViewModel.Id);
+        //        foreach (var item in listRoles)
+        //        {
+        //            await _userManager.RemoveFromRoleAsync(appUser.Id, item);
+        //        }
+        //        try
+        //        {
+        //            //appUser.UpdateUser(applicationUserViewModel);
+        //            var result = await _userManager.UpdateAsync(appUser);
+        //            if (result.Succeeded)
+        //            {
+        //                var listAppUserGroup = new List<ApplicationUserGroup>();
+        //                foreach (var group in applicationUserViewModel.Groups)
+        //                {
+        //                    listAppUserGroup.Add(new ApplicationUserGroup()
+        //                    {
+        //                        GroupId = group.ID,
+        //                        UserId = applicationUserViewModel.Id
+        //                    });
+        //                    //add role to user
+        //                    var listRole = _appRoleService.GetListRoleByGroupId(group.ID);
+        //                    foreach (var role in listRole)
+        //                    {
+        //                        await _userManager.RemoveFromRoleAsync(appUser.Id, role.Name);
+        //                        await _userManager.AddToRoleAsync(appUser.Id, role.Name);
+        //                    }
+        //                }
+        //                _appGroupService.AddUserToGroups(listAppUserGroup, applicationUserViewModel.Id);
+        //                _appGroupService.Save();
+        //                return request.CreateResponse(HttpStatusCode.OK, applicationUserViewModel);
+
+        //            }
+        //            else
+        //                return request.CreateErrorResponse(HttpStatusCode.BadRequest, string.Join(",", result.Errors));
+        //        }
+        //        catch (NameDuplicatedException dex)
+        //        {
+        //            return request.CreateErrorResponse(HttpStatusCode.BadRequest, dex.Message);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        return request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+        //    }
+        //}
+
         //[HttpDelete]
         //[Route("delete")]
-        
+
         //public async Task<HttpResponseMessage> Delete(HttpRequestMessage request, string id)
         //{
         //    var appUser = await _userManager.FindByIdAsync(id);

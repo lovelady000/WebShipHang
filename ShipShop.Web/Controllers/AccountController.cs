@@ -105,6 +105,11 @@ namespace ShipShop.Web.Controllers
             ApplicationUser user = await _userManager.FindAsync(model.UserName, model.Password);
             if (user != null && !user.IsAdmin)
             {
+                if(user.IsBanded.GetValueOrDefault(false))
+                {
+                    var responseError = new { Code = 0, Msg = "Tài khoản đang bị khóa !" };
+                    return Json(responseError);
+                }
                 IAuthenticationManager authenticationManager = HttpContext.GetOwinContext().Authentication;
                 authenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
                 ClaimsIdentity identity = _userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
@@ -174,10 +179,16 @@ namespace ShipShop.Web.Controllers
             var user = await UserManager.FindByNameAsync(User.Identity.Name);
             if (user == null)
             {
-                return Json(new { code = 0, msg = "Thất bại!" });
+                return Json(new { code = 0, msg = "Thất bại!" }, JsonRequestBehavior.AllowGet);
             }
             else
             {
+                if (user.IsBanded.GetValueOrDefault(false))
+                {
+                    IAuthenticationManager authenticationManager = HttpContext.GetOwinContext().Authentication;
+                    authenticationManager.SignOut();
+                    return Json(new { code = 2, msg = "Tài khoản đang bị khóa!" }, JsonRequestBehavior.AllowGet);
+                }
                 ApplicationUserViewModel appVM = Mapper.Map<ApplicationUser, ApplicationUserViewModel>(user);
                 return Json(new { code = 1, msg = appVM }, JsonRequestBehavior.AllowGet);
             }

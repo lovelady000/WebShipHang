@@ -114,20 +114,23 @@ namespace ShipShop.Web.Controllers
                 ViewBag.Title = "Quản trị tài khoản";
                 var model = _orderService.GetAllByUserName(User.Identity.Name, dtBeginDate, dtToDate,page,pageSize,out totalCount, new string[] { "ReceiverRegion", "SenderRegion" });
                 ViewBag.TypeOfOrder = 1;
+                var user = await UserManager.FindByNameAsync(User.Identity.Name);
                 if (typeOfOrder == "2")
                 {
-                    var user = await UserManager.FindByNameAsync(User.Identity.Name);
                     if(user.Vendee)
                     {
-                        
                            model = _orderService.GetAllBySenderMobile(User.Identity.Name, dtBeginDate, dtToDate, page, pageSize, out totalCount, new string[] { "ReceiverRegion", "SenderRegion" });
+                        _orderService.CheckViewOrder(User.Identity.Name, user.Vendee);
                     }
                     else
                     {
                         model = _orderService.GetAllByReceiverMobile(User.Identity.Name, dtBeginDate, dtToDate, page, pageSize, out totalCount, new string[] { "ReceiverRegion", "SenderRegion" });
+                        _orderService.CheckViewOrder(User.Identity.Name, user.Vendee);
                     }
                     ViewBag.TypeOfOrder = 2;
                 }
+
+                ViewBag.NewOrder = _orderService.OrderNew(User.Identity.Name, user.Vendee);
                 var query = Mapper.Map<IEnumerable<OrderViewModel>>(model);
 
                 var currenUser = await _userManager.FindByNameAsync(User.Identity.Name);

@@ -43,7 +43,7 @@
             var params = {
                 objectID: id,
             };
-            popupService.open('', '/app/components/page/pageEditView.html', 'pageEditController', params);
+            popupService.open('lg', '/app/components/page/pageEditView.html', 'pageEditController', params);
         };
 
         $scope.Delete = Delete;

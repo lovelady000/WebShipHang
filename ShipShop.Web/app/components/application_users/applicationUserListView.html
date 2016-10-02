@@ -36,6 +36,7 @@
                                 <th>Vùng</th>
                                 <th>Địa chỉ</th>
                                 <th style="width:10%">Khôi phục mật khẩu</th>
+                                <th style="width:10%">Khóa tài khoản</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -47,6 +48,9 @@
                                 <td>
                                     <button type="button" ng-click="ResetPass(item.Id,item.UserName);" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></button>
                                     <!--<button class="btn btn-sm btn-danger" ng-click="deleteItem(item.Id)"><i class="fa fa-trash-o"></i></button>-->
+                                </td>
+                                <td>
+                                    <button class="btn btn-sm btn-danger" ng-click="lookAcc(item.Id)"><i ng-class="{'fa fa-lock':item.IsBanded != true,'fa fa-unlock':item.IsBanded == true}" ></i></button>
                                 </td>
                             </tr>
                         </tbody>

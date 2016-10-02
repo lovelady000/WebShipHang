@@ -52,6 +52,10 @@ namespace ShipShop.Model.Models
 
         public string Note { set; get; }
 
+        public bool? SenderView { set; get; }
+
+        public bool? ReceiverView { set; get; }
+
         [Column(TypeName="nvarchar")]
         [MaxLength(128)]
         public string UserID { set; get; }

@@ -31,7 +31,7 @@ namespace ShipShop.Web.Api
         {
             return CreateHttpResponse(request, () =>
             {
-                var model = _regionService.GetAll(new string[] { "Areas" });
+                var model = _regionService.GetAll(new string[] { "Areas" }).OrderBy(x=>x.Areas.AreaID);
                 var responseData = Mapper.Map<List<RegionViewModel>>(model);
 
                 HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, responseData);

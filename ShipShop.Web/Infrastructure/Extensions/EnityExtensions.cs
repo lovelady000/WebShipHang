@@ -32,6 +32,8 @@ namespace ShipShop.Web.Infrastructure.Extensions
             order.ReceiverRegionID = orderVM.ReceiverRegionID;
             order.PayCOD = orderVM.PayCOD;
             order.Note = orderVM.Note;
+            order.SenderView = orderVM.SenderView;
+            order.ReceiverView = orderVM.ReceiverView;
         }
 
         public static void UpdateOrderDetail(this OrderDetail orderDetail, OrderDetailViewModel orderDetailVM)

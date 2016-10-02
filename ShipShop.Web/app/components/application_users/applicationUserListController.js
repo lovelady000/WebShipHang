@@ -3,7 +3,7 @@
 
     app.controller('applicationUserListController', applicationUserListController);
 
-    applicationUserListController.$inject = ['$scope', 'apiService', 'notificationService', '$ngBootbox','popupService'];
+    applicationUserListController.$inject = ['$scope', 'apiService', 'notificationService', '$ngBootbox', 'popupService'];
 
     function applicationUserListController($scope, apiService, notificationService, $ngBootbox, popupService) {
 
@@ -70,7 +70,7 @@
         $scope.search();
 
         $scope.ResetPass = ResetPass;
-        function ResetPass(id,userName) {
+        function ResetPass(id, userName) {
             var params = {
                 objectID: id,
                 userName: userName,
@@ -85,6 +85,46 @@
                 userName: userName,
             };
             popupService.open('', '/app/components/application_users/applicationUserEditView.html', 'applicationUserEditController', params);
+        }
+        $scope.lookAcc = lookAcc;
+        function lookAcc(id) {
+            var obj = $.grep($scope.data, function (e) { return e.Id == id; })[0];
+            var pos = $scope.data.map(function (e) { return e.Id; }).indexOf(id);
+
+
+            if (obj.IsBanded == true) {
+                $ngBootbox.confirm('Bạn chắc chắn muốn mở khóa tài khoản ?')
+                .then(function () {
+                    //var config = {
+                    //    params: {
+                    //        id: id,
+                    //    }
+                    //}
+                    var object = { Id: id, };
+                    apiService.put('/api/applicationUser/BandAccount', object, function () {
+                        notificationService.displaySuccess('Đã mở khóa thành công!');
+                        obj.IsBanded = false;
+                        $scope.data[pos] = obj;
+                    },
+                    function () {
+                        notificationService.displayError('Mở khóa không thành công.');
+                    });
+                });
+            } else {
+                $ngBootbox.confirm('Bạn chắc chắn muốn khóa tài khoản ?')
+                    .then(function () {
+                        var object = { Id: id, };
+                        apiService.put('/api/applicationUser/BandAccount', object, function () {
+                            notificationService.displaySuccess('Đã khóa thành công.');
+                            obj.IsBanded = true;
+                            $scope.data[pos] = obj;
+                        },
+                        function () {
+                            notificationService.displayError('Khóa không thành công.');
+                        });
+                    });
+            }
+
         }
 
 
