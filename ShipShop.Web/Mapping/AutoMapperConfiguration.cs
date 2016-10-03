@@ -23,6 +23,11 @@ namespace ShipShop.Web.Mapping
             Mapper.CreateMap<ApplicationRole, ApplicationRoleViewModel>();
             Mapper.CreateMap<Page, PageViewModel>();
             Mapper.CreateMap<Slide, SlideViewModel>();
+
+            Mapper.CreateMap<Post, PostViewModel>();
+            Mapper.CreateMap<PostCategory, PostCategoryViewModel>();
+            Mapper.CreateMap<Tag, TagViewModel>();
+            Mapper.CreateMap<PostTag, PostTagViewModel>();
         }
     }
 }

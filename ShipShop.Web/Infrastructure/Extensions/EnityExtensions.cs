@@ -124,5 +124,45 @@ namespace ShipShop.Web.Infrastructure.Extensions
             slide.DisplayOrder = slideViewModel.DisplayOrder;
             slide.Status = slide.Status;
         }
+
+        public static void UpdatePostCategory(this PostCategory postCate, PostCategoryViewModel postCateVM)
+        {
+            postCate.Name = postCateVM.Name;
+            postCate.Alias = postCateVM.Alias;
+            postCate.Description = postCateVM.Description;
+            postCate.ParentID = postCateVM.ParentID;
+            postCate.DisplayOrder = postCateVM.DisplayOrder;
+            postCate.Image = postCateVM.Image;
+            postCate.HomeFlag = postCateVM.HomeFlag;
+            postCate.CreatedDate = postCateVM.CreatedDate;
+            postCate.CreatedBy = postCateVM.CreatedBy;
+            postCate.UpdatedDate = postCateVM.UpdatedDate;
+            postCate.UpdatedBy = postCateVM.UpdatedBy;
+            postCate.MetaKeyword = postCateVM.MetaKeyword;
+            postCate.MetaDescription = postCateVM.MetaDescription;
+            postCate.Status = postCateVM.Status;
+        }
+
+        public static void UpdatePost(this Post post, PostViewModel postVM)
+        {
+            post.Name = postVM.Name;
+            post.Alias = postVM.Alias;
+            post.CategoryID = postVM.CategoryID;
+            post.Image = postVM.Image;
+            post.Description = postVM.Description;
+            post.Content = postVM.Content;
+            post.HomeFlag = postVM.HomeFlag;
+            post.HotFlag = postVM.HotFlag;
+            post.ViewCount = postVM.ViewCount;
+
+            post.CreatedDate = postVM.CreatedDate;
+            post.CreatedBy = postVM.CreatedBy;
+
+            post.UpdatedDate = postVM.UpdatedDate;
+            post.UpdatedBy = postVM.UpdatedBy;
+            post.MetaKeyword = postVM.MetaKeyword;
+            post.MetaDescription = postVM.MetaDescription;
+            post.Status = postVM.Status;
+        }
     }
 }

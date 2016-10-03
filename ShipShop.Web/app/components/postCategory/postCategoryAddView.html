@@ -1,0 +1,60 @@
+﻿<section class="content-header">
+    <h1>
+        Thêm mới danh mục bài viết
+    </h1>
+</section>
+<section class="content">
+    <div class="box box-info">
+        <form class="form-horizontal" novalidate name="frmAddMenu" role="form" ng-submit="AddPostCate()">
+            <div class="box-body">
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-md-2 control-label">Tên</label>
+                    <div class="col-md-10">
+                        <input type="text" required class="form-control" name="name" ng-change="ChangeName();" ng-model="postCate.Name">
+                        <span ng-show="!frmAddMenu.name.$pristine && frmAddMenu.name.$invalid">Tên không được bỏ trống!</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-md-2 control-label">Tên không dấu</label>
+                    <div class="col-md-10">
+                        <input type="text" required class="form-control" ng-model="postCate.Alias" name="Alias">
+                        <span ng-show="!frmAddMenu.Alias.$pristine && frmAddMenu.Alias.$invalid">Tên Alias không được bỏ trống!</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-md-2 control-label">Mô tả</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" ng-model="postCate.Description" name="Alias">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-md-2 control-label">MetaKetword</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" ng-model="postCate.MetaKeyword" name="url">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-md-2 control-label">MetaDescription</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" ng-model="postCate.MetaDescription" name="url">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-5">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="postCate.Status" name="Status" ng-checked="postCate.Status"> Kích hoạt
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box-footer">
+                <button ng-click="cancel();" type="button" class="btn btn-default">Đóng</button>
+                <button ng-disabled="frmAddMenu.$invalid" type="submit" class="btn btn-success pull-right">Lưu</button>
+            </div>
+        </form>
+    </div>
+</section>

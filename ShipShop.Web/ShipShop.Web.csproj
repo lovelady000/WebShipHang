@@ -215,6 +215,7 @@
     <Compile Include="Api\OrderController.cs" />
     <Compile Include="Api\PageController.cs" />
     <Compile Include="Api\PostCategoryController.cs" />
+    <Compile Include="Api\PostController.cs" />
     <Compile Include="Api\RegionController.cs" />
     <Compile Include="Api\SlideController.cs" />
     <Compile Include="Api\WebInformationController.cs" />
@@ -256,9 +257,13 @@
     <Compile Include="Models\OrderHomePageViewModel.cs" />
     <Compile Include="Models\OrderViewModel.cs" />
     <Compile Include="Models\PageViewModel.cs" />
+    <Compile Include="Models\PostCategoryViewModel.cs" />
+    <Compile Include="Models\PostTagViewModel.cs" />
+    <Compile Include="Models\PostViewModel.cs" />
     <Compile Include="Models\RegionViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
     <Compile Include="Models\SlideViewModel.cs" />
+    <Compile Include="Models\TagViewModel.cs" />
     <Compile Include="Models\WebInformationViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -344,6 +349,20 @@
     <Content Include="app\components\page\pageEditView.html" />
     <Content Include="app\components\page\pageListController.js" />
     <Content Include="app\components\page\pageListView.html" />
+    <Content Include="app\components\postCategory\postCategory.module.js" />
+    <Content Include="app\components\postCategory\postCategoryAddController.js" />
+    <Content Include="app\components\postCategory\postCategoryAddView.html" />
+    <Content Include="app\components\postCategory\postCategoryEditController.js" />
+    <Content Include="app\components\postCategory\postCategoryEditView.html" />
+    <Content Include="app\components\postCategory\postCategoryListController.js" />
+    <Content Include="app\components\postCategory\postCategoryListView.html" />
+    <Content Include="app\components\post\post.module.js" />
+    <Content Include="app\components\post\postAddController.js" />
+    <Content Include="app\components\post\postAddView.html" />
+    <Content Include="app\components\post\postEditController.js" />
+    <Content Include="app\components\post\postEditView.html" />
+    <Content Include="app\components\post\postListController.js" />
+    <Content Include="app\components\post\postListView.html" />
     <Content Include="app\components\region\region.module.js" />
     <Content Include="app\components\region\regionAddController.js" />
     <Content Include="app\components\region\regionAddView.html" />
@@ -3618,6 +3637,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Assets\admin\libs\checklist-model\test\" />
+    <Folder Include="NewFolder1\" />
     <Folder Include="Resource\" />
     <Folder Include="UploadedFiles\files\" />
   </ItemGroup>
