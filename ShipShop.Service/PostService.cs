@@ -23,6 +23,7 @@ namespace ShipShop.Service
 
         IEnumerable<Post> GetAllByCategoryPaging(int categoryId, int page, int pageSize, out int totalRow);
 
+        Post GetByAlias(string alias);
 
         Post GetById(int id);
 
@@ -72,6 +73,11 @@ namespace ShipShop.Service
         public IEnumerable<Post> GetAllPaging(int page, int pageSize, out int totalRow)
         {
             return _postRepository.GetMultiPaging(x => x.Status, out totalRow, page, pageSize);
+        }
+
+        public Post GetByAlias(string alias)
+        {
+            return _postRepository.GetSingleByCondition(x => x.Alias == alias);
         }
 
         public Post GetById(int id)

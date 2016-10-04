@@ -1,0 +1,28 @@
+﻿@using ShipShop.Web.Models
+@model PostViewModel
+@{
+    ViewBag.Title = Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-12">
+    <div class="container">
+        <div class="col-md-12">
+            @Html.Raw(Model.Content)
+        </div>
+    </div>
+</div>
+
+
+<script>
+    console.log(window.location.pathname);
+    var path = window.location.pathname;
+    $a = $('#bs-example-navbar-collapse-1 a[href="' + path + '"]');
+    if ($a.length != 0) {
+        $('#bs-example-navbar-collapse-1 li').each(function () {
+            $(this).removeClass("active");
+            $(this).find('a').addClass('link link--yaku active');
+        });
+        $('a[href="' + path + '"]').closest('li').addClass("active");
+        $('a[href="' + path + '"]').removeClass('link link--yaku active');
+    }
+</script>

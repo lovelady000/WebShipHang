@@ -29,5 +29,12 @@ namespace ShipShop.Web.Controllers
             var listResult = Mapper.Map<IEnumerable<PostViewModel>>(ListPost);
             return View(listResult);
         }
+
+        public ActionResult ViewPost(string alias)
+        {
+            var post = _postService.GetByAlias(alias);
+            var postVM = Mapper.Map<PostViewModel>(post);
+            return View(postVM);
+        }
     }
 }

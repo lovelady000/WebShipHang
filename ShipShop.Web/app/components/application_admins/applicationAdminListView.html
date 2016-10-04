@@ -27,9 +27,7 @@
                         <thead>
                             <tr>
                                 <th>Tài khoản</th>
-                                <th>Web - Tên shop</th>
-                                <th>Vùng</th>
-                                <th>Địa chỉ</th>
+
                                 <th ng-if="authentication.roles.indexOf(ROLES.ROLES_ADD_PERMISSION_ADMIN) != -1">Phân quyền</th>
                                 <th style="width:10%" ng-if="authentication.roles.indexOf(ROLES.ROLES_EDIT_ADMIN) != -1 || authentication.roles.indexOf(ROLES.ROLES_DELETE_ADMIN) != -1">Khôi phục mật khẩu</th>
                             </tr>
@@ -37,9 +35,6 @@
                         <tbody>
                             <tr ng-repeat="item in data | filter:filterExpression">
                                 <td><a ui-sref="edit_application_user({id:item.Id})">{{item.UserName}}</a></td>
-                                <td>{{item.WebOrShopName}}</td>
-                                <td>{{item.Region.Name}}</td>
-                                <td>{{item.Address}}</td>
                                 <td ng-if="authentication.roles.indexOf(ROLES.ROLES_ADD_PERMISSION_ADMIN) != -1"><button type="button" ng-click="AddPermission(item.Id,item.UserName);" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></button></td>
                                 <td ng-if="authentication.roles.indexOf(ROLES.ROLES_EDIT_ADMIN) != -1 || authentication.roles.indexOf(ROLES.ROLES_DELETE_ADMIN) != -1">
                                     <button ng-if="authentication.roles.indexOf(ROLES.ROLES_EDIT_ADMIN) != -1" type="button" ng-click="ResetPass(item.Id,item.UserName);" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></button>

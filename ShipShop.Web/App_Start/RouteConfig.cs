@@ -23,6 +23,13 @@ namespace ShipShop.Web
                 defaults: new { controller = "Post", action = "Index", alias = UrlParameter.Optional },
                 namespaces: new string[] { "ShipShop.Web.Controllers" }
             );
+
+            routes.MapRoute(
+                name: "Post",
+                url: "bai-viet/{alias}.html",
+                defaults: new { controller = "Post", action = "ViewPost", alias = UrlParameter.Optional },
+                namespaces: new string[] { "ShipShop.Web.Controllers" }
+            );
             routes.MapRoute(
                 name: "QuanTriTaiKhoan",
                 url: "quan-tri-tai-khoan.html",

@@ -6,20 +6,23 @@
 
 <div class="col-md-12">
     <div class="container">
-        <div class="col-md-12">
-            @foreach (var item in Model)
-            {
-                <div class="col-md-12 tin-tuc">
-                    <img src="@item.Image" />
-                    <div class="mo-ta">
-                        <p class="ten"><b>@item.Name</b></p>
-                        <p class="chi-tiet-mo-ta">@item.Description</p>
+
+                @foreach (var item in Model)
+                {
+                 var href = "/bai-viet/" + item.Alias + ".html";
+                    <div class="col-md-12 tin-tuc">
+                        <div class="container">
+                            <a href="@href">
+                                <img src="@item.Image" />
+                            </a>
+                            <div class="mo-ta">
+                                <a href="@href" class="ten">@item.Name</a>
+                                <p class="chi-tiet-mo-ta">@item.Description</p>
+                            </div>
+
+                        </div>
                     </div>
-
-                </div>
-            }
-        </div>
-
+                }
     </div>
 
 </div>
