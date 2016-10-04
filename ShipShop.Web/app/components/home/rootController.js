@@ -98,7 +98,16 @@
                 //WEBINFO
                 ROLES_EDIT_WEBINFO: "edit_webinfo",
 
-
+                //post
+                ROLES_GET_LIST_POST: "get_list_post",
+                ROLES_ADD_POST: "add_post",
+                ROLES_EDIT_POST: "edit_post",
+                ROLES_DELETE_POST: "delete_post",
+                //postCategory
+                ROLES_GET_LIST_POSTCATEGORY: "get_list_postcategory",
+                ROLES_ADD_POSTCATEGORY: "add_postcategory",
+                ROLES_EDIT_POSTCATEGORY: "edit_postcategory",
+                ROLES_DELETE_POSTCATEGORY: "delete_postcategory",
             };
             $scope.ROLES = constValue;
 

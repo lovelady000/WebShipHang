@@ -18,17 +18,17 @@
         </div>
         <div class="box-body">
             <div class="col-md-6 input-search">
-                <button class="btn btn-success" ng-if="authentication.roles.indexOf(ROLES.ROLES_ADD_PAGE) != -1" ng-click="Add();">Thêm mới</button>
+                <button class="btn btn-success" ng-if="authentication.roles.indexOf(ROLES.ROLES_ADD_POST) != -1" ng-click="Add();">Thêm mới</button>
             </div>
             <table class="table table-bordered">
                 <tr>
                     <th style="width: 10px">#</th>
-                    <th>Tên page</th>
+                    <th>Tên danh mục</th>
                     <th>Tên không dấu</th>
                     <th style="width: 40px">Trạng thái</th>
-                    <th style="width:85px;" ng-if="authentication.roles.indexOf(ROLES.ROLES_EDIT_PAGE) != -1 || authentication.roles.indexOf(ROLES.ROLES_DELETE_PAGE) != -1">Thao tác</th>
+                    <th style="width:85px;" ng-if="authentication.roles.indexOf(ROLES.ROLES_EDIT_POST) != -1 || authentication.roles.indexOf(ROLES.ROLES_DELETE_POST) != -1">Thao tác</th>
                 </tr>
-                <tr ng-repeat="item in listPage">
+                <tr ng-repeat="item in listPost">
                     <td>
                         {{item.ID}}
                     </td>
@@ -41,9 +41,9 @@
                     <td>
                         <span ng-class="{'badge bg-red':item.Status == false,'badge bg-green':item.Status == true}">{{item.Status | status}}</span>
                     </td>
-                    <td ng-if="authentication.roles.indexOf(ROLES.ROLES_EDIT_PAGE) != -1 || authentication.roles.indexOf(ROLES.ROLES_DELETE_PAGE) != -1">
-                        <button ng-if="authentication.roles.indexOf(ROLES.ROLES_EDIT_PAGE) != -1" class="btn btn-sm btn-primary" type="button" ng-click="Edit(item.ID);"><i class="fa fa-pencil"></i></button>
-                        <button ng-if="authentication.roles.indexOf(ROLES.ROLES_DELETE_PAGE) != -1" class="btn btn-sm btn-danger" type="button" ng-click="Delete(item.ID);"><i class="fa fa-trash"></i></button>
+                    <td ng-if="authentication.roles.indexOf(ROLES.ROLES_EDIT_POST) != -1 || authentication.roles.indexOf(ROLES.ROLES_DELETE_POST) != -1">
+                        <button ng-if="authentication.roles.indexOf(ROLES.ROLES_EDIT_POST) != -1" class="btn btn-sm btn-primary" type="button" ng-click="Edit(item.ID);"><i class="fa fa-pencil"></i></button>
+                        <button ng-if="authentication.roles.indexOf(ROLES.ROLES_DELETE_POST) != -1" class="btn btn-sm btn-danger" type="button" ng-click="Delete(item.ID);"><i class="fa fa-trash"></i></button>
                     </td>
                 </tr>
                 <tfoot>

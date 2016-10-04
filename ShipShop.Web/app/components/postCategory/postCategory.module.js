@@ -6,7 +6,7 @@
 
     function config($stateProvider, $urlRouterProvider) {
         $stateProvider.state("postCategory", {
-            url: "/post",
+            url: "/postCategory",
             parent: 'base',
             templateUrl: "/app/components/postCategory/postCategoryListView.html",
             controller: "postCategoryListController"

@@ -23,11 +23,12 @@ namespace ShipShop.Service
 
         IEnumerable<Post> GetAllByCategoryPaging(int categoryId, int page, int pageSize, out int totalRow);
 
+
         Post GetById(int id);
 
         IEnumerable<Post> GetAllByTagPaging(string tag, int page, int pageSize, out int totalRow);
 
-        void SaveChanges();
+        void Save();
     }
 
     public class PostService : IPostService
@@ -78,7 +79,7 @@ namespace ShipShop.Service
             return _postRepository.GetSingleById(id);
         }
 
-        public void SaveChanges()
+        public void Save()
         {
             _unitOfWork.Commit();
         }

@@ -86,3 +86,18 @@
     overflow: hidden;
     text-overflow: ellipsis;
  }
+ .tin-tuc {
+     padding:10px 0;
+ }
+ .tin-tuc .mo-ta {
+  float:left;   
+ }
+  .tin-tuc img {
+     width:20%;
+     float:left;
+     padding-right:20px;
+ }
+
+   .tin-tuc .ten{
+     font-size:20px;
+ }

@@ -233,6 +233,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\PageController.cs" />
+    <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -3607,6 +3608,7 @@
     <Content Include="Assets\admin\libs\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Assets\admin\libs\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Assets\admin\libs\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Resource\SQL.txt" />
     <Content Include="UploadedFiles\images\download.jpg" />
     <Content Include="UploadedFiles\images\ship-logo.png" />
     <Content Include="UploadedFiles\_thumbs\Images\download.jpg" />
@@ -3638,7 +3640,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Assets\admin\libs\checklist-model\test\" />
     <Folder Include="NewFolder1\" />
-    <Folder Include="Resource\" />
     <Folder Include="UploadedFiles\files\" />
   </ItemGroup>
   <ItemGroup>
@@ -3664,6 +3665,7 @@
     <Content Include="Assets\admin\libs\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="Assets\admin\libs\ckeditor\skins\moono\readme.md" />
     <None Include="Project_Readme.html" />
+    <Content Include="Views\Post\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ShipShop.Common\ShipShop.Common.csproj">

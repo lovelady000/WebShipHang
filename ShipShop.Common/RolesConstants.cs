@@ -85,6 +85,16 @@
         //WEBINFO
         public const string ROLES_EDIT_WEBINFO = "edit_webinfo";
 
-        //
+        //post
+        public const string ROLES_GET_LIST_POST = "get_list_post";
+        public const string ROLES_ADD_POST = "add_post";
+        public const string ROLES_EDIT_POST = "edit_post";
+        public const string ROLES_DELETE_POST = "delete_post";
+
+        //postCategory
+        public const string ROLES_GET_LIST_POSTCATEGORY = "get_list_postcategory";
+        public const string ROLES_ADD_POSTCATEGORY = "add_postcategory";
+        public const string ROLES_EDIT_POSTCATEGORY = "edit_postcategory";
+        public const string ROLES_DELETE_POSTCATEGORY = "delete_postcategory";
     }
 }

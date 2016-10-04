@@ -122,8 +122,8 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li ><a ui-sref="postCategory"><i class="fa fa-circle-o"></i> Danh mục bài viết</a></li>
-                        <li><a ui-sref="post"><i class="fa fa-circle-o"></i> Quản lý bài viết</a></li>
+                        <li ng-if="authentication.roles.indexOf(ROLES.ROLES_GET_LIST_POST) != -1"><a ui-sref="postCategory"><i class="fa fa-circle-o"></i> Danh mục bài viết</a></li>
+                        <li ng-if="authentication.roles.indexOf(ROLES.ROLES_GET_LIST_POSTCATEGORY) != -1"> <a ui-sref="post"><i class="fa fa-circle-o"></i> Quản lý bài viết</a></li>
                         <li ng-if="authentication.roles.indexOf(ROLES.ROLES_GET_LIST_PAGE) != -1"><a ui-sref="page"><i class="fa fa-circle-o"></i> Trang đơn</a></li>
                     </ul>
                 </li>

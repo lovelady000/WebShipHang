@@ -67,4 +67,4 @@
 
     };
 
-})(angular.module('onlineshop.news'));
+})(angular.module('onlineshop.postCategory'));

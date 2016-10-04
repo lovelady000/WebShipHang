@@ -18,6 +18,12 @@ namespace ShipShop.Web
             );
 
             routes.MapRoute(
+                name: "Post Category",
+                url: "tin-tuc/{alias}.html",
+                defaults: new { controller = "Post", action = "Index", alias = UrlParameter.Optional },
+                namespaces: new string[] { "ShipShop.Web.Controllers" }
+            );
+            routes.MapRoute(
                 name: "QuanTriTaiKhoan",
                 url: "quan-tri-tai-khoan.html",
                 defaults: new { controller = "Order", action = "Index", id = UrlParameter.Optional },

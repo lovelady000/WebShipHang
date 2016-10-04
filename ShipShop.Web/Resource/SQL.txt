@@ -1,0 +1,2 @@
+﻿select ap.Name from dbo.ApplicationRoles as ap,dbo.ApplicationUsers as au, dbo.ApplicationUserRoles as ur
+where ap.Id = ur.RoleId and au.id = ur.UserId and au.UserName = 'admin'

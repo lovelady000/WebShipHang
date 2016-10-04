@@ -2,6 +2,7 @@
 using ShipShop.Data.Repositories;
 using ShipShop.Model.Models;
 using System.Collections.Generic;
+using System;
 
 namespace ShipShop.Service
 {
@@ -18,6 +19,8 @@ namespace ShipShop.Service
         IEnumerable<PostCategory> GetAllByParentId(int parentId);
 
         PostCategory GetById(int id);
+
+        PostCategory GetByAlias(string alias);
 
         void Save();
     }
@@ -51,6 +54,11 @@ namespace ShipShop.Service
         public IEnumerable<PostCategory> GetAllByParentId(int parentId)
         {
             return _postCategoryRepository.GetMulti(x => x.Status && x.ParentID == parentId);
+        }
+
+        public PostCategory GetByAlias(string alias)
+        {
+            return _postCategoryRepository.GetSingleByCondition(x => x.Alias == alias);
         }
 
         public PostCategory GetById(int id)
