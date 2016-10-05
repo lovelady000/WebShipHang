@@ -1,6 +1,9 @@
 ﻿using ShipShop.Service;
 using ShipShop.Web.Infrastructure.Core;
+using System.Collections.Generic;
+using System.Security.Claims;
 using System.Web.Http;
+using System.Linq;
 
 namespace ShipShop.Web.Api
 {
@@ -21,5 +24,8 @@ namespace ShipShop.Web.Api
         {
             return "Hello ";
         }
+
+
+        
     }
 }

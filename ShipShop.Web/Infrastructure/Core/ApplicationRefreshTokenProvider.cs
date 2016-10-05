@@ -32,6 +32,8 @@ namespace ShipShop.Web.Infrastructure.Core
 
         public async Task CreateAsync(AuthenticationTokenCreateContext context)
         {
+            
+            //DateTime creationDate = Convert.ToDateTime(clientid.Claims.Where(c => c.Type == "creationDate").Single().Value);
             var guid = Guid.NewGuid().ToString();
 
             // copy all properties and set the desired lifetime of refresh token  
@@ -62,6 +64,7 @@ namespace ShipShop.Web.Infrastructure.Core
         {
             AuthenticationTicket ticket;
             string header = context.OwinContext.Request.Headers["Authorization"];
+
 
             if (_refreshTokens.TryRemove(context.Token, out ticket))
             {

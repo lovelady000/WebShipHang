@@ -35,6 +35,8 @@
                 }
             }
             this.refreshToken = function refreshToken() {
+                console.log(tokenInfo.refresh_token);
+                console.log(tokenInfo.accessToken);
                 var data = "grant_type=refresh_token&client_id=&refresh_token=" + tokenInfo.refresh_token;
                 $http.post('/oauth/token', data, {
                     headers:

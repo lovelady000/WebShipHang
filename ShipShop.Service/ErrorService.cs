@@ -1,12 +1,16 @@
 ﻿using ShipShop.Data.Infrastructure;
 using ShipShop.Data.Repositories;
 using ShipShop.Model.Models;
+using System.Collections.Generic;
+using System;
 
 namespace ShipShop.Service
 {
     public interface IErrorService
     {
         Error Create(Error error);
+
+        IEnumerable<Error> GetAll(int page, int pageSize);
 
         void Save();
     }
@@ -25,6 +29,11 @@ namespace ShipShop.Service
         public Error Create(Error error)
         {
             return _errorRepository.Add(error);
+        }
+
+        public IEnumerable<Error> GetAll(int page, int pageSize)
+        {
+            return _errorRepository.GetAll();
         }
 
         public void Save()

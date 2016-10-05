@@ -37,9 +37,10 @@ namespace ShipShop.Web.Api
                 int type = typeOrder;
                 int total = 0;
                 var model = _orderService.GetAll(new string[] { "SenderRegion", "ReceiverRegion", "User" });
+                var tlist = model.ToList();
                 if(keyword != null && keyword!= "")
                 {
-                    model = model.Where(x => x.User.WebOrShopName.IndexOf(keyword) != -1 || x.Username == keyword);
+                    model = model.Where(x => x.User.WebOrShopName != null && x.User.WebOrShopName.IndexOf(keyword) != -1 || x.Username == keyword);
                 }
                 if(type == 1)
                 {
