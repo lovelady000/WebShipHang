@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ShipShop.Service;
 using ShipShop.Web.Infrastructure.Core;
+using ShipShop.Web.Infrastructure.Extensions;
 using ShipShop.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -40,7 +41,7 @@ namespace ShipShop.Web.Api
                 var tlist = model.ToList();
                 if(keyword != null && keyword!= "")
                 {
-                    model = model.Where(x => x.User.WebOrShopName != null && x.User.WebOrShopName.IndexOf(keyword) != -1 || x.Username == keyword);
+                    model = model.Where(x => x.User.WebOrShopName != null && x.User.WebOrShopName.ToUnSign().IndexOf(keyword.ToUnSign()) != -1 || x.Username == keyword);
                 }
                 if(type == 1)
                 {
