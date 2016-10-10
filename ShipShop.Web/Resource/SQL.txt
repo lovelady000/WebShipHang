@@ -16,3 +16,4 @@ UA-85281649-1
   ga('send', 'pageview');
 
 </script>
+Đồng bộ lại. thêm hoàn tác trong admin

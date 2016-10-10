@@ -40,7 +40,7 @@ namespace ShipShop.Web.Infrastructure.Core
             var refreshTokenProperties = new AuthenticationProperties(context.Ticket.Properties.Dictionary)
             {
                 IssuedUtc = context.Ticket.Properties.IssuedUtc,
-                ExpiresUtc = DateTime.UtcNow.AddMinutes(30)//DateTime.UtcNow.AddYears(1)  
+                ExpiresUtc = DateTime.UtcNow.AddDays(1)//DateTime.UtcNow.AddYears(1)  
             };
             var refreshTokenTicket = new AuthenticationTicket(context.Ticket.Identity, refreshTokenProperties);
 

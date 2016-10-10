@@ -101,3 +101,17 @@
    .tin-tuc .ten{
      font-size:20px;
  }
+   .background {
+       background:#f9f9f9;
+      
+   }
+.banner-slide {
+    height:200px;
+    padding-top:20px;
+}
+.banner-slide img{
+    max-width:100%;
+    height:auto;
+    margin:auto;
+    display:block;
+}

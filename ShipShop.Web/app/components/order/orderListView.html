@@ -179,8 +179,11 @@
                                 <a ui-sref="orderDetail({orderID:item.ID})">Xem</a>
                             </td>
                             <td ng-if="authentication.roles.indexOf(ROLES.ROLES_EDIT_ORDER) != -1">
-                                <button ng-show="item.Status" type="button" title="Hủy đơn hàng" class="btn btn-sm btn-primary" ng-click="cancelOrder(item.ID);"><i class="fa fa-times"></i></button>
+                                <button ng-show="item.Status" type="button" title="Hủy đơn hàng" class="btn btn-sm btn-primary" ng-click="cancelOrder(item.ID,item.Status);"><i class="fa fa-times"></i></button>
+                                <button ng-show="!item.Status" type="button" title="Hoàn tác đơn hàng" class="btn btn-sm btn-primary" ng-click="cancelOrder(item.ID,item.Status);"><i class="fa fa-exchange"></i></button>
+                                <input type="hidden" id="status" value="{{item.Status}}"/>
                             </td>
+                            
                         </tr>
                     </tbody>
                     <tfoot>

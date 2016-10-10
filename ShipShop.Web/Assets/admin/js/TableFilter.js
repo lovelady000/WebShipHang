@@ -46,16 +46,16 @@ $(document).ready(function () {
         $rows.show();
         var total = 0;
         $rows.each(function () {
-            var status = $(this).find('td').eq(7).find('button').attr('class').indexOf('ng-hide') == -1;
-            if (status) {
+            var status = $(this).find('td').eq(7).find('input[type="hidden"]').val();
+            if (status == 'true') {
                 var value = Number($(this).find('td').eq(5).text().replace(/,/g, ''));
                 total += value;
             }
         });
 
         $filteredRows.each(function () {
-            var status = $(this).find('td').eq(7).find('button').attr('class').indexOf('ng-hide') == -1;
-            if (status) {
+            var status = $(this).find('td').eq(7).find('input[type="hidden"]').val();
+            if (status == 'true') {
                 var value = Number($(this).find('td').eq(5).text().replace(/,/g, ''));
                 total -= value;
             }

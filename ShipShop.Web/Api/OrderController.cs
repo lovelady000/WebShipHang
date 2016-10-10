@@ -117,7 +117,7 @@ namespace ShipShop.Web.Api
             return CreateHttpResponse(request, () =>
             {
                 var order = _orderService.GetByID(orderVM.ID);
-                order.Status = false;
+                order.Status = !orderVM.Status;
                 _orderService.Update(order);
                 _orderService.Save();
                 HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, "");

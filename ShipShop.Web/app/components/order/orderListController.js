@@ -65,13 +65,28 @@
 
         $scope.getOrder();
         $scope.cancelOrder = cancelOrder;
-        function cancelOrder(id) {
+        function cancelOrder(id,status) {
             var obj = {
                 ID: id,
+                Status: status,
             };
             apiService.put('/api/order/changeOrderStatus', obj, function (result) {
-                $state.reload();
-                notificationService.displaySuccess('Hủy đơn hàng thành công');
+                //$state.reload();
+                var obj = $.grep($scope.order, function (e) { return e.ID == id; })[0];
+                var pos = $scope.order.map(function (e) { return e.ID; }).indexOf(id);
+                obj.Status = !status;
+                $scope.order[pos] = obj;
+
+                var total = 0;
+                for (var i = 0; i < $scope.order.length; ++i) {
+                    if ($scope.order[i].Status) total += $scope.order[i].PayCOD;
+                }
+                $scope.totalCOD = total;
+
+                if (status)
+                    notificationService.displaySuccess('Hủy đơn hàng thành công');
+                else 
+                    notificationService.displaySuccess('Hoàn tác đơn hàng thành công');
             }, function () {
                 console.log('error');
             });

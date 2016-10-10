@@ -67,6 +67,8 @@ namespace ShipShop.Web.Controllers
            // string s1 = ConfigHelper.GetByKey("CommentFB");
             ViewBag.DataCommentFB = ConfigHelper.GetByKey("DataCommentFB");
             ViewBag.ChatLine = ConfigHelper.GetByKey("SrcChatLine");
+
+            ViewBag.GoogleAnalyticsID = ConfigHelper.GetByKey("GoogleAnalyticsID");
             return PartialView();
         }
 

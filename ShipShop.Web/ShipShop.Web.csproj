@@ -3146,6 +3146,7 @@
     <Content Include="Assets\client\css\fluxslide.css" />
     <Content Include="Assets\client\css\lightbox.css" />
     <Content Include="Assets\client\css\style.css" />
+    <Content Include="Assets\client\css\unslider.css" />
     <Content Include="Assets\client\images\2.png" />
     <Content Include="Assets\client\images\androidstore_download.png" />
     <Content Include="Assets\client\images\appstore_download.png" />
@@ -3201,6 +3202,8 @@
     <Content Include="Assets\client\js\order.js" />
     <Content Include="Assets\client\js\responsiveslides.min.js" />
     <Content Include="Assets\client\js\registerAccount.js" />
+    <Content Include="Assets\client\js\unslider-dots.css" />
+    <Content Include="Assets\client\js\unslider-min.js" />
     <Content Include="Assets\client\js\utility.js" />
     <Content Include="Assets\client\libs\bootstrap-datepicker-1.6.1-dist\css\bootstrap-datepicker.css" />
     <Content Include="Assets\client\libs\bootstrap-datepicker-1.6.1-dist\css\bootstrap-datepicker.min.css" />
@@ -3640,7 +3643,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Assets\admin\libs\checklist-model\test\" />
-    <Folder Include="NewFolder1\" />
     <Folder Include="UploadedFiles\files\" />
   </ItemGroup>
   <ItemGroup>
