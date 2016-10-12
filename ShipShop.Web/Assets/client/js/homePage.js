@@ -132,12 +132,19 @@ $(document).ready(function () {
                 return;
             }
 
-            if ($('#DiaChiNguoiNhan').val().length == 0) {
-                bootbox.alert("Địa chỉ người nhận chưa đúng !", function () {
+            if (!CheckPhoneNo($('#SDTNguoiNhan').val())) {
+                bootbox.alert("Số điện thoại người gửi chưa đúng !", function () {
 
                 });
                 return;
             }
+
+            //if ($('#SDTNguoiNhan').val().length == 0) {
+            //    bootbox.alert("Số điện thoại người nhận chưa đúng !", function () {
+
+            //    });
+            //    return;
+            //}
 
             var orderDetail = [];
             $tb = $('#OrderDetail');

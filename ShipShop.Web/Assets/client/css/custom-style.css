@@ -1,4 +1,4 @@
-﻿.home-order, .login-home, .adv-home, .footer .container .projects .project-left  {
+﻿.home-order, .login-home, .adv-home, .footer .container .projects .project-left,.banner-slide   {
     border: 1px solid #999;
     padding:10px;
 
@@ -106,12 +106,15 @@
       
    }
 .banner-slide {
-    height:200px;
-    padding-top:20px;
+    height:173px;
+    margin-top:20px;
 }
 .banner-slide img{
     max-width:100%;
     height:auto;
     margin:auto;
     display:block;
+}
+.unslider-nav {
+    display:none;
 }

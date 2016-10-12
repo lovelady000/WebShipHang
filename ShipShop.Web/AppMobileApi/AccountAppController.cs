@@ -16,18 +16,18 @@ using System.Web.Http;
 
 namespace ShipShop.Web.AppMobileApi
 {
-    [RoutePrefix("api/app/account")]
+    [RoutePrefix("api/App/account")]
     [Authorize(Roles = Common.RolesConstants.ROLES_USER)]
-    public class AccountController : ApiControllerBase
+    public class AccountAppController : ApiControllerBase
     {
-        public AccountController(IErrorService errorService) : base(errorService)
+        public AccountAppController(IErrorService errorService) : base(errorService)
         {
         }
 
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IErrorService errorService) : base(errorService)
+        public AccountAppController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IErrorService errorService) : base(errorService)
         {
             UserManager = userManager;
             SignInManager = signInManager;

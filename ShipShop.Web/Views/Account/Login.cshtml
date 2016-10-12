@@ -1,6 +1,11 @@
 ﻿@model ShipShop.Web.Models.LoginViewModel
 
 <script src="~/Assets/client/js/login.ajax.js"></script>
+<style>
+    .login-home {
+        min-height:290px;
+    }
+</style>
 @using (Html.BeginForm("Login", "Account", FormMethod.Post, new {@id="frmLogin", @class = "form-horizontal" }))
 {
     <div class="form-group">

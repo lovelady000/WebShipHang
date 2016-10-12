@@ -33,7 +33,7 @@ namespace ShipShop.Web.App_Start
                 Provider = new AuthorizationServerProvider(),
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
                 AllowInsecureHttp = true,
-                RefreshTokenProvider = new ApplicationRefreshTokenProvider(),
+                //RefreshTokenProvider = new ApplicationRefreshTokenProvider(),
             });
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
 

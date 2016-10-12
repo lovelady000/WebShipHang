@@ -13,7 +13,7 @@
             authenticationService.setHeader();
             $http.get(url, params).then(function (result) {
                 success(result);
-                authenticationService.refreshToken();
+                //authenticationService.refreshToken();
             }, function (error) {
                  if (error.status === 401) {
                     notificationService.displayError('Quyền truy cập bị từ chối!');
@@ -26,7 +26,7 @@
             
             $http.post(url, data).then(function (result) {
                 success(result);
-                authenticationService.refreshToken();
+                //authenticationService.refreshToken();
             }, function (error) {
                 if (error.status === 401) {
                     notificationService.displayError('Quyền truy cập bị từ chối!');
@@ -39,7 +39,7 @@
 
             $http.put(url, data).then(function (result) {
                 success(result);
-                authenticationService.refreshToken();
+                //authenticationService.refreshToken();
             }, function (error) {
                 if (error.status === 401) {
                     notificationService.displayError('Quyền truy cập bị từ chối!');
@@ -51,7 +51,7 @@
             authenticationService.setHeader();
             $http.delete(url, data).then(function (result) {
                 success(result);
-                authenticationService.refreshToken();
+                //authenticationService.refreshToken();
             }, function (error) {
                 console.log(error.status)
                 if (error.status === 401) {
