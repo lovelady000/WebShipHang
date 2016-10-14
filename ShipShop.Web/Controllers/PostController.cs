@@ -25,7 +25,7 @@ namespace ShipShop.Web.Controllers
             ViewBag.Alias = alias;
             ViewBag.Title = PostCategory.Name;
             int totalRow = 0;
-            var ListPost = _postService.GetAllByCategoryPaging(PostCategory.ID, 0, 10, out totalRow);
+            var ListPost = _postService.GetAllByCategoryPaging(PostCategory.ID, 0, 10, out totalRow).OrderByDescending(x=>x.ID);
             var listResult = Mapper.Map<IEnumerable<PostViewModel>>(ListPost);
             return View(listResult);
         }

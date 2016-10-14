@@ -36,7 +36,7 @@ namespace ShipShop.Web.Controllers
             this._regionService = regionService;
             this._pageSize = int.Parse(ConfigHelper.GetByKey("PageSize"));
             this._maxPage = int.Parse(ConfigHelper.GetByKey("MaxPage"));
-        } 
+        }
         public ApplicationUserManager UserManager
         {
             get
@@ -70,11 +70,11 @@ namespace ShipShop.Web.Controllers
                 return Redirect("/");
             }
         }
-       
+
         // GET: Order
         public async Task<ActionResult> Index(int page = 1)
         {
-           
+
             if (User.Identity.IsAuthenticated)
             {
                 var typeOfOrder = Request["typeOfOrder"];
@@ -84,7 +84,7 @@ namespace ShipShop.Web.Controllers
                 int maxPage = this._maxPage;
                 DateTime dtBeginDate = DateTime.MinValue;
                 DateTime dtToDate = DateTime.MaxValue;
-            
+
                 if (Request["dtDenNgay"] != null)
                 {
                     string denNgay = Request["dtDenNgay"].ToString();
@@ -112,14 +112,14 @@ namespace ShipShop.Web.Controllers
                 }
 
                 ViewBag.Title = "Quản trị tài khoản";
-                var model = _orderService.GetAllByUserName(User.Identity.Name, dtBeginDate, dtToDate,page,pageSize,out totalCount, new string[] { "ReceiverRegion", "SenderRegion" });
+                var model = _orderService.GetAllByUserName(User.Identity.Name, dtBeginDate, dtToDate, page, pageSize, out totalCount, new string[] { "ReceiverRegion", "SenderRegion" });
                 ViewBag.TypeOfOrder = 1;
                 var user = await UserManager.FindByNameAsync(User.Identity.Name);
                 if (typeOfOrder == "2")
                 {
-                    if(user.Vendee)
+                    if (user.Vendee)
                     {
-                           model = _orderService.GetAllBySenderMobile(User.Identity.Name, dtBeginDate, dtToDate, page, pageSize, out totalCount, new string[] { "ReceiverRegion", "SenderRegion" });
+                        model = _orderService.GetAllBySenderMobile(User.Identity.Name, dtBeginDate, dtToDate, page, pageSize, out totalCount, new string[] { "ReceiverRegion", "SenderRegion" });
                         _orderService.CheckViewOrder(User.Identity.Name, user.Vendee);
                     }
                     else
@@ -138,7 +138,7 @@ namespace ShipShop.Web.Controllers
                 ViewBag.Address = currenUser.Address;
                 ViewBag.Vendee = currenUser.Vendee;
                 ViewBag.WebsiteOrShop = currenUser.WebOrShopName;
-                ViewBag.TotalCOD = query.Where(x=>x.Status).Sum(x => x.PayCOD);
+                ViewBag.TotalCOD = query.Where(x => x.Status).Sum(x => x.PayCOD);
                 int totalPage = (int)Math.Ceiling((double)totalCount / pageSize);
                 var paginationSet = new PaginationSet<OrderViewModel>()
                 {
@@ -244,8 +244,58 @@ namespace ShipShop.Web.Controllers
             IXLWorksheet worksheet = workbook.Worksheets.Add("Danh sách đơn hàng");
 
 
-            worksheet.Cell(1, 1).SetValue("Chức năng đang chờ hoàn thiện");
-            //worksheet.Cells()
+            var typeOfOrder = Request["typeOfOrder"];
+            var listOrder = _orderService.GetAll(new string[] { "SenderRegion", "ReceiverRegion" }).Where(x=>x.Status);
+            var user = await UserManager.FindByNameAsync(User.Identity.Name);
+            if (typeOfOrder == "2")
+            {
+                if (user.Vendee)
+                {
+                    listOrder = listOrder.Where(x => x.SenderMobile == user.UserName && x.Username != user.UserName);
+                }
+                else
+                {
+                    listOrder = listOrder.Where(x => x.ReceiverMobile == user.UserName && x.Username != user.UserName);
+                }
+            }
+            else
+            {
+                listOrder = listOrder.Where(x => x.Username == user.UserName);
+            }
+
+            worksheet.Columns().AdjustToContents();
+            worksheet.Rows().AdjustToContents();
+            //worksheet.Cell(1, 1).SetValue("Danh sách đơn hàng");
+            UpdateValue(worksheet, 1, "A", "Danh sách đơn hàng", 1, 1, false);
+            worksheet.Range("A1:I1").Row(1).Merge();
+            worksheet.Cell("A2").Value = "STT";
+            worksheet.Cell("B2").Value = "Thời gian";
+            worksheet.Cell("C2").Value = "SĐT người gửi";
+            worksheet.Cell("D2").Value = "Địa chỉ người gửi";
+            worksheet.Cell("E2").Value = "Khu vực người gửi";
+            worksheet.Cell("F2").Value = "SĐT người nhận";
+            worksheet.Cell("G2").Value = "Địa chỉ người nhận";
+            worksheet.Cell("H2").Value = "Khu vực người nhận";
+            worksheet.Cell("I2").Value = "Phí COD";
+
+            worksheet.Row(2).Style.Font.Bold = true;
+
+            var index = 3;
+
+            foreach (var item in listOrder)
+            {
+                UpdateValue(worksheet, index, "A", index - 2, 0, 0, false);
+                UpdateValue(worksheet, index, "B", item.CreatedDate.HasValue ? "'" + item.CreatedDate.Value.ToString("HH:mm dd/MM/yyyy") : "", 0, 0, false);
+                UpdateValue(worksheet, index, "C", "'" + item.SenderMobile, 0, 0, false);
+                UpdateValue(worksheet, index, "D", "'" + item.SenderAddress, 0, 0, false);
+                UpdateValue(worksheet, index, "E", item.SenderRegion.Name, 0, 0, false);
+                UpdateValue(worksheet, index, "F", "'" + item.ReceiverMobile, 0, 0, false);
+                UpdateValue(worksheet, index, "G", "'" + item.ReceiverAddress, 0, 0, false);
+                UpdateValue(worksheet, index, "H", item.ReceiverRegion.Name, 0, 0, false);
+                UpdateValue(worksheet, index, "I", item.PayCOD, 0, 0, false);
+                ++index;
+            }
+
             workbook.SaveAs(spreadsheetStream);
 
             spreadsheetStream.Position = 0;
