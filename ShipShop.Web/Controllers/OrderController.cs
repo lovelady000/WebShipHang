@@ -262,7 +262,7 @@ namespace ShipShop.Web.Controllers
             {
                 listOrder = listOrder.Where(x => x.Username == user.UserName);
             }
-
+            listOrder = listOrder.OrderByDescending(x => x.CreatedDate);
             worksheet.Columns().AdjustToContents();
             worksheet.Rows().AdjustToContents();
             //worksheet.Cell(1, 1).SetValue("Danh sách đơn hàng");
