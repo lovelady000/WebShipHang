@@ -13,6 +13,35 @@
             function changPass() {
                 popupService.open('', '/app/components/home/changePasswordView.html', 'changePasswordController', '');
             };
+
+
+            var hub = $.connection.orderHub;
+            hub.client.broadcastMessage = function (name, message) {
+                // Html encode display name and message. 
+                //var encodedName = $('<div />').text(name).html();
+                //var encodedMsg = $('<div />').text(message).html();
+                // Add the message to the page. 
+                //$('#discussion').append('<li><strong>' + encodedName
+                //+ '</strong>:&nbsp;&nbsp;' + encodedMsg + '</li>');
+                alert(message);
+            };
+
+
+            $.connection.hub.start().done(function () {
+
+                setTimeout(function () {
+
+                    hub.server.newOrder("hello", "Xin chao");
+                }, 5000);
+                //$('#sendmessage').click(function () {
+                // Call the Send method on the hub. 
+
+                // Clear text box and reset focus for next comment. 
+                //$('#message').val('').focus();
+                //});
+            });
+
+
             var constValue = {
                 ACCOUNT_ADMINISTRATOR: "administrator",
 
