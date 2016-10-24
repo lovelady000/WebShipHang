@@ -12,6 +12,7 @@ namespace ShipShop.Web.Hubs
         {
             Clients.All.hello();
         }
+
         public void NewOrder(string name, string message)
         {
             // Call the broadcastMessage method to update clients.

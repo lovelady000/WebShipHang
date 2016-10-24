@@ -139,12 +139,19 @@ $(document).ready(function () {
                 return;
             }
 
-            //if ($('#SDTNguoiNhan').val().length == 0) {
-            //    bootbox.alert("Số điện thoại người nhận chưa đúng !", function () {
+            if ($('#DiaChiNguoiGui').val().length == 0) {
+                bootbox.alert("Địa chỉ người gửi chưa đúng !", function () {
 
-            //    });
-            //    return;
-            //}
+                });
+                return;
+            }
+
+            if ($('#DiaChiNguoiNhan').val().length == 0) {
+                bootbox.alert("Địa chỉ người nhận chưa đúng !", function () {
+
+                });
+                return;
+            }
 
             var orderDetail = [];
             $tb = $('#OrderDetail');
@@ -163,15 +170,17 @@ $(document).ready(function () {
                 }
                 orderDetail.push(obj);
             });
+           // console.log($('#DiaChiNguoiNhan').val());
+           // return;
 
             var objOrderHomePage = {
                 order: {
                     SenderMobile: $('#SDTNguoiGui').val(),
                     SenderRegionID: JSON.parse($('#VungNguoiGui').val()).RegionID,
-                    SenderAddress: $('#DiaChiNguoiGui').val(),
+                    SenderAddress: $('#DiaChiNguoiGui').val().length == 0 ? " " : $('#DiaChiNguoiGui').val(),
                     ReceiverMobile: $('#SDTNguoiNhan').val(),
                     ReceiverRegionID: JSON.parse($('#VungNguoiNhan').val()).RegionID,
-                    ReceiverAddress: $('#DiaChiNguoiNhan').val(),
+                    ReceiverAddress: $('#DiaChiNguoiNhan').val().length == 0 ? " " : $('#DiaChiNguoiNhan').val(),
                     PayCOD: $('#PhiThuHo').val().replace(/\./g, ''),
                     Note: $('#GhiChu').val(),
                 },
@@ -199,7 +208,10 @@ $(document).ready(function () {
                         $lblMsg.text(result.Msg);
                     }
                 },
-                error: function () { alert(error); }
+                error: function (result) {
+                    console.log(result);
+                    alert(error);
+                }
             });
 
             //

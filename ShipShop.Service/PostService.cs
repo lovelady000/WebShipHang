@@ -60,7 +60,10 @@ namespace ShipShop.Service
 
         public IEnumerable<Post> GetAllByCategoryPaging(int categoryId, int page, int pageSize, out int totalRow)
         {
-            return _postRepository.GetMultiPaging(x => x.Status && x.CategoryID == categoryId, out totalRow, page, pageSize, new string[] { "PostCategory" });
+            var list = _postRepository.GetMulti(x => x.Status && x.CategoryID == categoryId, new string[] { "PostCategory" });
+            totalRow = list.Count();
+
+            return list.Skip(pageSize * (page - 1)).Take(pageSize);
         }
 
         public IEnumerable<Post> GetAllByTagPaging(string tag, int page, int pageSize, out int totalRow)

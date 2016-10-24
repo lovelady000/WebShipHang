@@ -15,6 +15,8 @@ using System.Linq;
 using ClosedXML.Excel;
 using ShipShop.Web.Infrastructure.Core;
 using ShipShop.Common;
+using Microsoft.AspNet.SignalR;
+using ShipShop.Web.Hubs;
 
 namespace ShipShop.Web.Controllers
 {
@@ -190,7 +192,8 @@ namespace ShipShop.Web.Controllers
                     }
                     _orderDetailService.Save();
                 }
-
+                var context = GlobalHost.ConnectionManager.GetHubContext<OrderHub>();
+                context.Clients.All.broadcastMessage("Đơn hàng mới!","Bạn có đơn hàng mới từ số điện thoại:" + User.Identity.Name);
                 var response = new { Code = 1, Msg = "THành công" };
                 return Json(response);
             }

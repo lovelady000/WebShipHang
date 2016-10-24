@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using Microsoft.AspNet.SignalR;
 using Microsoft.Owin.Security;
 using ShipShop.Model.Models;
 using ShipShop.Service;
 using ShipShop.Web.App_Start;
+using ShipShop.Web.Hubs;
 using ShipShop.Web.Models;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -96,6 +98,8 @@ namespace ShipShop.Web.Controllers
         [HttpGet]
         public ActionResult Login()
         {
+            //var context = GlobalHost.ConnectionManager.GetHubContext<OrderHub>();
+            //context.Clients.All.broadcastMessage("Đơn hàng mới!", "Bạn có đơn hàng mới từ số điện thoại:");
             return View();
         }
 

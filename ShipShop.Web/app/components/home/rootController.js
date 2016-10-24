@@ -1,7 +1,7 @@
 ﻿(function (app) {
     app.controller('rootController', ['$state', 'authData', 'loginService', '$scope', 'authenticationService',
-        'popupService', 'permissionService', 'apiService',
-        function ($state, authData, loginService, $scope, authenticationService, popupService, permissionService, apiService) {
+        'popupService', 'permissionService', 'apiService','ngAudio','notificationService',
+        function ($state, authData, loginService, $scope, authenticationService, popupService, permissionService, apiService, ngAudio, notificationService) {
             $scope.logOut = function () {
                 loginService.logOut();
                 $state.go('login');
@@ -17,22 +17,20 @@
 
             var hub = $.connection.orderHub;
             hub.client.broadcastMessage = function (name, message) {
-                // Html encode display name and message. 
-                //var encodedName = $('<div />').text(name).html();
-                //var encodedMsg = $('<div />').text(message).html();
-                // Add the message to the page. 
-                //$('#discussion').append('<li><strong>' + encodedName
-                //+ '</strong>:&nbsp;&nbsp;' + encodedMsg + '</li>');
-                alert(message);
+                if (authData.authenticationData.IsAuthenticated) {
+                    notificationService.displayInfo(message);
+                    $scope.audio = ngAudio.load('/Assets/admin/audio/TextNotification.mp3');
+                    $scope.audio.play();
+                }
             };
 
-
+            //$.connection.hub.qs = { "Authorization": 'Bearer' + authenticationService.getTokenInfo().accessToken };
             $.connection.hub.start().done(function () {
 
-                setTimeout(function () {
+                //setTimeout(function () {
 
-                    hub.server.newOrder("hello", "Xin chao");
-                }, 5000);
+                //    hub.server.newOrder("hello", "Xin chao");
+                //}, 5000);
                 //$('#sendmessage').click(function () {
                 // Call the Send method on the hub. 
 
