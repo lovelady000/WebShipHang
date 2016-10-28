@@ -20,6 +20,8 @@
                 if (authData.authenticationData.IsAuthenticated) {
                     notificationService.displayInfo(message);
                     $scope.audio = ngAudio.load('/Assets/admin/audio/TextNotification.mp3');
+                    $scope.audio.volume = 1;
+                    $scope.audio.loop = 2;
                     $scope.audio.play();
                 }
             };
@@ -38,7 +40,6 @@
                 //$('#message').val('').focus();
                 //});
             });
-
 
             var constValue = {
                 ACCOUNT_ADMINISTRATOR: "administrator",
