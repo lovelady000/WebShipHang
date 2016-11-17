@@ -23,8 +23,8 @@ namespace ShipShop.Web.Controllers
             this._postService = postService;
             this._postCategoryService = postCategoryService;
             this._maxPage = int.Parse(ConfigHelper.GetByKey("MaxPage"));
-            //this._pageSize = int.Parse(ConfigHelper.GetByKey("PageSize"));
-            this._pageSize = 1;
+            this._pageSize = int.Parse(ConfigHelper.GetByKey("PageSize"));
+            //this._pageSize = 1;
         }
         // GET: Post
         public ActionResult Index(string alias, int page=0)

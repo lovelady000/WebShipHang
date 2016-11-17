@@ -37,6 +37,7 @@ namespace ShipShop.Service
         public Area Add(Area area)
         {
             return _areaRepository.Add(area);
+           
         }
 
         public Area Delete(int id)
