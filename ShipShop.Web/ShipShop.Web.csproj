@@ -3529,7 +3529,9 @@
     <Content Include="Assets\client\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Assets\client\fonts\Roboto-Regular.ttf" />
     <Content Include="ConnectString.config" />
-    <Content Include="AppSetting.config" />
+    <Content Include="AppSetting.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Assets\admin\libs\angular-loading-bar\.bower.json" />
     <Content Include="Assets\admin\libs\angular-loading-bar\bower.json" />
     <Content Include="Assets\admin\libs\angular-loading-bar\CHANGELOG.md" />
@@ -3704,8 +3706,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />

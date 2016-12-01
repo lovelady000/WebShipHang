@@ -67,13 +67,13 @@ namespace ShipShop.Web.AppMobileApi
             var user = await UserManager.FindAsync(User.Identity.Name, model.OldPassword);
             if (user == null)
             {
-                return request.CreateResponse(HttpStatusCode.OK, "Mật khẩu cũ không đúng!");
+                return request.CreateResponse(HttpStatusCode.BadRequest, "Mật khẩu cũ không đúng!");
             }
             else
             {
                 if (model.NewPassword != model.RePassword)
                 {
-                    return request.CreateResponse(HttpStatusCode.OK, "Mật khẩu không trùng khớp!");
+                    return request.CreateResponse(HttpStatusCode.BadRequest, "Mật khẩu không trùng khớp!");
                 }
                 else
                 {
@@ -87,12 +87,12 @@ namespace ShipShop.Web.AppMobileApi
                         }
                         else
                         {
-                            return request.CreateResponse(HttpStatusCode.OK, "Thay đổi mật khẩu thất bại!");
+                            return request.CreateResponse(HttpStatusCode.BadRequest, "Thay đổi mật khẩu thất bại!");
                         }
                     }
                     else
                     {
-                        return request.CreateResponse(HttpStatusCode.OK, "Thay đổi mật khẩu thất bại!");
+                        return request.CreateResponse(HttpStatusCode.BadRequest, "Thay đổi mật khẩu thất bại!");
                     }
                 }
             }
@@ -123,7 +123,7 @@ namespace ShipShop.Web.AppMobileApi
             UserManager.AddToRoles(userFindByName.Id, new string[] { "User" });
 
             var responseSuccess = new { Code = 1, Msg = "" };
-            return request.CreateResponse(HttpStatusCode.BadRequest, "Đăng kí thành công!");
+            return request.CreateResponse(HttpStatusCode.OK, "Đăng kí thành công!");
         }
 
 
