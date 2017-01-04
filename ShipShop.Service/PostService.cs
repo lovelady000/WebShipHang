@@ -1,11 +1,8 @@
 ﻿using ShipShop.Data.Infrastructure;
 using ShipShop.Data.Repositories;
 using ShipShop.Model.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ShipShop.Service
 {
@@ -23,6 +20,8 @@ namespace ShipShop.Service
 
         IEnumerable<Post> GetAllByCategoryPaging(int categoryId, int page, int pageSize, out int totalRow);
 
+        IEnumerable<Post> GetAllByCategory(int categoryId);
+
         Post GetByAlias(string alias);
 
         Post GetById(int id);
@@ -34,8 +33,8 @@ namespace ShipShop.Service
 
     public class PostService : IPostService
     {
-        IPostRepository _postRepository;
-        IUnitOfWork _unitOfWork;
+        private IPostRepository _postRepository;
+        private IUnitOfWork _unitOfWork;
 
         public PostService(IPostRepository postRepository, IUnitOfWork unitOfWork)
         {
@@ -66,11 +65,17 @@ namespace ShipShop.Service
             return list.Skip(pageSize * (page - 1)).Take(pageSize);
         }
 
+        public IEnumerable<Post> GetAllByCategory(int categoryId)
+        {
+            var list = _postRepository.GetMulti(x => x.Status && x.CategoryID == categoryId, new string[] { "PostCategory" });
+
+            return list;
+        }
+
         public IEnumerable<Post> GetAllByTagPaging(string tag, int page, int pageSize, out int totalRow)
         {
             //TODO: Select all post by tag
             return _postRepository.GetAllByTag(tag, page, pageSize, out totalRow);
-
         }
 
         public IEnumerable<Post> GetAllPaging(int page, int pageSize, out int totalRow)

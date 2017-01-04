@@ -56,6 +56,7 @@ namespace ShipShop.Web.Api
 
         [Route("getallnopaging")]
         [HttpGet]
+        [AllowAnonymous]
         public HttpResponseMessage GetAllNoPaging(HttpRequestMessage request)
         {
             return CreateHttpResponse(request, () =>

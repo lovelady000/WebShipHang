@@ -72,6 +72,7 @@
                         <li ng-if="authentication.roles.indexOf(ROLES.ROLES_GET_LIST_MENU) != -1"><a ui-sref="menu"><i class="fa fa-circle-o"></i>Menu</a></li>
                         <li ng-if="authentication.roles.indexOf(ROLES.ROLES_GET_LIST_NEWS) != -1"><a ui-sref="news"><i class="fa fa-circle-o"></i>Bài viết host</a></li>
                         <li ng-if="authentication.roles.indexOf(ROLES.ROLES_GET_LIST_SLIDE) != -1"><a ui-sref="slide"><i class="fa fa-circle-o"></i>Slide</a></li>
+                        <li><a ui-sref="advertisement"><i class="fa fa-circle-o"></i>Quảng cáo</a></li>
                     </ul>
                 </li>
                 <li class="treeview" ng-if="authentication.roles.indexOf(ROLES.ROLES_GET_LIST_DVTB) != -1 || authentication.roles.indexOf(ROLES.ROLES_GET_LIST_AREA) != -1 || authentication.roles.indexOf(ROLES.ROLES_GET_LIST_REGION) != -1">

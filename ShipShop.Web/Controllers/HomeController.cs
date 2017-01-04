@@ -1,14 +1,10 @@
 ﻿using AutoMapper;
-using Microsoft.AspNet.Identity.Owin;
 using ShipShop.Common;
 using ShipShop.Model.Models;
 using ShipShop.Service;
-using ShipShop.Web.App_Start;
 using ShipShop.Web.Models;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ShipShop.Web.Controllers
@@ -21,9 +17,8 @@ namespace ShipShop.Web.Controllers
         private IWebInformationService _webInformationService;
         private ISlideService _slideService;
 
-
-        public HomeController(IMenuService menuService, IDonViTieuBieuService donViTieuBieuService, 
-            INewsService newsService, IWebInformationService webInformationService ,
+        public HomeController(IMenuService menuService, IDonViTieuBieuService donViTieuBieuService,
+            INewsService newsService, IWebInformationService webInformationService,
             ISlideService slideService)
         {
             this._menuService = menuService;
@@ -31,24 +26,11 @@ namespace ShipShop.Web.Controllers
             this._newsService = newsService;
             this._webInformationService = webInformationService;
             this._slideService = slideService;
-
         }
+
         public ActionResult Index()
         {
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
+            //ConfigHelper.UpdateSetting("UrlImageLeftAdv", "131312");
             return View();
         }
 
@@ -64,7 +46,7 @@ namespace ShipShop.Web.Controllers
             ViewBag.WebInfo = webInformationVM;
 
             ViewBag.ConfigCommentFB = ConfigHelper.GetByKey("CommentFB");
-           // string s1 = ConfigHelper.GetByKey("CommentFB");
+            // string s1 = ConfigHelper.GetByKey("CommentFB");
             ViewBag.DataCommentFB = ConfigHelper.GetByKey("DataCommentFB");
             ViewBag.ChatLine = ConfigHelper.GetByKey("SrcChatLine");
 
@@ -94,6 +76,5 @@ namespace ShipShop.Web.Controllers
             ViewBag.listSlideVM = listSlideVM;
             return PartialView();
         }
- 
     }
 }

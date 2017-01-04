@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web.Configuration;
 
 namespace ShipShop.Common
 {
@@ -11,7 +8,36 @@ namespace ShipShop.Common
     {
         public static string GetByKey(string key)
         {
-            return ConfigurationManager.AppSettings[key].ToString();
+            try
+            {
+                return ConfigurationManager.AppSettings[key].ToString();
+            }
+            catch
+            {
+                return "";
+            }
+        }
+
+        public static string UpdateSetting(string key, string value)
+        {
+            //Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal);
+            //configuration.AppSettings.Settings[key].Value = value;
+            //configuration.Save();
+
+            //ConfigurationManager.RefreshSection("appSettings");
+            try
+            {
+                Configuration config = WebConfigurationManager.OpenWebConfiguration("/");
+                string oldValue = config.AppSettings.Settings[key].Value;
+                config.AppSettings.Settings[key].Value = value;
+                config.Save(ConfigurationSaveMode.Modified);
+                return "Success";
+            }
+            catch (Exception ex)
+            {
+                return "Error";
+            }
+
         }
     }
 }

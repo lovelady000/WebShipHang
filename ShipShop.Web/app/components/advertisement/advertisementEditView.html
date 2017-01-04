@@ -1,0 +1,37 @@
+﻿<section class="content-header">
+    <h1>
+        Cập nhập: {{Config.text}}
+    </h1>
+</section>
+<section class="content">
+    <div class="box box-info">
+        <form class="form-horizontal" novalidate name="frmAddMenu" role="form" ng-submit="Update()">
+            <div ng-if="Config.bImage" class="box-body">
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-md-2 control-label">Giá trị</label>
+                    <div class="col-md-7">
+                        <input type="text" class="form-control" ng-model="Config.value" name="value">
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-default" type="button" ng-click="ChooseImage();">Chọn ảnh</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="box-body" ng-if="!Config.bImage">
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-md-2 control-label">Giá trị</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" ng-model="Config.value" name="value">
+                    </div>
+                </div>
+            </div>
+
+            <div class="box-footer">
+                <button ng-click="cancel();" type="button" class="btn btn-default">Đóng</button>
+                <button ng-disabled="frmAddMenu.$invalid" type="submit" class="btn btn-success pull-right">Lưu</button>
+            </div>
+        </form>
+    </div>
+</section>

@@ -18,6 +18,7 @@
             var hub = $.connection.orderHub;
             hub.client.broadcastMessage = function (name, message) {
                 if (authData.authenticationData.IsAuthenticated) {
+                    alert(message);
                     notificationService.displayInfo(message);
                     $scope.audio = ngAudio.load('/Assets/admin/audio/TextNotification.mp3');
                     $scope.audio.volume = 1;

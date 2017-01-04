@@ -13,6 +13,16 @@
     }
     string htmlTinTuc = "<marquee class='marqueeTop' behavior=\"scroll\" onmouseover=\"this.stop();\" onmouseout=\"this.start();\" direction=\"left\">" + TinTuc + " </marquee>";
 }
+<div id='ads-left'>
+        <div style='margin:0 0 5px 0; padding:0;width:100px;position:fixed; left:50px; top:150px;'>
+            <a href='@System.Configuration.ConfigurationManager.AppSettings["LinkLeftAdv"]' target='_blank'><img border='0' height='500' src='@System.Configuration.ConfigurationManager.AppSettings["UrlImageLeftAdv"]' width='100' /></a>
+        </div>
+    </div>
+    <div id='ads-right'>
+        <div style='margin:0 0 5px 0; padding:0;width:100px;position:fixed; right:50px; top:150px;'>
+            <a href='@System.Configuration.ConfigurationManager.AppSettings["LinkRightAdv"]' target='_blank'><img border='0' height='500' src='@System.Configuration.ConfigurationManager.AppSettings["UrlImageRightAdv"]' width='100' /></a>
+        </div>
+    </div>
 <div class="row" style="margin:0px; height:10px;">
 
 </div>

@@ -229,6 +229,7 @@
     <Compile Include="Api\WebInformationController.cs" />
     <Compile Include="AppMobileApi\AccountAppController.cs" />
     <Compile Include="AppMobileApi\OrderAppController.cs" />
+    <Compile Include="AppMobileApi\PostAppController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -260,6 +261,7 @@
     <Compile Include="Models\ApplicationUserViewModel.cs" />
     <Compile Include="Models\AreaViewModel.cs" />
     <Compile Include="Models\ChangePassViewModel.cs" />
+    <Compile Include="Models\ConfigViewModel.cs" />
     <Compile Include="Models\DonViTieuBieuViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\MenuGroupViewModel.cs" />
@@ -281,6 +283,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
+    <Content Include="app\components\advertisement\advertisement.module.js" />
+    <Content Include="app\components\advertisement\advertisementEditController.js" />
+    <Content Include="app\components\advertisement\advertisementEditView.html" />
+    <Content Include="app\components\advertisement\advertisementListController.js" />
+    <Content Include="app\components\advertisement\advertisementListView.html" />
     <Content Include="app\components\application_admins\applicationAdminAddController.js" />
     <Content Include="app\components\application_admins\applicationAdminAddView.html" />
     <Content Include="app\components\application_admins\applicationAdminListController.js" />

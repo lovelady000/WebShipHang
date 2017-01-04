@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ShipShop.Common;
 using ShipShop.Model.Models;
 using ShipShop.Service;
 using ShipShop.Web.Infrastructure.Core;
@@ -64,6 +65,32 @@ namespace ShipShop.Web.Api
                     response = request.CreateResponse(HttpStatusCode.Created, "");
                 }
 
+                return response;
+            });
+        }
+
+
+        [Route("GetConfigByKey")]
+        [HttpGet]
+        [Authorize]
+        public HttpResponseMessage GetConfigByKey(HttpRequestMessage request, string key)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                var response = request.CreateResponse(HttpStatusCode.OK, ConfigHelper.GetByKey(key));
+                return response;
+            });
+        }
+
+        [Route("UpdateConfig")]
+        [HttpPut]
+        [Authorize]
+        public HttpResponseMessage UpdateConfig(HttpRequestMessage request, ConfigViewModel configVM)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                var result = ConfigHelper.UpdateSetting(configVM.Key, configVM.Value);
+                var response = request.CreateResponse(HttpStatusCode.OK, result);
                 return response;
             });
         }

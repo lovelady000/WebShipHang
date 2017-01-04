@@ -1,6 +1,27 @@
 ﻿var error = "Có lỗi xảy ra! Xin lỗi quý khách! Vui lòng F5 lại trình duyệt và liên hệ với người quản trị. Xin cảm ơn!";
 $(document).ready(function () {
 
+    var x = $('.banner .container .col-md-12 ').position();
+    $('#ads-left > div').css('left', (x.left - 115) + 'px');
+    $('#ads-right > div').css('right', (x.left - 115) + 'px');
+
+    $(window).resize(function () {
+        setTimeout(function () {
+            var x = $('.banner .container .col-md-12 ').position();
+            $('#ads-left > div').css('left', (x.left - 115) + 'px');
+            $('#ads-right > div').css('right', (x.left - 115) + 'px');
+            //if ((x.left - 115) < 0) {
+            //    $('#ads-left').hide();
+            //    $('#ads-right').hide();
+            //} else {
+            //    $('#ads-left').show();
+            //    $('#ads-right').show();
+            //    $('#ads-left > div').css('left', (x.left - 115) + 'px');
+            //    $('#ads-right > div').css('right', (x.left - 115) + 'px');
+            //}
+        }, 500);
+
+    });
 
     $('input.text-num').change(function () {
         if (isNaN(this.value)) {
@@ -170,8 +191,8 @@ $(document).ready(function () {
                 }
                 orderDetail.push(obj);
             });
-           // console.log($('#DiaChiNguoiNhan').val());
-           // return;
+            // console.log($('#DiaChiNguoiNhan').val());
+            // return;
 
             var objOrderHomePage = {
                 order: {
@@ -201,7 +222,7 @@ $(document).ready(function () {
                         bootbox.alert("Đơn hàng được tạo thành công", function () {
                             window.location.reload();
                         });
-                       
+
                     } else {
                         $password.val('');
                         $rePassword.val('');
